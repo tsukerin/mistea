@@ -1,8 +1,12 @@
 from django.db import models
+from django.urls import reverse  # Заменил import для reverse
 
 class TeaCategory(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
+
+    def get_absolute_url(self):
+        return reverse('shop:tea_list_by_category', args=[self.slug])  # Исправил на 'tea_list_by_category'
 
     class Meta:
         ordering = ('name',)
@@ -17,7 +21,7 @@ class Subscription(models.Model):
     description = models.TextField(blank=True)
     
     # Связь с чаями, входящими в подписку
-    teas = models.ManyToManyField('tea', related_name='subscriptions', blank=True)
+    teas = models.ManyToManyField('Tea', related_name='subscriptions', blank=True)  # Исправил 'tea' на 'Tea'
 
     class Meta:
         ordering = ('name',)
@@ -28,7 +32,7 @@ class Subscription(models.Model):
         return self.name
 
 class Tea(models.Model):
-    category = models.ForeignKey(TeaCategory, related_name='Чаи', on_delete=models.CASCADE)
+    category = models.ForeignKey(TeaCategory, related_name='teas', on_delete=models.CASCADE)
     name = models.CharField(max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True)
     image = models.ImageField(upload_to='teas/%Y/%m/%d', blank=True)
@@ -38,6 +42,9 @@ class Tea(models.Model):
     available = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse('shop:tea_detail', args=[self.id, self.slug])  # Исправил на 'tea_detail'
 
     class Meta:
         ordering = ('name',)
