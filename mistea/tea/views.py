@@ -2,8 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from .models import TeaCategory, Tea
 from django.shortcuts import render
 
-def index(request):
-    return render(request, 'tea/index.html')
+def index2(request):
+    return render(request, 'tea/index2.html')
+# def index(request):
+#     return render(request, 'tea/index.html')
 # def home(request):
 #     return render(request, 'tea/home.html')
     
