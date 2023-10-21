@@ -1,69 +1,52 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mistea</title>
-    <link rel="stylesheet" type="text/css" href="static/styles.css">
-    <!-- Подключение Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-</head>
-<body>
-    <body style="background-image: url('static/images/bg.PNG'); background-size: cover; background-repeat: no-repeat;" .bg-light.bg-gradient>
-
-    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(255, 255, 255, 0.4);">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">
-                <img src="{% static 'images/logo.png' %}" alt="логотип" width="50" height="50" >
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Главная</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/tea-list/"> Каталог</a> 
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Услуги</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Контакты</a>
-                    </li>
-                </ul>
-            </div>
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Личный кабинет</a>
-                </li>
-            </ul>
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Join the Mistery Tea Club with Mistea!</h1>
+            <p>Каждый месяц участники нашего тайного чайного клуба получают волшебную посылку, наполненную разнообразными и удивительными сортами чая.</p>
+            <p>Готовы открыть для себя новые вкусы и чудеса? Подпишитесь прямо сейчас и начните чайное путешествие!</p>
+            <a class="btn btn-primary btn-lg" href="ссылка_на_страницу_подписок" role="button">Подписаться</a>
         </div>
-    </nav>
+        <div class="col-md-6">
+            <img src="static/images/slide1.png" alt="Изображение чая" class="img-fluid", style="width: 100%;" >
+        </div>
+    </div>
 
-    <header>
-        <h1>Добро пожаловать в белое пространство!</h1>
-    </header>
-            
-    <main>
-        <section>
-            <h2>Наш чай</h2>
-            <p>Изучите наши подписки и выберите  на свой вкус.</p>
-        </section>
+ <!-- Элемент 1: Описание вашей компании и миссии -->
+ <div style="background-color: #ffebf3; padding: 20px;">
+    <p>Мы - ваш надежный партнер в мире чая. Наша миссия - предоставить вам лучшие чаи по подписке.</p>
+</div>
+    
+ <!-- Элемент 2: Преимущества подписки -->
+ <h2>Преимущества подписки на чай:</h2>
+ <ul>
+     <li>Экономия времени и денег</li>
+     <li>Регулярная доставка вашего любимого чая</li>
+     <li>Широкий выбор чаев в подписках</li>
+ </ul>
 
-        <section>
-            <h2>Специальные предложения</h2>
-            <p>Узнайте о наших акциях и скидках.</p>
-            <a href="/special-offers/">Специальные предложения</a>
-        </section>
-    </main>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    <footer>
-        <p>&copy; 2023 Mistea</p>
-    </footer>
-</body>
-</html>
+ <!-- Элемент 6: Примеры чаев в подписках -->
+ <h2>Примеры чаев в наших подписках:</h2>
+ <p>Выберите из разнообразных сортов чая в наших подписках, включая черный, зеленый, травяной чай и многое другое.</p>
+ 
+ <!-- Элемент 8: Форма обратной связи -->
+ <h2>Свяжитесь с нами</h2>
+ <p>Если у вас есть вопросы или комментарии, пожалуйста, свяжитесь с нами:</p>
+    <form>
+        <div class="form-group">
+            <label for="name">Имя:</label>
+            <input type="text" class="form-control" id="name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+            <label for="message">Сообщение:</label>
+            <textarea class="form-control" id="message" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+{% endblock content %}
