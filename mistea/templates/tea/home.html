@@ -1,12 +1,16 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
+
 <div class="container mt-5">
+    <!-- Элемент 0-->
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6" style=" padding: 20px; margin-bottom: 20px;">
             <h1>Join the Mistery Tea Club with Mistea!</h1>
             <p>Каждый месяц участники нашего тайного чайного клуба получают волшебную посылку, наполненную разнообразными и удивительными сортами чая.</p>
             <p>Готовы открыть для себя новые вкусы и чудеса? Подпишитесь прямо сейчас и начните чайное путешествие!</p>
-            <a class="btn btn-primary btn-lg" href="ссылка_на_страницу_подписок" role="button">Подписаться</a>
+            <!-- <a class="btn btn-light" href="ссылка_на_страницу_подписок" role="button">Подписаться</a> -->
+            <a class="button" href="{% url 'subs' %}">Подписаться</a>
         </div>
         <div class="col-md-6">
             <img src="static/images/slide1.png" alt="Изображение чая" class="img-fluid", style="width: 100%;" >
