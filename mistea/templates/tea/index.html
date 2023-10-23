@@ -1,33 +1,69 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Karma:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="static/css/styles1.css">
     <title>Mistea - Чайные подписки</title>
 </head>
 <body>
     <div class="header">
         <img src="static/images/bg.PNG" class="background-image" alt="Фоновое изображение">
-        <div class="logo">
-            <img src="static/images/logo.png" alt="Логотип Mistea">
-        </div>
-        <nav>
+        <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto"> <!-- Добавьте класс "mx-auto" для центрирования -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'tea-list' %}">Наши чаи</a>
+                    </li>
+                    <li class="nav-item {% if active_page == 'subs' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'subs' %}">Подписки</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">О доставке</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">О нас</a>
+                    </li>
+                </ul>                
+            </div>
+            <!-- <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="ссылка_на_личный_кабинет">Личный кабинет</a>
+                </li>
+            </ul> -->
+        </nav>
+        <!-- Остальное содержимое -->
+
+        <!-- <nav>
             <ul>
                 <li><a href="#about">О нас</a></li>
                 <li><a href="#delivery">О доставке</a></li>
                 <li><a href="tea-list.html">Чайный ассортимент</a></li>
                 <li><a href="subs.html">Подписки</a></li>
-            </ul>
-        </nav>
+            </ul>      
+        </nav> 
+        <div class="account">
+                    <a href="account.html">Личный кабинет</a>
+                </div>        -->
         <div class="invitation">
             <h1>Join the Mistery Tea Club with Mistea!</h1>
             <p>Каждый месяц участники нашего тайного чайного клуба получают волшебную посылку, наполненную разнообразными и удивительными сортами чая.</p>
             <p>Готовы открыть для себя новые вкусы и чудеса? Подпишитесь прямо сейчас и начните чайное путешествие!</p>
-            <a href="subscribe.html" class="subscribe-button">Подписаться</a>
+            <a class="button" href="{% url 'subs' %}">Подписаться</a>
         </div>
     </div>
     <div class="content" id="about">
+        <h1>О нас</h1>
         <!-- О нас, информация о проекте, почему подписка на чай удобна и т.д. -->
     </div>
     <div class="content" id="delivery">
@@ -39,5 +75,8 @@
     <footer>
         <!-- Информация о контактах, адресе и т.д. -->
     </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

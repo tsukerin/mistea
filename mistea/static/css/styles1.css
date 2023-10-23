@@ -1,13 +1,136 @@
-/* Общие стили */
+
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Merriweather', serif;
 }
-
 .header {
     position: relative;
     text-align: center;
+    background-size: cover;
+    color: white;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+
+.background-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Фон блока с текстом */
+    z-index: -1; /* Помещаем изображение под контент */
+}
+
+
+
+.navbar {
+    padding-left: 20px; /* Отступ слева */
+    padding-right: 20px; /* Отступ справа */
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1; /* Помещаем навбар над фоновым изображением */
+}
+/* Другие стили остаются без изменений */
+
+
+.navbar-light .navbar-nav .nav-link {
+    color: white; /* Цвет ссылок */
+}
+
+.navbar-light .navbar-toggler-icon {
+    color: white; /* Цвет иконки бургера */
+}
+
+.navbar-light .navbar-toggler {
+    border: none; /* Удаляем границу кнопки бургера */
+}
+
+.navbar-toggler:focus {
+    outline: none; /* Убираем рамку фокуса у кнопки бургера */
+}
+
+.navbar-light .navbar-toggler-icon:hover {
+    color: white; /* Цвет иконки бургера при наведении */
+}
+
+.navbar-light .navbar-toggler:hover {
+    background-color: transparent; /* Прозрачный фон кнопки бургера при наведении */
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #ff6600; /* Цвет ссылок при наведении */
+}
+
+.invitation {
+    color: white;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6); /* Фон блока с текстом */
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+/* Дополнительные стили могут потребоваться для остального контента, в зависимости от вашего дизайна */
+
+.content, .contact-form, footer {
+    background-color: white; /* Фон для остального контента */
+    color: #333; /* Цвет текста */
+    padding: 20px;
+    margin-top: 20px;
+}
+
+footer {
+    background-color: #333; /* Цвет фона для футера */
+    color: white; /* Цвет текста в футере */
+    text-align: center;
+    padding: 10px;
+}
+
+
+a.button {
+    background-color: #c27d7d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 30px;
+    font-size: 14px;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+    transition: background-color 0.3s, transform 0.2s;
+    outline: none;
+    text-decoration: none; /* Добавляем стиль ссылки */
+}
+
+.button::before {
+    content: "";
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple 1.5s ease-in-out infinite;
+}
+
+.button:hover {
+    background-color: #ff7f7f;
+    transform: translateY(-2px);
+}
+
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
 }
 
 .background-image {
@@ -20,8 +143,14 @@ body {
     position: absolute;
     top: 20px;
     left: 20px;
+    width: 150px; /* Установите желаемую ширину */
+    height: auto; /* Сохраняйте соотношение сторон */
 }
-
+    
+.header .logo {
+    width: 150px; /* Установите желаемую ширину */
+    height: auto; /* Сохраняйте соотношение сторон */
+}
 nav {
     position: absolute;
     top: 20px;
@@ -53,16 +182,6 @@ nav a {
     text-align: center;
 }
 
-.subscribe-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #ff6600;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    margin-top: 20px;
-}
 
 .content {
     padding: 20px;
