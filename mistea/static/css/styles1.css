@@ -1,14 +1,31 @@
-
 body {
     margin: 0;
     padding: 0;
+    font-family: 'Lora', serif;
     font-family: 'Merriweather', serif;
+}
+
+.invitation {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -80%); /* Смещаем текст немного выше центра */
+}
+
+.invitation h1 {
+    font-size: 36px; /* Увеличиваем размер шрифта для заголовка */
+}
+
+.invitation p {
+    font-size: 24px; /* Увеличиваем размер шрифта для параграфа */
+    margin-top: 20px; /* Добавляем небольшой отступ сверху */
 }
 .header {
     position: relative;
     text-align: center;
     background-size: cover;
-    color: white;
+    color: black;
     padding: 0;
     margin: 0;
     height: 100vh;
@@ -21,91 +38,53 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.6); /* Фон блока с текстом */
-    z-index: -1; /* Помещаем изображение под контент */
+    z-index: -1;
 }
 
-
-
-.navbar {
-    padding-left: 20px; /* Отступ слева */
-    padding-right: 20px; /* Отступ справа */
+ .navbar {
+    padding-left: 20px;
+    padding-right: 20px;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1; /* Помещаем навбар над фоновым изображением */
-}
-/* Другие стили остаются без изменений */
-
-
-.navbar-light .navbar-nav .nav-link {
-    color: white; /* Цвет ссылок */
-}
-
-.navbar-light .navbar-toggler-icon {
-    color: white; /* Цвет иконки бургера */
-}
-
-.navbar-light .navbar-toggler {
-    border: none; /* Удаляем границу кнопки бургера */
-}
-
-.navbar-toggler:focus {
-    outline: none; /* Убираем рамку фокуса у кнопки бургера */
-}
-
-.navbar-light .navbar-toggler-icon:hover {
-    color: white; /* Цвет иконки бургера при наведении */
-}
-
-.navbar-light .navbar-toggler:hover {
-    background-color: transparent; /* Прозрачный фон кнопки бургера при наведении */
-}
-
-.navbar-light .navbar-nav .nav-link:hover {
-    color: #ff6600; /* Цвет ссылок при наведении */
+    z-index: 1;
 }
 
 .invitation {
-    color: white;
+    color: black;
     text-align: center;
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.6); /* Фон блока с текстом */
-    border-radius: 20px;
-    margin-top: 20px;
 }
 
-/* Дополнительные стили могут потребоваться для остального контента, в зависимости от вашего дизайна */
-
 .content, .contact-form, footer {
-    background-color: white; /* Фон для остального контента */
-    color: #333; /* Цвет текста */
+    background-color: white;
+    color: black;
     padding: 20px;
     margin-top: 20px;
 }
 
 footer {
-    background-color: #333; /* Цвет фона для футера */
-    color: white; /* Цвет текста в футере */
+    background-color: #333;
+    color: white;
     text-align: center;
     padding: 10px;
 }
 
-
 a.button {
-    background-color: #c27d7d;
+    display: inline-block;
     color: white;
+    background: #39443d; /* Фон кнопки */
     border: none;
     border-radius: 5px;
     padding: 12px 30px;
-    font-size: 14px;
+    font-size: 16px;
     cursor: pointer;
-    overflow: hidden;
     position: relative;
-    transition: background-color 0.3s, transform 0.2s;
+    overflow: hidden;
+    transition: transform 0.2s, background 0.3s; /* Изменение фона и трансформации при наведении */
     outline: none;
-    text-decoration: none; /* Добавляем стиль ссылки */
+    text-decoration: none;
 }
 
 .button::before {
@@ -118,8 +97,8 @@ a.button {
 }
 
 .button:hover {
-    background-color: #ff7f7f;
-    transform: translateY(-2px);
+    background: #966a4e; /* Изменение фона при наведении */
+    transform: translateY(-2px); /* Поднимаем кнопку при наведении */
 }
 
 @keyframes ripple {
@@ -133,24 +112,19 @@ a.button {
     }
 }
 
-.background-image {
-    width: 100%;
-    height: 100vh;
-    object-fit: cover;
-}
-
 .logo {
     position: absolute;
     top: 20px;
     left: 20px;
-    width: 150px; /* Установите желаемую ширину */
-    height: auto; /* Сохраняйте соотношение сторон */
+    width: 150px;
+    height: auto;
 }
-    
+
 .header .logo {
-    width: 150px; /* Установите желаемую ширину */
-    height: auto; /* Сохраняйте соотношение сторон */
+    width: 150px;
+    height: auto;
 }
+
 nav {
     position: absolute;
     top: 20px;
@@ -173,66 +147,6 @@ nav a {
     font-weight: bold;
 }
 
-.invitation {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    text-align: center;
-}
-
-
-.content {
-    padding: 20px;
-    background-color: #fff;
-    color: #333;
-}
-
-.contact-form {
-    padding: 20px;
-    background-color: #f2f2f2;
-}
-
-.contact-form h2 {
-    font-size: 24px;
-}
-
-.contact-form form {
-    margin-top: 20px;
-}
-
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.contact-form input[type="submit"] {
-    background-color: #ff6600;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.contact-form input[type="submit"]:hover {
-    background-color: #ff3300;
-}
-
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-}
-
-/* Пример стилей для FAQ-блока */
 .faq {
     background-color: #f2f2f2;
     padding: 20px;
@@ -247,4 +161,76 @@ footer {
 
 .faq p {
     margin-bottom: 10px;
+}
+
+/* изменения  */
+.content {
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0; /* Убираем внутренние отступы у контейнера */
+}
+
+.content-left {
+    width: 50%;
+    background-color: #97a593;
+    padding: 30px;
+    color: white;
+    margin: 0; /* Убираем внешние отступы у левой части */
+}
+
+.content-left h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.content-left p {
+    margin-top: 10px; /* Добавляем отступ сверху перед каждым абзацем */
+    padding-left: 20px; /* Добавляем отступ слева для каждого абзаца */
+}
+
+.content-left ul {
+    list-style-type: none; /* Устанавливаем тип маркера как "нет" */
+    padding: 0; /* Убираем внутренний отступ у списка */
+    font-size: 22px
+}
+
+.content-right {
+    width: 50%;
+    background-color: #fcf5eb;
+    padding: 30px;
+    margin: 0; /* Убираем внешние отступы у правой части */
+}
+
+.content-right h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.content-right ul {
+    list-style-type: none; /* Устанавливаем тип маркера как "нет" */
+    padding: 0; /* Убираем внутренний отступ у списка */
+    font-size: 22px
+}
+
+.content-right p {
+    margin-top: 10px; /* Добавляем отступ сверху перед каждым абзацем */
+    padding-left: 20px; /* Добавляем отступ слева для каждого абзаца */
+}
+.benefit {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.benefit img {
+    width: 45px;
+    height: 45px; /* Задаем и ширину, и высоту */
+    margin-right: 10px;
+}
+
+.benefit p {
+    font-size: 18px;
 }

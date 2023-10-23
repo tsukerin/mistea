@@ -2,18 +2,24 @@ from django.shortcuts import render, get_object_or_404
 from .models import TeaCategory, Tea
 from django.shortcuts import render
 
-# def home(request):
-#     context = {
-#         'active_page': 'home',
-#     }
-#     return render(request, 'tea/home.html', context)
+def home(request):
+    context = {
+        'active_page': 'home',
+    }
+    return render(request, 'tea/home.html', context)
 
 def index(request):
     context = {
         'active_page': 'index',
     }
     return render(request, 'tea/index.html', context)
-    
+
+def index2(request):
+    context = {
+        'active_page': 'index',
+    }
+    return render(request, 'tea/index2.html', context)
+
 def tea_list(request):
     category = None
     categories = TeaCategory.objects.all()
