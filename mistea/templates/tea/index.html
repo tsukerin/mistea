@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&family=Merriweather&display=swap" rel="stylesheet">    
-    <link rel="stylesheet" href="static/css/styles1.css">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">    <link rel="stylesheet" href="static/css/styles1.css">
     <title>Mistea - Чайные подписки</title>
 </head>
 <body>
@@ -46,12 +45,54 @@
         </nav>
         <div class="invitation">
             <h1>Welcome to the Mystery Tea Club!</h1>
-            <!-- <p>Каждый месяц участники нашего тайного чайного клуба получают волшебную посылку, наполненную разнообразными и удивительными сортами чая.</p> -->
             <p>Подпишитесь прямо сейчас и начните чайное путешествие!</p>
             <a class="button" href="{% url 'subs' %}">Подписаться</a>
         </div>
     </div>
-    <div class="content" id="how-it-works">
+    <div class="content">
+        <div class="background-container">
+            <!-- <div class="left-content">
+                <div class="half-translucent-bg">
+                    <h2>Как это работает?</h2>
+                    <ul>
+                        <li><strong>Регулярно привозим вам наборы чая</strong>
+                            <p>По умолчанию привозим раз в месяц. При оформлении подписки вы можете установить любой удобный для вас интервал.</p>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+            <div class="right-content">
+                <div class="half-translucent-bg">
+                    <h2>Почему это удобно?</h2>
+                    <ul>
+                        <li><strong>Удобство и экономия времени</strong>
+                            <p>Забудь о походах в магазины и долгих поисках новых чаев. Мы доставим тебе разнообразные сорта чая прямо домой или в офис. Это значит, что ты экономишь время и силы, которые мог бы потратить на поиск чая в магазинах.</p>
+                        </li>
+                       
+                    </ul>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- <div class="background-container">
+        <img src="{% static 'images/bg_how.PNG' %}" class="background-image" alt="Фоновое изображение">
+        <div class="content-how">
+            <h2>Как это работает?</h2>
+            <ul>
+                <li><strong>Регулярно привозим вам наборы чая</strong> 
+                <p> По умолчанию привозим раз в месяц. При оформлении подписки вы можете установить любой удобный для вас интервал.</p></li>
+                <li><strong>Широкий ассортимент</strong> 
+                <p> Каждый месяц участники нашего тайного чайного клуба получают волшебную посылку, наполненную разнообразными и удивительными сортами чая.</p></li>
+                <li><strong>Гарантированное качество</strong> 
+                <p> Мы бережно отбираем для вас лучшие сорта чая от проверенных поставщиков.</p></li>
+                <li><strong>Удобство и экономия</strong>
+                <p> Забудьте о походах в магазины и выборе чая. Мы все сделаем за вас!</p></li>
+            </ul>
+        </div>
+      </div> -->
+    <!-- <div class="content" id="how-it-works">
         <div class="content-left">
             <h2>Как это работает?</h2>
             <ul>
@@ -91,7 +132,7 @@
             </ul>
         </div>
     </div>
-    
+     -->
     
     <div class="content" id="about">
         <h1>О нас</h1>

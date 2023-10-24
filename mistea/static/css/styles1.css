@@ -1,7 +1,6 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Lora', serif;
     font-family: 'Merriweather', serif;
 }
 
@@ -14,13 +13,19 @@ body {
 }
 
 .invitation h1 {
-    font-size: 36px; /* Увеличиваем размер шрифта для заголовка */
+    font-weight: 700;
+    font-family: 'Merriweather', sans-serif;
+    font-size: 36px;
 }
 
 .invitation p {
-    font-size: 24px; /* Увеличиваем размер шрифта для параграфа */
-    margin-top: 20px; /* Добавляем небольшой отступ сверху */
+    font-weight:  Regular 400; 
+    font-family: 'Merriweather', sans-serif; 
+    font-size: 20px; 
+    font-size: 24px; 
+    margin-top: 20px; 
 }
+
 .header {
     position: relative;
     text-align: center;
@@ -31,6 +36,70 @@ body {
     height: 100vh;
 }
 
+.content {
+    position: relative;
+}
+
+.background-container {
+    width: 100%;
+    height: 100vh; /* 100% высоты экрана. */
+    background-image: url('{% static "images/bg.PNG" %}');
+    background-size: 100% 100%;
+    /* Другие стили */
+}
+
+.left-content,
+.right-content {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+}
+
+.left-content {
+    left: 0;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.right-content {
+    right: 0;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.half-translucent-bg {
+    padding: 20px;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+/* Добавьте стили по вашему усмотрению */
+
+/* .background-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+} */
+  
+  /* .overlay {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6); 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 0;
+  } */
+  
 .background-image {
     width: 100%;
     height: 100%;
@@ -51,18 +120,11 @@ body {
     z-index: 1;
 }
 
-.invitation {
-    color: black;
-    text-align: center;
-    padding: 20px;
-}
-
-.content, .contact-form, footer {
-    background-color: white;
+/* .content, .contact-form, footer {
     color: black;
     padding: 20px;
     margin-top: 20px;
-}
+} */
 
 footer {
     background-color: #333;
@@ -164,73 +226,40 @@ nav a {
 }
 
 /* изменения  */
-.content {
+/* .content {
     display: flex;
     justify-content: space-between;
     margin: 0;
     padding: 0; /* Убираем внутренние отступы у контейнера */
+
+
+.content-how {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 1%;
+    background-color: rgba(255, 255, 255, 0.8);
+    transform: translate(-50%, -50%);
+    border-radius: 0cm;
+  
 }
 
-.content-left {
-    width: 50%;
-    background-color: #97a593;
-    padding: 30px;
-    color: white;
-    margin: 0; /* Убираем внешние отступы у левой части */
-}
-
-.content-left h2 {
+.content-how h2 {
     font-size: 40px;
     margin-bottom: 20px;
     text-align: center;
 }
 
-.content-left p {
+.content-how p {
     margin-top: 10px; /* Добавляем отступ сверху перед каждым абзацем */
     padding-left: 20px; /* Добавляем отступ слева для каждого абзаца */
-}
-
-.content-left ul {
-    list-style-type: none; /* Устанавливаем тип маркера как "нет" */
-    padding: 0; /* Убираем внутренний отступ у списка */
-    font-size: 22px
-}
-
-.content-right {
-    width: 50%;
-    background-color: #fcf5eb;
-    padding: 30px;
-    margin: 0; /* Убираем внешние отступы у правой части */
-}
-
-.content-right h2 {
-    font-size: 40px;
-    margin-bottom: 20px;
     text-align: center;
 }
 
-.content-right ul {
+.content-how ul {
     list-style-type: none; /* Устанавливаем тип маркера как "нет" */
     padding: 0; /* Убираем внутренний отступ у списка */
-    font-size: 22px
-}
-
-.content-right p {
-    margin-top: 10px; /* Добавляем отступ сверху перед каждым абзацем */
-    padding-left: 20px; /* Добавляем отступ слева для каждого абзаца */
-}
-.benefit {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.benefit img {
-    width: 45px;
-    height: 45px; /* Задаем и ширину, и высоту */
-    margin-right: 10px;
-}
-
-.benefit p {
-    font-size: 18px;
+    font-size: 22px;
+    
 }
