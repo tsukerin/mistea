@@ -40,10 +40,10 @@ body {
     position: relative;
 }
 
-.background-container {
+.background-container-how {
     width: 100%;
     height: 100vh; /* 100% высоты экрана. */
-    background-image: url('{% static "images/bg.PNG" %}');
+    background-image: url('{% static "images/bg_how.PNG" %}');
     background-size: 100% 100%;
     /* Другие стили */
 }
