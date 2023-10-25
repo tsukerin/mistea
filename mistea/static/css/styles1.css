@@ -270,7 +270,7 @@ nav a {
 .site-footer hr
 {
   border-top-color:#bbb;
-  opacity:0.5
+  opacity:0
 }
 .site-footer hr.small
 {
@@ -331,8 +331,9 @@ nav a {
 }
 .copyright-text
 {
-  margin:0;
-  text-align: center;
+  margin: 40px;
+  text-align: right;
+  color: #33353d;
   
 }
 @media (max-width:991px)
@@ -348,7 +349,7 @@ nav a {
   {
     padding-bottom:0
   }
-  .site-footer .copyright-text,.site-footer .social-icons
+  .site-footer,.site-footer .social-icons
   {
     text-align:center
   }
@@ -401,20 +402,9 @@ nav a {
 }
 .social-icons a.facebook:hover
 {
-  background-color:#3b5998
-}
-.social-icons a.twitter:hover
-{
   background-color:#00aced
 }
-.social-icons a.linkedin:hover
-{
-  background-color:#007bb6
-}
-.social-icons a.dribbble:hover
-{
-  background-color:#ea4c89
-}
+
 @media (max-width:767px)
 {
   .social-icons li.title
