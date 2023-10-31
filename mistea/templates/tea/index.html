@@ -50,146 +50,161 @@
             <a class="button" href="{% url 'subs' %}">Подписаться</a>
         </div>
     </div>
-    <div class="content">
-        <div class="background-container">
-            <!-- <div class="left-content">
-                <div class="half-translucent-bg">
-                    <h2>Как это работает?</h2>
-                    <ul>
-                        <li><strong>Регулярно привозим вам наборы чая</strong>
-                            <p>По умолчанию привозим раз в месяц. При оформлении подписки вы можете установить любой удобный для вас интервал.</p>
-                        </li>
-                        
-                    </ul>
-                </div>
-            </div>
-            <div class="right-content">
-                <div class="half-translucent-bg">
-                    <h2>Почему это удобно?</h2>
-                    <ul>
-                        <li><strong>Удобство и экономия времени</strong>
-                            <p>Забудь о походах в магазины и долгих поисках новых чаев. Мы доставим тебе разнообразные сорта чая прямо домой или в офис. Это значит, что ты экономишь время и силы, которые мог бы потратить на поиск чая в магазинах.</p>
-                        </li>
-                       
-                    </ul>
-                </div> -->
+
+<!-- почему удобно -->
+<div class="container mt-4">
+    <h1 class= "text-center">Почему подписка на чай - это удобно?</h1>
+    <div class="row">
+        <div class="col">
+            <div class="bg-transparent p-3 text-center">
+                <img src="static/images/Чай-время.png" alt="Изображение 1" class="img-fluid">
+                <h5>Экономия времени</h5>
+                <p>Мы доставим чай прямо к вашей двери, освобождая вас от забот о покупках</p>
             </div>
         </div>
-    </div>
-    
-    <!-- <div class="background-container">
-        <img src="{% static 'images/bg_how.PNG' %}" class="background-image" alt="Фоновое изображение">
-        <div class="content-how">
-            <h2>Как это работает?</h2>
-            <ul>
-                <li><strong>Регулярно привозим вам наборы чая</strong> 
-                <p> По умолчанию привозим раз в месяц. При оформлении подписки вы можете установить любой удобный для вас интервал.</p></li>
-                <li><strong>Широкий ассортимент</strong> 
-                <p> Каждый месяц участники нашего тайного чайного клуба получают волшебную посылку, наполненную разнообразными и удивительными сортами чая.</p></li>
-                <li><strong>Гарантированное качество</strong> 
-                <p> Мы бережно отбираем для вас лучшие сорта чая от проверенных поставщиков.</p></li>
-                <li><strong>Удобство и экономия</strong>
-                <p> Забудьте о походах в магазины и выборе чая. Мы все сделаем за вас!</p></li>
-            </ul>
+        <div class="col">
+            <div class="bg-transparent p-3 text-center">
+                <img src="static/images/Чайник-деньги.png" alt="Изображение 2" class="img-fluid">
+                <h5>Экономия денег</h5>
+                <p>Подписка на чай позволяет получать чай по сниженной цене, по сравнению с регулярными покупками в магазинах.</p>
+            </div>
         </div>
-      </div> -->
-    <!-- <div class="content" id="how-it-works">
-        <div class="content-left">
-            <h2>Как это работает?</h2>
-            <ul>
-                <li><strong>Регулярно привозим вам наборы чая</strong> 
-                <p> По умолчанию привозим раз в месяц. При оформлении подписки вы можете установить любой удобный для вас интервал.</p></li>
-                <li><strong>Широкий ассортимент</strong> 
-                <p> Каждый месяц участники нашего тайного чайного клуба получают волшебную посылку, наполненную разнообразными и удивительными сортами чая.</p></li>
-                <li><strong>Гарантированное качество</strong> 
-                <p> Мы бережно отбираем для вас лучшие сорта чая от проверенных поставщиков.</p></li>
-                <li><strong>Поддержка и подарки</strong> 
-                <p> Наши подписчики получают не только чай, но и подарки, скидки и доступ к закрытым мероприятиям.</p></li>
-                <li><strong>Удобство и экономия</strong>
-                <p> Забудьте о походах в магазины и выборе чая. Мы все сделаем за вас!</p></li>
-            </ul>
+        <div class="col">
+            <div class="bg-transparent p-3 text-center">
+                <img src="static/images/Листья-качество.png" alt="Изображение 3" class="img-fluid">
+                <h5>Качество и свежесть</h5>
+                <p>Мы гарантируем, что все чаи, полученные вами в рамках подписки, всегда будут свежие и высочайшего качества.</p>
+            </div>
         </div>
-        <div class="content-right">
-            <h2>Почему это удобно?</h2>
-            <ul>
-                <li><strong>Удобство и экономия времени</strong>
-                    <p>Забудь о походах в магазины и долгих поисках новых чаев. Мы доставим тебе разнообразные сорта чая прямо домой или в офис. Это значит, что ты экономишь время и силы, которые мог бы потратить на поиск чая в магазинах.</p>
-                </li>
-                <li><strong>Персонализация подписки</strong>
-                    <p>Наш сервис адаптирован под твои предпочтения. Мы учтем твои вкусовые предпочтения и предложим именно те сорта чая, которые тебе понравятся. Таким образом, каждая поставка будет приятным открытием.</p>
-                </li>
-                <li><strong>Качество и разнообразие</strong>
-                    <p>Mistea сотрудничает с лучшими чайными производителями по всему миру. Мы предлагаем широкий ассортимент высококачественных чаев, от зеленого и черного до травяных и фруктовых. Наша подписка позволяет тебе попробовать новые виды чая без риска.</p>
-                </li>
-                <li><strong>Экономия денег</strong>
-                    <p>Подписка на чай выгоднее, чем покупка отдельных упаковок в магазине. Мы предлагаем конкурентоспособные цены и регулярные скидки наших подписчиков.</p>
-                </li>
-                <li><strong>Гибкость</strong>
-                    <p>Ты можешь в любой момент изменить свои предпочтения, приостановить подписку или отказаться от нее. Наша цель - удовлетворить твои потребности.</p>
-                </li>
-                <li><strong>Эмоциональная радость</strong>
-                    <p>Получение каждой поставки Mistea будет для тебя как небольшой подарок. Момент распаковки новых сортов чая наполняет твой день радостью.</p>
-                </li>
-            </ul>
+        <div class="col">
+            <div class="bg-transparent p-3 text-center">
+                <img src="static/images/Подарок.png" alt="Изображение 4" class="img-fluid">
+                <h5>Подарки</h5>
+                <p>Периодически мы добавляем ваши заказы подарки, чтобы сделать вашу подписку на чай ещё более увлекательной.</p>
+            </div>
         </div>
     </div>
-     -->
-    
-    <div class="content" id="about">
-        <h1>О нас</h1>
-        <!-- О нас, информация о проекте, почему подписка на чай удобна и т.д. -->
-    </div>
-    <div class="content" id="delivery">
-        <!-- Часто задаваемые вопросы о доставке, подписках и т.д. -->
-    </div>
-    <div class="contact-form">
-        <!-- Форма для заполнения данных и контакты -->
-    </div>
-     <!-- Site footer -->
-<footer class="site-footer" style="background-image: url('static/images/bg_footer.PNG'); background-size: cover;">
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12 col-md-6">
-          <h6>About</h6>
-          <p class="text-justify">Присоединяйтесь к Mistea прямо сейчас и станьте частью тайного чайного клуба, где чаепитие превращается в настоящее приключение!</p>
-        </div>
+</div>
 
-        <div class="col-xs-6 col-md-3">
-          <h6>Contacts</h6>
-          <ul class="footer-links">
-            <li><a href="http://scanfcode.com/category/c-language/">mistea@yandex.ru</a></li>
-            <li><a href="http://scanfcode.com/category/front-end-development/">+7(925)-727-50-49</a></li>
-          </ul>
+<!-- как работает -->
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="block">
+                <p>Текст 1</p>
+            </div>
         </div>
-
-        <div class="col-xs-6 col-md-3">
-          <h6>Quick Links</h6>
-          <ul class="footer-links">
-            <li><a href="http://scanfcode.com/about/">About Us</a></li>
-            <li><a href="http://scanfcode.com/contact/">About delivery</a></li>
-            <li><a href="http://scanfcode.com/contribute-at-scanfcode/">Subscribers</a></li>
-            <li><a href="http://scanfcode.com/privacy-policy/">All tea</a></li>
-          </ul>
+        <div class="col-md-4">
+            <div class="line"></div>
         </div>
-      </div>
-      <hr>
+        <div class="col-md-4">
+            <div class="block">
+                <p>Текст 2</p>
+            </div>
+        </div>
     </div>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-sm-6 col-xs-12">
-          <p class="copyright-text">Copyright &copy; 2023 MISTEA 
-          </p>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="line"></div>
         </div>
+        <div class="col-md-4">
+            <div class="block">
+                <p>Текст 3</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="line"></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="block">
+                <p>Текст 4</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="line"></div>
+        </div>
+        <div class="col-md-4">
+            <div class="block">
+                <p>Текст 5</p>
+            </div>
+        <div class="col-md-4">
+            <div class="block">
+                <p>Текст 6</p>
+            </div>
+        </div>
+    </div>
+</div>
 
-        <div class="col-md-4 col-sm-6 col-xs-12">
-          <ul class="social-icons">
-            <li><a class="facebook" href="#"><i class="fa fa-facebook"></i></a></li>
+
+<!-- футер -->
+<section class="">
+    <!-- Footer -->
+    <footer class="bg-light text-center">
+      <!-- Grid container -->
+      <div class="container p-4">
+        <!--Grid row-->
+        <div class="row">
+          <!--Grid column-->
+          <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+            <a class="button" href="{% url 'subs' %}">Подписаться</a>
   
-          </ul>
+            <p>
+                Присоединяйтесь к Mistea прямо сейчас и станьте частью тайного чайного клуба, где чаепитие превращается в настоящее приключение!
+            </p>
+          </div>
+          <!--Grid column-->
+  
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Контакты</h5>
+  
+            <ul class="list-unstyled mb-0">
+              <li>
+                <a href="#!" class="text-dark" >mistea@yandex.ru</a>
+              </li>
+              <li>
+                <a href="#!" class="text-dark" >+7(925)-727-50-49</a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
+  
+          <!--Grid column-->
+          <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-0">Быстрые ссылки</h5>
+  
+            <ul class="list-unstyled">
+              <li>
+                <a href="#!" class="text-dark">О нас</a>
+              </li>
+              <li>
+                <a href="#!" class="text-dark">Подписки</a>
+              </li>
+              <li>
+                <a href="#!" class="text-dark">Отзывы</a>
+              </li>
+              <li>
+                <a href="#!" class="text-dark">Вопросы</a>
+              </li>
+            </ul>
+          </div>
+          <!--Grid column-->
         </div>
+        <!--Grid row-->
       </div>
-    </div>
-</footer>
+      <!-- Grid container -->
+  
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2023 Copyright:
+        <a class="text-white" href="https://mdbootstrap.com/">Mistea</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+  </section>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
