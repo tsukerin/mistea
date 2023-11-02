@@ -10,45 +10,6 @@ body {
     font-family: 'Merriweather', serif;
 }
 
-.block {
-  background: transparent;
-  border: 2px solid black;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px 0;
-  text-align: center;
-}
-
-.line {
-  border-left: 2px solid black;
-  height: 100px;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-
-.invitation {
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -80%); /* Смещаем текст немного выше центра */
-}
-
-.invitation h1 {
-    font-weight: 700;
-    font-family: 'Merriweather', sans-serif;
-    font-size: 36px;
-}
-
-.invitation p {
-    font-weight:  Regular 400; 
-    font-family: 'Merriweather', sans-serif; 
-    font-size: 20px; 
-    font-size: 24px; 
-    margin-top: 20px; 
-}
 
 .header {
     position: relative;
@@ -64,66 +25,6 @@ body {
     position: relative;
     padding: 0 0 100px;
 }
-
-.background-container {
-    width: 100%;
-    height: 100vh; /* 100% высоты экрана. */
-    background-image: url('{% static "images/bg.PNG" %}');
-    background-size: 100% 100%;
-    /* Другие стили */
-}
-
-.left-content,
-.right-content {
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    top: 0;
-    display: flex;
-    align-items: center;
-}
-
-.left-content {
-    left: 0;
-    background: rgba(255, 255, 255, 0.8);
-}
-
-.right-content {
-    right: 0;
-    background: rgba(255, 255, 255, 0.8);
-}
-
-.half-translucent-bg {
-    padding: 20px;
-}
-
-ul {
-    list-style-type: disc;
-    padding-left: 20px;
-}
-
-/* Добавьте стили по вашему усмотрению */
-
-/* .background-container {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-} */
-  
-  /* .overlay {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.6); 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    z-index: 0;
-  } */
   
 .background-image {
     width: 100%;
@@ -135,6 +36,7 @@ ul {
     z-index: -1;
 }
 
+/* навигационное меню */
  .navbar {
     padding-left: 20px;
     padding-right: 20px;
@@ -145,11 +47,42 @@ ul {
     z-index: 1;
 }
 
-/* .content, .contact-form, footer {
-    color: black;
-    padding: 20px;
-    margin-top: 20px;
-} */
+/* футер */
+.footer, .push {
+  height: 80px; /* .push и .footer должны быть одинаковой высоты */
+  clear: both;
+  }
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin-bottom: -5px; /* Отрицательное значение высоты footer'а */
+  }
+
+
+/* приветствие */
+.invitation {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -80%); /* Смещаем текст немного выше центра */
+}
+
+.invitation h1 {
+  font-weight: 700;
+  font-family: 'Merriweather', sans-serif;
+  font-size: 36px;
+}
+
+.invitation p {
+  font-weight:  Regular 400; 
+  font-family: 'Merriweather', sans-serif; 
+  font-size: 20px; 
+  font-size: 24px; 
+  margin-top: 20px; 
+}
 
 
 a.button {
@@ -168,6 +101,7 @@ a.button {
     text-decoration: none;
 }
 
+/* кнопка */
 .button::before {
     content: "";
     position: absolute;
@@ -193,262 +127,133 @@ a.button {
     }
 }
 
-.logo {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    width: 150px;
-    height: auto;
-}
-
-.header .logo {
-    width: 150px;
-    height: auto;
-}
-
-nav {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-}
-
-.faq {
-    background-color: #f2f2f2;
-    padding: 20px;
-    border: 1px solid #ccc;
-    margin-top: 20px;
-}
-
-.faq h3 {
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.faq p {
-    margin-bottom: 10px;
-}
-
-/* изменения  */
-/* .content {
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
-    padding: 0; /* Убираем внутренние отступы у контейнера */
-
-
-.content-how {
-    text-align: center;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    padding: 1%;
-    background-color: rgba(255, 255, 255, 0.8);
-    transform: translate(-50%, -50%);
-    border-radius: 0cm;
-  
-}
-
-.content-how h2 {
-    font-size: 40px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.content-how p {
-    margin-top: 10px; /* Добавляем отступ сверху перед каждым абзацем */
-    padding-left: 20px; /* Добавляем отступ слева для каждого абзаца */
-    text-align: center;
-}
-
-.content-how ul {
-    list-style-type: none; /* Устанавливаем тип маркера как "нет" */
-    padding: 0; /* Убираем внутренний отступ у списка */
-    font-size: 22px;
-    
-}
-
-.site-footer
-{
-  background-color:#26272b;
-  padding:45px 0 20px;
-  font-size:15px;
-  line-height:24px;
-  color:#737373;
-}
-.site-footer hr
-{
-  border-top-color:#bbb;
-  opacity:0
-}
-.site-footer hr.small
-{
-  margin:20px 0
-}
-.site-footer h6
-{
-  color: #39443c;
-  font-size:16px;
-  text-transform:uppercase;
-  margin-top:5px;
-  letter-spacing:2px
-}
-.site-footer a
-{
-  color:#737373;
-}
-.site-footer a:hover
-{
-  color:#3366cc;
-  text-decoration:none;
-}
-.footer-links
-{
-  padding-left:0;
-  list-style:none
-}
-.footer-links li
-{
-  display:block
-}
-.footer-links a
-{
-  color:#737373
-}
-.footer-links a:active,.footer-links a:focus,.footer-links a:hover
-{
-  color:#3366cc;
-  text-decoration:none;
-}
-.footer-links.inline li
-{
-  display:inline-block
-}
-.site-footer .social-icons
-{
-  text-align:right
-}
-.site-footer .social-icons a
-{
-  width:40px;
-  height:40px;
-  line-height:40px;
-  margin-left:6px;
-  margin-right:0;
-  border-radius:100%;
-  background-color:#33353d
-}
-.copyright-text
-{
-  margin: 40px;
-  text-align: right;
-  color: #33353d;
-  
-}
-@media (max-width:991px)
-{
-  .site-footer [class^=col-]
-  {
-    margin-bottom:30px
-  }
-}
-@media (max-width:767px)
-{
-  .site-footer
-  {
-    padding-bottom:0
-  }
-  .site-footer,.site-footer .social-icons
-  {
-    text-align:center
-  }
-}
-.social-icons
-{
-  padding-left:0;
-  margin-bottom:0;
-  list-style:none
-}
-.social-icons li
-{
-  display:inline-block;
-  margin-bottom:4px
-}
-.social-icons li.title
-{
-  margin-right:15px;
-  text-transform:uppercase;
-  color:#96a2b2;
-  font-weight:700;
-  font-size:13px
-}
-.social-icons a{
-  background-color:#eceeef;
-  color:#818a91;
-  font-size:16px;
-  display:inline-block;
-  line-height:44px;
-  width:44px;
-  height:44px;
-  text-align:center;
-  margin-right:8px;
-  border-radius:100%;
-  -webkit-transition:all .2s linear;
-  -o-transition:all .2s linear;
-  transition:all .2s linear
-}
-.social-icons a:active,.social-icons a:focus,.social-icons a:hover
-{
-  color:#fff;
-  background-color:#29aafe
-}
-.social-icons.size-sm a
-{
-  line-height:34px;
-  height:34px;
-  width:34px;
-  font-size:14px
-}
-.social-icons a.facebook:hover
-{
-  background-color:#00aced
-}
-
-@media (max-width:767px)
-{
-  .social-icons li.title
-  {
-    display:block;
-    margin-right:0;
-    font-weight:600
-  }
-}
-
-.footer, .push {
-  height: 80px; /* .push и .footer должны быть одинаковой высоты */
-  clear: both;
-  }
-
-.wrapper {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-  margin-bottom: -5px; /* Отрицательное значение высоты footer'а */
-  }
 
 /* Как работает подписка  */
+/* Оформить подписку */
+.box_p {
+  position: relative;
+  width: 652px;
+  height: 332px;
+}
+
+.box_p .view {
+  position: fixed;
+  width: 666px;
+  height: 332px;
+  top: 0;
+  left: 0;
+}
+
+.box_p .text-wrapper {
+  position: absolute;
+  top: 0;
+  left: 5px;
+  font-family: "Playfair Display-Medium", Helvetica;
+  font-weight: 500;
+  color: #000000;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.box_p .div {
+  top: 27px;
+  left: 5px;
+  color: #362d25;
+  font-size: 16px;
+  position: absolute;
+  font-family: "Playfair Display-Medium", Helvetica;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.box_p .overlap {
+  top: 74px;
+  left: 5px;
+  background-image: url(./img/rectangle-6.svg);
+  position: absolute;
+  width: 647px;
+  height: 42px;
+  background-size: 100% 100%;
+}
+
+.box_p .text-wrapper-2 {
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  font-family: "Playfair Display-Medium", Helvetica;
+  font-weight: 500;
+  color: #362d25;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.box_p .text-wrapper-3 {
+  top: 142px;
+  left: 5px;
+  color: #000000;
+  font-size: 20px;
+  position: absolute;
+  font-family: "Playfair Display-Medium", Helvetica;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.box_p .overlap-group {
+  top: 182px;
+  left: 5px;
+  background-image: url(./img/rectangle-7.svg);
+  position: absolute;
+  width: 647px;
+  height: 42px;
+  background-size: 100% 100%;
+}
+
+.box_p .text-wrapper-4 {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  font-family: "Playfair Display-Medium", Helvetica;
+  font-weight: 500;
+  color: #362d25;
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.box_p .p {
+  top: 250px;
+  left: 0;
+  color: #000000;
+  font-size: 20px;
+  position: absolute;
+  font-family: "Playfair Display-Medium", Helvetica;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.box_p .div-wrapper {
+  top: 290px;
+  left: 0;
+  background-image: url(./img/rectangle-8.svg);
+  position: absolute;
+  width: 647px;
+  height: 42px;
+  background-size: 100% 100%;
+}
+
+.box_p .text-wrapper-5 {
+  top: 10px;
+  left: 19px;
+  color: #362d25;
+  font-size: 16px;
+  position: absolute;
+  font-family: "Playfair Display-Medium", Helvetica;
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: normal;
+}
