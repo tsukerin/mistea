@@ -1,8 +1,13 @@
+html {
+  height: 100%;    
+}
+
 body {
+    width: 100%;
+    height: 100%;
     margin: 0;
     padding: 0;
     font-family: 'Merriweather', serif;
-    
 }
 
 .block {
@@ -57,6 +62,7 @@ body {
 
 .content {
     position: relative;
+    padding: 0 0 100px;
 }
 
 .background-container {
@@ -432,3 +438,17 @@ nav a {
     font-weight:600
   }
 }
+
+.footer, .push {
+  height: 80px; /* .push и .footer должны быть одинаковой высоты */
+  clear: both;
+  }
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin-bottom: -5px; /* Отрицательное значение высоты footer'а */
+  }
+
+/* Как работает подписка  */

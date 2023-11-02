@@ -3,17 +3,11 @@
 {% load static %}
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">    <link rel="stylesheet" href="static/css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-9ziF6uSo6zvb5ZXnIn00z5KxX4Bb2Pw5Lq2n7c5EmSka3ayDbP/XvzPgF+9bcof3C" crossorigin="anonymous">
-    <title>Mistea - Чайные подписки</title>
+        <title>Mistea - Чайные подписки</title>
 </head>
 <body>
 {% block content %}
+<div class="container">
 <img src="static/images/bg_green.PNG" class="background-image" alt="Фоновое изображение">
     <div class="header">
         <div class="invitation">
@@ -59,7 +53,9 @@
 </div>
 
 <!-- как работает -->
-<div class="container mt-4">
+  
+    
+<!-- <div class="container mt-4">
     <div class="row">
         <div class="col-md-4">
             <div class="block">
@@ -104,11 +100,10 @@
         
         </div>
     </div>
+</div> -->
 </div>
 {% endblock content %}
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>
 
