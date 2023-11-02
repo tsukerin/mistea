@@ -12,13 +12,7 @@ def index(request):
     context = {
         'active_page': 'index',
     }
-    return render(request, 'tea/index.html', context)
-
-def index2(request):
-    context = {
-        'active_page': 'index',
-    }
-    return render(request, 'tea/index2.html', context)
+    return render(request, 'tea/main.html', context)
 
 def tea_list(request):
     category = None
