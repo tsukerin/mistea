@@ -9,5 +9,6 @@ urlpatterns = [
     path('about/', TemplateView.as_view(template_name='tea/about.html'), name='about'),
     path('subs/', subs, name='subs'),
     path('home/', subs, name='home'),
-    path('tea-detail/<int:pk>/', tea_detail, name='tea-detail'), 
+    path('tea-detail/<int:pk>/', tea_detail, name='tea-detail'),
+    path('auth/', TemplateView.as_view(template_name='Авторизация.html'), name='auth'),
 ]
