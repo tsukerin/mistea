@@ -3,10 +3,15 @@
 <html style="font-size: 16px;" lang="ru">
 <head>
 {% block header %}{% endblock header %}
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <meta name="description" content="">
     <link rel="stylesheet" href="{% static 'css/nicepage.css' %}" media="screen">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}" media="screen">
     <title>Mistea</title>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -31,16 +36,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item {% if active_page == 'home' %}active{% endif %}">
-                    <a class="nav-link" href="{% url 'home' %}">Главная</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'tea-list' %}">Чайный ассортимент</a>
+                    <a class="nav-link" href="{% url 'homepage' %}">Главная</a>
                 </li>
                 <li class="nav-item {% if active_page == 'subs' %}active{% endif %}">
                     <a class="nav-link" href="{% url 'subs' %}">Подписки</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">О доставке</a>
+                    <a class="nav-link" href="{% url 'contact' %}">Контакты</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'about' %}">О нас</a>
@@ -54,43 +56,94 @@
         </ul>
     </nav>
   </top>
-<div class="wrapper">
+<!-- <div class="wrapper"> -->
     <!-- <div class="content"> -->
     {% block content %}{% endblock content %}
     <!-- </div> -->
-</div>
+<!-- </div> -->
 <!-- футер -->
-<div class="footer-dark">
-  <footer>
-      <div class="container">
-          <div class="row">
-              <div class="col-sm-6 col-md-3 item">
-                  <h3>Services</h3>
-                  <ul>
-                      <li><a href="#">Web design</a></li>
-                      <li><a href="#">Development</a></li>
-                      <li><a href="#">Hosting</a></li>
-                  </ul>
-              </div>
-              <div class="col-sm-6 col-md-3 item">
-                  <h3>About</h3>
-                  <ul>
-                      <li><a href="#">Company</a></li>
-                      <li><a href="#">Team</a></li>
-                      <li><a href="#">Careers</a></li>
-                  </ul>
-              </div>
-              <div class="col-md-6 item text">
-                  <h3>Company Name</h3>
-                  <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
-              </div>
-              <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
-          </div>
-          <p class="copyright">Company Name © 2018</p>
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .custom-footer {
+      background-color: #584f45; 
+      color: white;
+      padding: 40px 0;
+    }
+
+    .custom-container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .custom-column {
+      width: 33.33%;
+      padding: 0 20px; 
+    }
+
+    .custom-heading {
+      font-size: 18px;
+      color: white; 
+    }
+
+    .custom-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .custom-list-item {
+      margin: 10px 0;
+    }
+
+    .custom-link {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .custom-link:hover {
+      color: #FF69B4; 
+    }
+
+    .custom-text {
+      width: 100%;
+    }
+
+    .custom-copyright {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 14px;
+    }
+  </style>
+  <div class="custom-footer">
+    <div class="custom-container">
+      <div class="custom-column">
+        <h3 class="custom-heading">Быстрые ссылки</h3>
+        <ul class="custom-list">
+          <li class="custom-list-item"><a class="custom-link" href="#">О нас</a></li>
+          <li class="custom-list-item"><a class="custom-link" href="#">Подписки</a></li>
+          <li class="custom-list-item"><a class="custom-link" href="#">FaQ</a></li>
+        </ul>
       </div>
-  </footer>
-</div>
-
+      <div class="custom-column">
+        <h3 class="custom-heading">Контакты</h3>
+        <ul class="custom-list">
+          <li class="custom-list-item"><a class="custom-link" href="#">​+7(925)-727-50-49</a></li>
+          <li class="custom-list-item"><a class="custom-link" href="#">​mistea.yandex.ru</a></li>
+        </ul>
+      </div>
+      <div class="custom-column">
+        <h3 class="custom-heading">Mistea</h3>
+        <p>Присоединяйтесь к Mistea прямо сейчас и станьте частью тайного чайного клуба, где чаепитие превращается в настоящее приключение!</p>
+      </div>
+    </div>
+    <p class="custom-copyright">Mistea © 2023</p>
+  </div>
 </body>
-
 </html>
+

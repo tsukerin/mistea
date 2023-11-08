@@ -14,14 +14,23 @@ def index(request):
     }
     return render(request, 'tea/main.html', context)
 
-def tea_list(request):
-    category = None
-    categories = TeaCategory.objects.all()
-    teas = Tea.objects.filter(available=True)
-    # if category_slug:
-    #     category = get_object_or_404(TeaCategory, slug=category_slug)
-    #     teas = teas.filter(category=category)
-    return render(request, 'tea/tea_list.html', {'category': category, 'categories': categories, 'teas': teas})
+def homepage(request):
+    context = {
+        'active_page': 'homepage',
+    }
+    return render(request, 'homepage.html', context)
+
+def contact(request):
+    context = {
+        'active_page': 'contact',
+    }
+    return render(request, 'contact.html', context)
+
+def about(request):
+    context = {
+        'active_page': 'about',
+    }
+    return render(request, 'about.html', context)
 
     
 def subs(request):

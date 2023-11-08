@@ -1,5 +1,5 @@
  .u-section-1 {
-  background-image: url("images/bg_green.PNG");
+  background-image: url("static/images/bg_green.PNG");
   background-position: 0% 50%;
 }
 
@@ -1827,3 +1827,28 @@
     font-size: 1.5rem;
   }
 }
+
+  .u-accordion-item {
+    border: 1px solid #ccc;
+    border-radius: 50px;
+    margin-bottom: 10px;
+    overflow: hidden;
+  }
+
+  .u-accordion-link {
+    display: block;
+    padding: 10px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+  }
+
+  .u-accordion-pane {
+    padding: 10px;
+    background-color: #fff;
+  }
+
+  .u-accordion-link-text {
+    font-weight: bold;
+  }
