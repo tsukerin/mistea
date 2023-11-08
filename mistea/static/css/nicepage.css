@@ -21533,10 +21533,18 @@ a.pswp__share--download:hover {
   }
   to {
     transform-origin: center center;
-    transform: translate3d(-50% !important, -50% !important, 0);
+    transform: translate3d(-50%, -50%, 0);
     opacity: 1;
   }
 }
+
+.element {
+  animation-name: customAnimationIn;
+  animation-duration: 1s; /* Длительность анимации */
+  animation-iteration-count: 1; /* Анимация будет проигрываться только один раз */
+  animation-fill-mode: forwards;
+}
+
 @keyframes customAnimationOut {
   from {
     transform-origin: center center;
