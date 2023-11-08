@@ -34,4 +34,7 @@ def tea_detail(request, id, slug):
     tea = get_object_or_404(Tea, id=id, slug=slug, available=True)
     return render(request, 'tea/detail.html', {'tea': tea})
 
+def auth(request):
+    
+    return render(request, 'user/auth.html')
 
