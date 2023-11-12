@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+    <!-- Элемент 0-->
+    <div class="row">
+        <div class="col-md-6" style=" padding: 20px; margin-bottom: 20px;">
+            <h1>Join the Mistery Tea Club with Mistea!</h1>
+            <p>Каждый месяц участники нашего тайного чайного клуба получают волшебную посылку, наполненную разнообразными и удивительными сортами чая.</p>
+            <p>Готовы открыть для себя новые вкусы и чудеса? Подпишитесь прямо сейчас и начните чайное путешествие!</p>
+            <!-- <a class="btn btn-light" href="ссылка_на_страницу_подписок" role="button">Подписаться</a> -->
+            <a class="button" href="{% url 'subs' %}">Подписаться</a>
+        </div>
+        <div class="col-md-6">
+            <img src="static/images/slide1.png" alt="Изображение чая" class="img-fluid", style="width: 100%;" >
+        </div>
+    </div>
+
+ <!-- Элемент 1: Описание вашей компании и миссии -->
+ <div style="background-color: #ffebf3; padding: 20px;">
+    <p>Мы - ваш надежный партнер в мире чая. Наша миссия - предоставить вам лучшие чаи по подписке.</p>
+</div>
+    
+ <!-- Элемент 2: Преимущества подписки -->
+ <h2>Преимущества подписки на чай:</h2>
+ <ul>
+     <li>Экономия времени и денег</li>
+     <li>Регулярная доставка вашего любимого чая</li>
+     <li>Широкий выбор чаев в подписках</li>
+ </ul>
+
+ <!-- Элемент 6: Примеры чаев в подписках -->
+ <h2>Примеры чаев в наших подписках:</h2>
+ <p>Выберите из разнообразных сортов чая в наших подписках, включая черный, зеленый, травяной чай и многое другое.</p>
+ 
+ <!-- Элемент 8: Форма обратной связи -->
+ <h2>Свяжитесь с нами</h2>
+ <p>Если у вас есть вопросы или комментарии, пожалуйста, свяжитесь с нами:</p>
+    <form>
+        <div class="form-group">
+            <label for="name">Имя:</label>
+            <input type="text" class="form-control" id="name">
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+            <label for="message">Сообщение:</label>
+            <textarea class="form-control" id="message" rows="4"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+    </form>
+</div>
+{% endblock content %}

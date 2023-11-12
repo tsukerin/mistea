@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Teas</h1>
+  <ul>
+    {% for tea in teas %}
+      <li>
+        <a href="{% url 'tea_detail' tea.id %}">{{ tea.name }}</a><br>
+        Price: ${{ tea.price }}<br>
+        Stock: {{ tea.stock }}<br>
+        <!-- Другая информация о чае -->
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock content %}
