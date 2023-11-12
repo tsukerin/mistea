@@ -1482,7 +1482,7 @@
 .u-section-6 .u-image-1 {
   width: 109px;
   height: 109px;
-  background-image: url("images/e.jpg");
+  background-image: url("static/images/ilya.jpg");
   background-position: 50% 50%;
   margin: 30px 163px 0 0;
 }
@@ -1513,7 +1513,7 @@
 .u-section-6 .u-image-2 {
   width: 109px;
   height: 109px;
-  background-image: url("images/hgghgh.jpg");
+  background-image: url("{% static 'images/pasha.jpg' %}");
   background-position: 50% 50%;
   margin: 30px 163px 0 0;
 }
@@ -1544,7 +1544,7 @@
 .u-section-6 .u-image-3 {
   width: 109px;
   height: 109px;
-  background-image: url("images/fgfg.jpg");
+  background-image: url("static/images/ilya2.jpg");
   background-position: 50% 50%;
   margin: 30px 163px 0 0;
 }
@@ -1851,4 +1851,11 @@
 
   .u-accordion-link-text {
     font-weight: bold;
+  }
+  .round-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover; 
+    margin-top: 20px;
   }

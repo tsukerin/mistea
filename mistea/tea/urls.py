@@ -12,5 +12,6 @@ urlpatterns = [
     path('subs/', subs, name='subs'),
     path('home/', subs, name='home'),
     path('tea-detail/<int:pk>/', tea_detail, name='tea-detail'),
-    path('auth/', auth, name='auth'),
+    path('login/', login_view, name='login_view'), 
+    path('registration/', register_user, name='register_user')
 ]

@@ -95,9 +95,3 @@ class Payment(models.Model):
     payment_status = models.CharField(max_length=255, choices=[("pending", "Ожидает оплаты"), ("paid", "Оплачено")])
     recurring = models.BooleanField(default=False)
     recurring_interval = models.CharField(max_length=255, choices=[("monthly", "Ежемесячно"), ("quarterly", "Каждые 3 месяца")], blank=True, null=True)
-
-class User(models.Model):
-    name = models.CharField(max_length=20)
-    email = models.EmailField()
-    password = models.CharField(max_length=50)
-    phone_number = models.Field
