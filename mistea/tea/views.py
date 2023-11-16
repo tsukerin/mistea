@@ -28,6 +28,9 @@ def contact(request):
     }
     return render(request, 'contact.html', context)
 
+def subscribe(request):
+    return render(request, 'subscribe.html')
+
 def about(request):
     context = {
         'active_page': 'about',
