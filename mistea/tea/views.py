@@ -3,6 +3,8 @@ from .models import TeaCategory, Tea
 from django.shortcuts import render
 from .forms import LoginForm, SignUpForm
 from django.contrib.auth import authenticate, login, logout
+from django import template
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     context = {
@@ -52,6 +54,9 @@ def auth(request):
     
     return render(request, 'user/auth.html')
 
+
+#-----------------------------------------------------------------------------------------------------------------------------
+#Аутентификация
 def login_view(request):
     form = LoginForm(request.POST or None)
 
@@ -88,7 +93,7 @@ def register_user(request):
             msg = 'User created - please <a href="/login">login</a>.'
             success = True
 
-            # return redirect("/login/")
+            return redirect("/login/")
 
         else:
             msg = 'Form is not valid'
@@ -103,4 +108,12 @@ def user_logout(request):
     msg = 'Form is not valid'
     form = LoginForm(request.POST or None)
     return render(request, '', {"form": form, "msg": msg})
+
+
+@login_required(login_url="/login/")
+def index(request):
+    context = {'segment': 'index'}
+
+    # html_template = loader.get_template('home/index.html')
+    # return HttpResponse(html_template.render(context, request))
 

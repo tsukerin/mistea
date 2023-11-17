@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block header %}
+{% block style %}
   <link rel="stylesheet" href="{% static 'css/auth.css' %}" media="screen">
-{% endblock header %}
+{% endblock style %}
 
 {% block content %}
 <section class="u-clearfix u-image u-section-1" id="sec-4a8b">
@@ -16,23 +16,18 @@
       <form method="post" action="{% url 'login_view' %}" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" style="padding: 10px;">
         {% csrf_token %}
         <div class="u-form-email u-form-group">
-          <label for="{{ form.username.id_for_label }}" class="u-custom-font u-heading-font u-label u-label-1">Username</label>
+          <label for="{{ form.username.id_for_label }}" class="u-custom-font u-heading-font u-label u-label-1">E-mail</label>
           {{ form.username }}
         </div>
         <div class="u-form-group u-form-name">
           <label for="{{ form.password.id_for_label }}" class="u-custom-font u-heading-font u-label u-label-2">Password</label>
           {{ form.password }}
         </div>
-        <div class="u-form-checkbox u-form-group u-form-group-3">
-          {{ form.checkbox }}
-          <label for="{{ form.checkbox.id_for_label }}" class="u-custom-font u-field-label u-heading-font" style="font-size: 1.125rem; font-weight: 500;">Запомнить меня</label>
-        </div>
         <input type="submit" value="Войти" class="u-border-none u-btn u-btn-round u-btn-submit u-button-style u-custom-color-3 u-hover-custom-color-1 u-radius-25 u-btn-1" style="width: 100%; margin-top: 10px;">
       </form>
     </div>
-
-    <a href="https://nicepage.com/html-website-builder" class="u-border-none u-btn u-button-style u-custom-font u-heading-font u-none u-text-hover-custom-color-9 u-text-palette-2-dark-3 u-btn-2" style="margin-top: 10px;">Восстановить пароль</a>
-    <a href="https://nicepage.com/k/flask-html-templates" class="u-border-none u-btn u-button-style u-custom-font u-heading-font u-none u-text-hover-custom-color-5 u-btn-3">Еще не зарегистрированы?</a>
+    <a href="https://nicepage.com/html-website-builder" class="u-border-none u-btn u-button-style u-custom-font u-heading-font u-none u-text-hover-custom-color-9 u-text-palette-2-dark-3 u-btn-2" style="margin-top: 5px;">Восстановить пароль</a>
+    <a href="{% url 'register_user' %}" class="u-border-none u-btn u-button-style u-custom-font u-heading-font u-none u-text-hover-custom-color-5 u-btn-3" style="margin-top: 10px;">Еще не зарегистрированы?</a>
   </div>
 </section>
 {% endblock content %}
