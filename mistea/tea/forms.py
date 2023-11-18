@@ -13,14 +13,14 @@ class LoginForm(forms.Form):
         widget=forms.TextInput(
             attrs={
                 "placeholder": "E-mail",
-                "class": "form-control"
+                "class": "u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-2"
             }
         ))
     password = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
                 "placeholder": "Password",
-                "class": "form-control"
+                "class": "u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-2"
             }
         ))
 
@@ -30,28 +30,28 @@ class SignUpForm(UserCreationForm):
         widget=forms.TextInput(
             attrs={
                 "placeholder": "Username",
-                "class": "form-control"
+                "class": "u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-2"
             }
         ))
     email = forms.EmailField(
         widget=forms.EmailInput(
             attrs={
                 "placeholder": "Email",
-                "class": "form-control"
+                "class": "u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-2"
             }
         ))
     password1 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
                 "placeholder": "Password",
-                "class": "form-control"
+                "class": "u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-2"
             }
         ))
     password2 = forms.CharField(
         widget=forms.PasswordInput(
             attrs={
                 "placeholder": "Password check",
-                "class": "form-control"
+                "class": "u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-2"
             }
         ))
 
