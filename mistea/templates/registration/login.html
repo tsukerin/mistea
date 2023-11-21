@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block style %}
+  <link rel="stylesheet" href="{% static 'css/auth.css' %}" media="screen">
+{% endblock style %}
+
+{% block content %}
+<section class="u-clearfix u-image u-section-1" id="sec-4a8b">
+  <img src="{% static 'images/bg_reg.PNG'%}" class="background-image" alt="Фоновое изображение">
+  <div class="u-clearfix u-sheet u-sheet-1">
+    <h3 class="u-align-center u-text u-text-default u-text-1">Авторизация</h3>
+
+    {# Login Form #}
+    <div class="custom-expanded u-align-center u-form u-form-checks-spacing-0 u-form-1">
+      <form class="u-clearfix u-form-spacing-10 u-inner-form" source="email" name="form" style="padding: 10px;" method="post">
+        {% csrf_token %}
+        <div class="u-form-email u-form-group">
+          <label for="email-5846" class="u-custom-font u-heading-font u-label u-label-1">Эл. почта</label>
+          <input type="text" placeholder="Введите Ваш email адрес" id="userName" name="username" class="u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-1" placeholder="Username">
+        </div>
+        <div class="u-form-group u-form-name">
+          <label for="name-5846" class="u-custom-font u-heading-font u-label u-label-2">Пароль</label>
+          <input type="password" placeholder="Введите Ваш пароль" id="pwd" name="password" class="u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-2" placeholder="Password">
+        </div>
+        <button class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-custom-color-1 u-radius-25 u-btn-1" style="width: 100%; margin-top: 10px;">Войти</button>
+        {{ form.errors }}
+      </form>
+    </div>
+    <a href="https://nicepage.com/html-website-builder" class="u-border-none u-btn u-button-style u-custom-font u-heading-font u-none u-text-hover-custom-color-9 u-text-palette-2-dark-3 u-btn-2" style="margin-top: 5px;">Восстановить пароль</a>
+    <a href="{% url 'register' %}" class="u-border-none u-btn u-button-style u-custom-font u-heading-font u-none u-text-hover-custom-color-5 u-btn-3" style="margin-top: 10px;">Еще не зарегистрированы?</a>
+  </div>
+</section>
+{% endblock content %}

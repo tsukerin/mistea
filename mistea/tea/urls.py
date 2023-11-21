@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import *
-from django.views.generic import TemplateView
+from django.conf.urls import include
 
 urlpatterns = [
     # path('home/', home, name='home'),
@@ -12,7 +12,9 @@ urlpatterns = [
     path('subs/', subs, name='subs'),
     path('subscribe/', subscribe, name='subscribe'),
     path('tea-detail/<int:pk>/', tea_detail, name='tea-detail'),
-    path('login/', login_view, name='login_view'), 
-    path('registration/', register_user, name='register_user')
-    
+    path('profile/', profile_view, name='profile'), 
+    path('registration/', RegisterView.as_view(), name='register'),
+    path('login/', LoginView.as_view(), name="login"),
+    path('auth/', include('django.contrib.auth.urls')),
+    path('subscription/<int:subscription_id>/', subscription_detail, name='subscription_detail'),
 ]

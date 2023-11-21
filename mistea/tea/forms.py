@@ -6,55 +6,19 @@ Copyright (c) 2019 - present AppSeed.us
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+from .models import UserProfile
 
 
-class LoginForm(forms.Form):
-    username = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "E-mail",
-                "class": "u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-2"
-            }
-        ))
-    password = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={
-                "placeholder": "Password",
-                "class": "u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-2"
-            }
-        ))
-
-
-class SignUpForm(UserCreationForm):
-    username = forms.CharField(
-        widget=forms.TextInput(
-            attrs={
-                "placeholder": "Username",
-                "class": "u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-2"
-            }
-        ))
-    email = forms.EmailField(
-        widget=forms.EmailInput(
-            attrs={
-                "placeholder": "Email",
-                "class": "u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-2"
-            }
-        ))
-    password1 = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={
-                "placeholder": "Password",
-                "class": "u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-2"
-            }
-        ))
-    password2 = forms.CharField(
-        widget=forms.PasswordInput(
-            attrs={
-                "placeholder": "Password check",
-                "class": "u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-2"
-            }
-        ))
+class RegForm(UserCreationForm):
+    date_of_birth = forms.DateField(required=False)
+    address = forms.CharField(required=False, widget=forms.Textarea)
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password1', 'password2')
+        fields = ('username', 'password1', 'password2', 'date_of_birth', 'address')
+
+class LoginForm(UserCreationForm):
+
+    class Meta:
+        model = User
+        fields = ('username', 'password2')
