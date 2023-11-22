@@ -54,11 +54,22 @@
                 </li>
             </ul>
         </div>
+        {% if user.is_authenticated %}
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="{% url 'profile' %}"><b>{{ user.username }}</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}?next=/home/"><b>Выйти</b></a>
+        </li>
+      </ul>
+      {% else %}
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}"><b>Личный кабинет</b></a>
+                <a class="nav-link" href="{% url 'login' %}"><b>Войти</b></a>
             </li>
         </ul>
+      {% endif %}
     </nav>
   </top>
 <!-- <div class="wrapper"> -->

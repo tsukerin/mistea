@@ -4,48 +4,17 @@
 <link rel="stylesheet" href="{% static 'css/detail.css' %}" media="screen">
 {% endblock style %}
 {% block content %}
-<section class="u-clearfix u-color-scheme-u10 u-custom-color-10 u-section-1" id="sec-c579">
-  <div class="u-clearfix u-sheet u-sheet-1">
-    <h3 class="u-align-center u-text u-text-default u-text-1">Чайная подписка: <b>{{ subscription.name }}</b></h3>
-    <div class="data-layout-selected u-clearfix u-expanded-width u-gutter-0 u-layout-wrap u-layout-wrap-1">
-      <div class="u-gutter-0 u-layout">
-        <div class="u-layout-row">
-          <div class="u-size-24-lg u-size-24-xl u-size-29-sm u-size-29-xs u-size-60-md">
-            <div class="u-layout-col">
-              <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-60 u-layout-cell-1">
-                <div class="u-container-layout u-valign-top u-container-layout-1">
-                  <img class="u-align-center u-image u-image-round u-preserve-proportions u-radius-10 u-image-1" src="{{ subscription.image.url }}" alt="{{ subscription.name }}" data-image-width="1024" data-image-height="1024">
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="u-size-31-sm u-size-31-xs u-size-36-lg u-size-36-xl u-size-60-md">
-            <div class="u-layout-col">
-              <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-60 u-layout-cell-2">
-                <div class="u-container-layout u-container-layout-2">
-                  <p class="u-text u-text-2">{{ subscription.description | safe }}</p>
-                  <a href="" class="u-align-center u-border-none u-btn u-btn-round u-button-style u-grey-90 u-hover-custom-color-1 u-radius-50 u-btn-1">Подписаться</a>
-                  <h5 class="u-text u-text-custom-color-9 u-text-3">{{ subscription.price }} р.</h5>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 <section class="u-clearfix u-color-scheme-u10 u-custom-color-10 u-section-1" id="sec-c579" style="margin-top: 50px;">
   <div class="u-clearfix u-sheet u-sheet-1">
     <div class="custom-expanded data-layout-selected u-clearfix u-gutter-0 u-layout-wrap u-layout-wrap-1">
       <h3 class="u-align-center u-text u-text-1">Чайная подписка: <b>{{ subscription.name }}</b></h3>
-      <p class="u-align-center u-text u-text-default u-text-2">Цена: {{ subscription.price }} р.</p>
+      <h4 class="u-align-center u-text u-text-custom-color-9 u-text-3">{{ subscription.price }} р.</h4>
       <div class="u-gutter-0 u-layout">
         <div class="u-layout-row">
           <div class="u-size-24-lg u-size-24-xl u-size-29-sm u-size-29-xs u-size-60-md">
             <div class="u-layout-col">
               <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-60 u-layout-cell-1">
-                <div class="u-container-layout u-container-layout-1">
+                <div class="u-container-layout u-align-center u-container-layout-6">
                   <!-- <h3 class="u-align-center u-text u-text-2">Чайная подписка: <b>{{ subscription.name }}</b></h3> -->
                   <img class="u-align-center u-image u-image-round u-preserve-proportions u-radius-10 u-image-1" src="{{ subscription.image.url }}" alt="{{ subscription.name }}" data-image-width="1560" data-image-height="1560">
                 </div>
@@ -54,8 +23,14 @@
           </div>
           <div class="u-size-31-sm u-size-31-xs u-size-36-lg u-size-36-xl u-size-60-md">
             <div class="u-layout-col">
-              <div class="u-align-left u-container-style u-layout-cell u-right-cell u-size-60 u-layout-cell-2">
-                <div class="u-container-layout u-valign-top u-container-layout-6">
+              <!-- <div class="u-container-style u-layout-cell u-right-cell u-size-60 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-2">
+                  <p class="u-text u-text-2">{{ subscription.description | safe }}</p>
+                  <a href="" class="u-align-center u-border-none u-btn u-btn-round u-button-style u-grey-90 u-hover-custom-color-1 u-radius-50 u-btn-1">Подписаться</a>
+                </div>
+              </div> -->
+              <div class="u-container-style u-layout-cell u-right-cell u-size-60 u-layout-cell-2">
+                <div class="u-container-layout u-container-layout-6">
                   <p class="u-text u-text-3">{{ subscription.description | safe }}</p>
                   <a href="" class="u-align-center u-border-none u-btn u-btn-round u-button-style u-grey-90 u-hover-custom-color-1 u-radius-50 u-btn-1">Подписаться</a>
                 </div>

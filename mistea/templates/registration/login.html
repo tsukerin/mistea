@@ -27,7 +27,7 @@
         {{ form.errors }}
       </form>
     </div>
-    <a href="https://nicepage.com/html-website-builder" class="u-border-none u-btn u-button-style u-custom-font u-heading-font u-none u-text-hover-custom-color-9 u-text-palette-2-dark-3 u-btn-2" style="margin-top: 5px;">Восстановить пароль</a>
+    <a href="{% url 'password_reset' %}" class="u-border-none u-btn u-button-style u-custom-font u-heading-font u-none u-text-hover-custom-color-9 u-text-palette-2-dark-3 u-btn-2" style="margin-top: 5px;">Восстановить пароль</a>
     <a href="{% url 'register' %}" class="u-border-none u-btn u-button-style u-custom-font u-heading-font u-none u-text-hover-custom-color-5 u-btn-3" style="margin-top: 10px;">Еще не зарегистрированы?</a>
   </div>
 </section>

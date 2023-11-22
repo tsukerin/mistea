@@ -3,8 +3,7 @@ from .views import *
 from django.conf.urls import include
 
 urlpatterns = [
-    # path('home/', home, name='home'),
-    # path('', index, name='main'),
+    path('home/', homepage, name='home'),
     path('', homepage, name='homepage'),
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
