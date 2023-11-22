@@ -2,9 +2,8 @@
 """
 Copyright (c) 2019 - present AppSeed.us
 """
-
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from .models import UserProfile
 
@@ -17,8 +16,21 @@ class RegForm(UserCreationForm):
         model = User
         fields = UserCreationForm.Meta.fields + ("email", )
 
-class LoginForm(UserCreationForm):
+class LoginForm(AuthenticationForm):
+    error_messages = {
+        'invalid_login': (
+            "Пожалуйста, введите правильные имя пользователя и пароль. "
+            "Оба поля могут быть чувствительны к регистру."
+        ),
+        'inactive': "Этот аккаунт неактивен.",
+        'invalid_username': "Пожалуйста, введите корректное имя пользователя.",
+        'invalid_password': "Пожалуйста, введите корректный пароль.",
+        'custom_error': "Это ваше собственное сообщение об ошибке.",
+    }
 
-    class Meta:
-        model = User
-        fields = ('username', 'password2')
+    def confirm_login_allowed(self, user):
+        if not user.is_active:
+            raise forms.ValidationError(
+                self.error_messages['inactive'],
+                code='inactive',
+            )

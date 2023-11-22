@@ -24,7 +24,11 @@
           <input type="password" placeholder="Введите Ваш пароль" id="pwd" name="password" class="u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-2" placeholder="Password">
         </div>
         <button class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-custom-color-1 u-radius-25 u-btn-1" style="width: 100%; margin-top: 10px;">Войти</button>
-        {{ form.errors }}
+        {% if form.errors %}
+        <p>
+          Логин или пароль неверны.
+        </p>
+        {% endif %}
       </form>
     </div>
     <a href="{% url 'password_reset' %}" class="u-border-none u-btn u-button-style u-custom-font u-heading-font u-none u-text-hover-custom-color-9 u-text-palette-2-dark-3 u-btn-2" style="margin-top: 5px;">Восстановить пароль</a>
