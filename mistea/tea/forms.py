@@ -9,8 +9,7 @@ from .models import UserProfile
 
 
 class RegForm(UserCreationForm):
-    date_of_birth = forms.DateField(required=False)
-    address = forms.CharField(required=False, widget=forms.Textarea)
+
 
     class Meta:
         model = User
@@ -34,3 +33,11 @@ class LoginForm(AuthenticationForm):
                 self.error_messages['inactive'],
                 code='inactive',
             )
+
+class ProfileForm(forms.ModelForm):
+    date_of_birth = forms.DateField(required=False)
+    address = forms.CharField(required=False, widget=forms.Textarea)
+    
+    class Meta:
+        model = UserProfile
+        fields = ("date_of_birth", "address")

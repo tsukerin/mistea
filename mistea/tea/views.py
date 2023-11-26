@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy
 from .models import Subscription, TeaCategory, Tea
 from django.shortcuts import render
-from .forms import LoginForm, RegForm
+from .forms import LoginForm, ProfileForm, RegForm
 from django.contrib.auth import authenticate, login, logout
 from django import template
 from django.contrib.auth.decorators import login_required
@@ -118,8 +118,12 @@ def register_user(request):
 #     # return HttpResponse(html_template.render(context, request))
 
 @login_required
-def profile_view(request):
-    return render(request, 'registration/profile.html')
+class ProfileView(CreateView):
+    form_class = ProfileForm
+    template_name = 'registration/profile.html'
+    def form_valid(self, form):
+        form.save()
+        return super().form_valid(form)
 
 class RegisterView(CreateView):
     form_class = RegForm

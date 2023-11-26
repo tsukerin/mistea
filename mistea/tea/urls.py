@@ -11,7 +11,7 @@ urlpatterns = [
     path('subs/', subs, name='subs'),
     path('subscribe/', subscribe, name='subscribe'),
     path('tea-detail/<int:pk>/', tea_detail, name='tea-detail'),
-    path('profile/', profile_view, name='profile'), 
+    path('profile/', ProfileView.as_view(), name='profile'), 
     path('registration/', RegisterView.as_view(), name='register'),
     path('login/', LoginView.as_view(), name="login"),
     path('auth/', include('django.contrib.auth.urls')),
