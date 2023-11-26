@@ -7,6 +7,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     date_of_birth = models.DateField(blank=True, null=True)
     address = models.TextField(blank=True)
+    subscription = models.BooleanField(default=False)
 
 #Категории чая
 class TeaCategory(models.Model):

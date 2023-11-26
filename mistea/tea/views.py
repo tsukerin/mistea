@@ -119,7 +119,7 @@ def register_user(request):
 
 @login_required
 def profile_view(request):
-    return render(request, 'registration/account.html')
+    return render(request, 'registration/profile.html')
 
 class RegisterView(CreateView):
     form_class = RegForm
