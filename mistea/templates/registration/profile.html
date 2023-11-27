@@ -5,9 +5,9 @@
 {% endblock style %}
 {% block content %}
 <body>
-  {% if user.subscription == True %}
-    <section class="u-clearfix u-custom-color-2 u-section-1" id="sec-bdf2" style="margin-top: 40px;">
-      <img class="u-image u-image-round u-radius u-image-1" src="images/bg_lk.PNG" alt="" data-image-width="1600" data-image-height="940">
+  {% if user.userprofile.subscription == True %}
+    <section class="u-clearfix u-custom-color-2 u-section-1" id="sec-bdf2" style="margin-top: 100px;">
+      <img class="u-image u-image-round u-radius u-image-1" src="{% static 'images/bg_lk.PNG' %}" alt="" data-image-width="1600" data-image-height="940">
       <div class="u-container-style u-group u-radius u-shape-round u-white u-group-1">
         <div class="u-container-layout u-container-layout-1">
           <h3 class="u-align-center u-custom-font u-text u-text-default u-text-1">Личный ​каб​инет</h3>
@@ -20,7 +20,7 @@
           <h3 class="u-align-center u-custom-font u-text u-text-default u-text-2">Подписка подкючена</h3>
         </div>
       </div>
-      <div class="u-clearfix u-group-elements u-group-elements-1"><span class="u-align-center u-custom-color-5 u-file-icon u-icon u-icon-circle u-spacing-22 u-text-custom-color-6 u-icon-1"><img src="images/8867446-4dec56ad.png" alt=""></span>
+      <div class="u-clearfix u-group-elements u-group-elements-1"><span class="u-align-center u-custom-color-5 u-file-icon u-icon u-icon-circle u-spacing-22 u-text-custom-color-6 u-icon-1"><img src="{% static "images/ok.png" %}" alt=""></span>
       </div>
       <div class="u-container-style u-custom-color-7 u-group u-radius u-shape-round u-group-3">
         <div class="u-container-layout u-container-layout-3">

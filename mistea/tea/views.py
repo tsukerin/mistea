@@ -7,6 +7,9 @@ from django.contrib.auth import authenticate, login, logout
 from django import template
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic.base import View
+
 
 def home(request):
     context = {
@@ -117,13 +120,22 @@ def register_user(request):
 #     # html_template = loader.get_template('home/index.html')
 #     # return HttpResponse(html_template.render(context, request))
 
-@login_required
-class ProfileView(CreateView):
+class ProfileView(LoginRequiredMixin, View):
+    login_url = "/login/"
     form_class = ProfileForm
     template_name = 'registration/profile.html'
-    def form_valid(self, form):
-        form.save()
-        return super().form_valid(form)
+    redirect_field_name = "registration/profile.html"
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request, self.template_name, {'form': form})
+        else:
+            return render(request, self.template_name, {'form': form})
+    
 
 class RegisterView(CreateView):
     form_class = RegForm
