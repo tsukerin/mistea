@@ -1,6 +1,7 @@
 from django.db import models
 from django.urls import reverse 
 from django.contrib.auth.models import User
+from django.core.validators import RegexValidator
 
 # пользователь
 class UserProfile(models.Model):
@@ -8,6 +9,12 @@ class UserProfile(models.Model):
     date_of_birth = models.DateField(blank=True, null=True)
     address = models.TextField(blank=True)
     subscription = models.BooleanField(default=False)
+    phone_number = models.CharField(
+        max_length=15,
+        validators=[RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Введите корректный номер телефона.")],
+        blank=True,
+        null=True
+    )
 
 #Категории чая
 class TeaCategory(models.Model):

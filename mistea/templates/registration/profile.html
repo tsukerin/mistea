@@ -72,7 +72,7 @@
               <h6 class="u-custom-font u-text u-text-default u-text-14">Адрес доставки</h6>
               <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-13">
                 <div class="u-container-layout">
-                  <p class="u-align-center u-text u-text-15">г. Красногорск, ул. Дежнева, д. 6, кв. 157</p>
+                  <p class="u-align-center u-text u-text-15">{{ user.userprofile.address }}</p>
                 </div>
               </div>
               <p class="u-text u-text-custom-color-10 u-text-16">измен​ить</p>
@@ -106,7 +106,7 @@
           <h6 class="u-custom-font u-text u-text-default u-text-21">Для переноса даты доставки и другим вопроса​​м по подписке свяжитесь с оператором по номеру:</h6>
           <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-19">
             <div class="u-container-layout">
-              <p class="u-align-center u-text u-text-default u-text-22">+7(925)-727-50-49</p>
+              <p class="u-align-center u-text u-text-default u-text-22">{{ user.username.phone_number }}</p>
             </div>
           </div>
         </div>
@@ -165,7 +165,7 @@
               <h6 class="u-custom-font u-text u-text-default u-text-10">Номер телефона</h6>
               <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-10">
                 <div class="u-container-layout u-container-layout-10">
-                  <p class="u-align-center u-text u-text-default u-text-11"> +7(925)-727-50-49</p>
+                  <p class="u-align-center u-text u-text-default u-text-11">{{ user.username.phone_number }}</p>
                 </div>
               </div>
               <p class="u-text u-text-custom-color-10 u-text-default u-text-12">измен​ить</p>

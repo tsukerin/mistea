@@ -6,7 +6,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from .models import UserProfile
-
+from django.core.validators import RegexValidator
 
 class RegForm(UserCreationForm):
 
@@ -37,6 +37,11 @@ class LoginForm(AuthenticationForm):
 class ProfileForm(forms.ModelForm):
     date_of_birth = forms.DateField(required=False)
     address = forms.CharField(required=False, widget=forms.Textarea)
+    phone_number = forms.CharField(
+        max_length=15,
+        validators=[RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Введите корректный номер телефона.")],
+        required=False,  # Разрешаем поле быть пустым
+    )
     
     class Meta:
         model = UserProfile
