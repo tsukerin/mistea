@@ -60,6 +60,9 @@ def subscription_detail(request, subscription_id):
     subscription = Subscription.objects.get(id=subscription_id)
     return render(request, 'detail.html', {'subscription': subscription})
 
+def subscr(request, subscription_id):
+    subscription = Subscription.objects.get(id=subscription_id)
+    return render(request, 'subscr.html', {'subscr': subscription})
 
 #-----------------------------------------------------------------------------------------------------------------------------
 #Аутентификация

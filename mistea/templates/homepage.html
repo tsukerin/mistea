@@ -12,7 +12,7 @@
             <h1 class="u-text u-text-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-out="0"> Mistea - это чай по подписке <br>
             </h1>
             <p class="u-text u-text-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-out="0"> который не оставит вас равнодушным</p>
-            <a href="{% url 'login' %} " class="u-active-custom-color-2 u-border-none u-btn u-btn-round u-button-style u-grey-90 u-hover-custom-color-2 u-radius-37 u-text-active-white u-text-hover-white u-text-white u-btn-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-out="0">Подписаться</a>
+            <a href="{% url 'homepage' %}#subs" class="u-active-custom-color-2 u-border-none u-btn u-btn-round u-button-style u-grey-90 u-hover-custom-color-2 u-radius-37 u-text-active-white u-text-hover-white u-text-white u-btn-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-out="0">Подписаться</a>
           </div>
         </div>
       </div>
@@ -161,7 +161,7 @@
                 </p>
                 <br>
                 <br>
-                <a href="{% url 'subscribe' %} " class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-1">Подписаться</a>
+                <a href="{% url 'subscr' subscription_id=2 %} " class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-1">Подписаться</a>
                 <h4 class="u-text u-text-default u-text-palette-2-base u-text-4">800р/мес</h4>
                 <a href="{% url 'subscription_detail' subscription_id=2 %}" class="u-align-center u-border-1 u-border-active-palette-2-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-none u-text-hover-palette-4-dark-1 u-text-palette-2-dark-2 u-btn-2">подробнее о подписке</a>
               </div>
@@ -171,7 +171,7 @@
                 <img alt="" class="u-expanded-width u-image u-image-round u-radius-10 u-image-2" src="{% static 'images/sub2.jpg'%}" data-image-width="910" data-image-height="640">
                 <h4 class="u-text u-text-palette-2-base u-text-5"> Цветочная симфония</h4>
                 <p class="u-text u-text-default u-text-6">Обогатит вашу чайную коллекцию пятью восхитительными сортами чая, начиная с изысканного белого пиона и погружая вас в ароматическое волшебство цветов с чаем из цветков липы, лавандой, ромашкой и чередой, создавая неповторимую симфонию.</p>
-                <a href="https://nicepage.com/website-design" class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-3">подписаться</a>
+                <a href="{% url 'subscr' subscription_id=5 %}" class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-3">подписаться</a>
                 <h4 class="u-text u-text-default u-text-palette-2-base u-text-7">1000р/мес</h4>
                 <a href="{% url 'subscription_detail' subscription_id=5 %}" class="u-align-center u-border-1 u-border-active-palette-2-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-none u-text-hover-palette-4-dark-1 u-text-palette-2-dark-2 u-btn-4">подробнее о подписке</a>
               </div>
@@ -181,7 +181,7 @@
                 <img alt="" class="u-expanded-width u-image u-image-round u-radius-10 u-image-3" src="{% static 'images/sub3.jpg'%}" data-image-width="6025" data-image-height="3389">
                 <h4 class="u-text u-text-palette-2-base u-text-8">Восточная гармония</h4>
                 <p class="u-text u-text-default u-text-9"> Пять великолепных сортов чая: ассамский чай для бодрости, колодец дракона с нотками цветов, силигури с нежным вкусом, тянь гуань инь с изысканным ароматом и цейлонский чай с яркими фруктовыми акцентами. Насладитесь множеством чайных вкусов и ароматов.</p>
-                <a href="https://nicepage.studio" class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-5">подписаться</a>
+                <a href="{% url 'subscr' subscription_id=1 %}" class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-5">подписаться</a>
                 <h4 class="u-text u-text-default u-text-palette-2-base u-text-10">1000р/мес</h4>
                 <a href="{% url 'subscription_detail' subscription_id=1 %}" class="u-align-center u-border-1 u-border-active-palette-2-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-none u-text-hover-palette-4-dark-1 u-text-palette-2-dark-2 u-btn-6">подробнее о подписке</a>
               </div>
@@ -191,7 +191,7 @@
                 <img alt="" class="u-expanded-width u-image u-image-round u-radius-10 u-image-4" src="{% static 'images/sub4.jpg'%}" data-image-width="7360" data-image-height="4912">
                 <h4 class="u-text u-text-palette-2-base u-text-11"> Магия вкусов</h4>
                 <p class="u-text u-text-default u-text-12">погрузитесьт в мир чарующих ароматов и неповторимых вкусов. Насладитесь прохладой мяты в зеленом чае, таинственными чаями Тянь Гуань Инь и Шу Мей, а также завораживающими нотками череды и ароматом лаванды, создающими уникальные вкусовые ощущения.</p>
-                <a href="https://nicepage.com/k/ranking-website-templates" class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-7">подписаться</a>
+                <a href="{% url 'subscr' subscription_id=6 %}" class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-7">подписаться</a>
                 <h4 class="u-text u-text-default u-text-palette-2-base u-text-13">1000р/мес</h4>
                 <a href="{% url 'subscription_detail' subscription_id=6 %}" class="u-align-center u-border-1 u-border-active-palette-2-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-none u-text-hover-palette-4-dark-1 u-text-palette-2-dark-2 u-btn-8">подробнее о подписке</a>
               </div>

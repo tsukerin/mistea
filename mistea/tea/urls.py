@@ -16,4 +16,6 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name="login"),
     path('auth/', include('django.contrib.auth.urls')),
     path('subscription/<int:subscription_id>/', subscription_detail, name='subscription_detail'),
+    path('subscr/<int:subscription_id>/', subscr, name='subscr'),
+
 ]
