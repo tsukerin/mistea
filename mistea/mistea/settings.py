@@ -28,6 +28,7 @@ SECRET_KEY = 'django-insecure-9zauclxa!+3077b59t$#ova5ocdiwi*79f7%qautmnb!50p#di
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = reverse_lazy('profile')
 
 

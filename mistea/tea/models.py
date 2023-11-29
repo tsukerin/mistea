@@ -1,20 +1,8 @@
+from datetime import datetime
 from django.db import models
 from django.urls import reverse 
 from django.contrib.auth.models import User
 from django.core.validators import RegexValidator
-
-# пользователь
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    date_of_birth = models.DateField(blank=True, null=True)
-    address = models.TextField(blank=True)
-    subscription = models.BooleanField(default=False)
-    phone_number = models.CharField(
-        max_length=15,
-        validators=[RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Введите корректный номер телефона.")],
-        blank=True,
-        null=True
-    )
 
 #Категории чая
 class TeaCategory(models.Model):
@@ -48,6 +36,44 @@ class Subscription(models.Model):
 
     def __str__(self):
         return self.name
+    
+class UserSubscription(models.Model):
+    sub_id = models.ForeignKey(Subscription, max_length=200, on_delete=models.CASCADE)
+    name = models.CharField(max_length=15, default=False)
+    phone_number = models.CharField(
+        max_length=15,
+        validators=[RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Введите корректный номер телефона.")],
+        blank=True,
+        null=True
+    )
+    date_arrive = models.DateField()
+    address = models.TextField(blank=True)
+    message = models.TextField(blank=True)
+    schedule = models.IntegerField(default=0)
+    type_tea = models.IntegerField(default=0)
+
+    class Meta:
+        verbose_name = ("UserSubscription")
+        verbose_name_plural = ("UserSubscriptions")
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("UserSubscription_detail", kwargs={"pk": self.pk})
+
+#----------------------------------------------------------------------------------------------------------------------------------
+# пользователь
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    name = models.ForeignKey(UserSubscription, on_delete=models.CASCADE, related_name='userprofile_name', null=True)
+    date_of_birth = models.DateField(blank=True, null=True)
+    address = models.ForeignKey(UserSubscription, on_delete=models.CASCADE, related_name='userprofile_address', null=True)
+    subscription = models.BooleanField(default=False)
+    phone_number = models.ForeignKey(UserSubscription, on_delete=models.CASCADE, related_name='userprofile_phone_number', null=True)
+
+
+
 
 class Tea(models.Model):
     category = models.ForeignKey(TeaCategory, related_name='teas', on_delete=models.CASCADE)

@@ -1,14 +1,15 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse_lazy
-from .models import Subscription, TeaCategory, Tea
+from .models import Subscription, TeaCategory, Tea, UserSubscription
 from django.shortcuts import render
-from .forms import LoginForm, ProfileForm, RegForm
+from .forms import LoginForm, ProfileForm, RegForm, UserSubscriptionForm
 from django.contrib.auth import authenticate, login, logout
 from django import template
 from django.contrib.auth.decorators import login_required
 from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.base import View
+from django.contrib import messages
 
 
 
@@ -60,78 +61,55 @@ def subscription_detail(request, subscription_id):
     subscription = Subscription.objects.get(id=subscription_id)
     return render(request, 'detail.html', {'subscription': subscription})
 
-def subscr(request, subscription_id):
-    subscription = Subscription.objects.get(id=subscription_id)
-    return render(request, 'subscr.html', {'subscr': subscription})
+class OrderSub(LoginRequiredMixin, View):
+    login_url = "login"
+    form_class = UserSubscriptionForm
+    template_name = 'subscr.html'
+    redirect_field_name = 'next'
+    form_model = UserSubscription
+    success_url = reverse_lazy("homepage")
+    def get(self, request, subscription_id):
+        try:
+            subscription = Subscription.objects.get(id=subscription_id)
+            form = self.form_class(initial={'sub_id': subscription})
+        except:
+            form = self.form_class()
+
+        return render(request, self.template_name, {'subscr': subscription, 'form': form})
+    
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:   
+            messages.warning(request, 'Чтобы преобрести подписку, УМОЛЯЮ, войдите в аккаунт.')
+        return super().dispatch(request, *args, **kwargs)
+    
+    def post(self, request, subscription_id):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.instance.sub_id = Subscription.objects.get(id=subscription_id)
+            form.save()
+            return redirect(self.success_url)
+        else:
+            print(form.errors)
+        
+        subscription = Subscription.objects.get(id=subscription_id)
+        return render(request, self.template_name, {'subscr': subscription, 'form': form})
 
 #-----------------------------------------------------------------------------------------------------------------------------
 #Аутентификация
-def login_view(request):
-    # form = LoginForm(request.POST or None)
-
-    # msg = None
-
-    # if request.method == "POST":
-
-    #     if form.is_valid():
-    #         username = form.cleaned_data.get("username")
-    #         password = form.cleaned_data.get("password")
-    #         user = authenticate(username=username, password=password)
-    #         if user is not None:
-    #             login(request, user)
-    #             return redirect("/")
-    #         else:
-    #             msg = 'Invalid credentials'
-    #     else:
-    #         msg = 'Error validating the form'
-
-    return render(request, "registration/login.html")
-
-def register_user(request):
-    msg = None
-    success = False
-
-    if request.method == "POST":
-        form = RegForm(request.POST)
-        if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get("username")
-            raw_password = form.cleaned_data.get("password1")
-            user = authenticate(username=username, password=raw_password)
-
-            msg = 'User created - please <a href="/login">login</a>.'
-            success = True
-
-            return redirect("/login/")
-
-        else:
-            msg = 'Form is not valid'
-    else:
-        form = RegForm()
-
-    return render(request, "user/registration.html", {"form": form, "msg": msg, "success": success})
-
-
-# def user_logout(request):
-#     logout(request)
-#     msg = 'Form is not valid'
-#     form = LoginForm(request.POST or None)
-#     return render(request, '', {"form": form, "msg": msg})
-
-# def index(request):
-#     context = {'segment': 'index'}
-
-#     # html_template = loader.get_template('home/index.html')
-#     # return HttpResponse(html_template.render(context, request))
 
 class ProfileView(LoginRequiredMixin, View):
-    login_url = "/login/"
+    login_url = "login"
     form_class = ProfileForm
     template_name = 'registration/profile.html'
-    redirect_field_name = "registration/profile.html"
+    redirect_field_name = 'next'
+
     def get(self, request, *args, **kwargs):
         form = self.form_class()
         return render(request, self.template_name, {'form': form})
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.warning(request, 'Пожалуйста, войдите в аккаунт, чтобы просмотреть профиль.')
+        return super().dispatch(request, *args, **kwargs)
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
         if form.is_valid():

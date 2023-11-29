@@ -10,7 +10,9 @@
       <img src="{% static 'images/bg_reg.PNG'%}" class="background-image" alt="Фоновое изображение">
       <div class="u-clearfix u-sheet u-sheet-1">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <div class="u-container-align-center u-container-style u-group u-preserve-proportions u-radius-50 u-shape-round u-group-1">
+        <form method="post">
+          {% csrf_token %}
+         <div class="u-container-align-center u-container-style u-group u-preserve-proportions u-radius-50 u-shape-round u-group-1">
           <div class="u-container-layout u-container-layout-1">
             <h2 class="u-align-center u-custom-font u-font-raleway u-text u-text-default u-text-1">Оформление подписки<br><b>{{ subscr.name }}</b>
             </h2>
@@ -30,26 +32,25 @@
                 <p class="u-align-center u-custom-font u-font-raleway u-text u-text-default u-text-3">Выберите интервал доставки</p>
                 <div class="form_toggle">
                   <div class="form_toggle-item item-1">
-                      <input id="freq-1" type="radio" name="frequency" value="monthly" checked>
+                      <input id="freq-1" type="radio" name="schedule" value="1" checked>
                       <label for="freq-1">Раз в месяц</label>
                   </div>
                   <div class="form_toggle-item item-2">
-                      <input id="freq-2" type="radio" name="frequency" value="every_two_months">
+                      <input id="freq-2" type="radio" name="schedule" value="2">
                       <label for="freq-2">Раз в 2 месяца</label>
                   </div>
                   <div class="form_toggle-item item-3">
-                      <input id="freq-3" type="radio" name="frequency" value="every_three_months">
+                      <input id="freq-3" type="radio" name="schedule" value="3">
                       <label for="freq-3">Раз в 3 месяца</label>
                   </div>
               </div>
-              
               </div>
             </div>
             <div class="custom-expanded u-form u-form-1">
-              <form action="https://forms.nicepagesrv.com/v2/form/process" class="u-clearfix u-form-spacing-20 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
+              <form class="u-clearfix u-form-spacing-20 u-form-vertical" source="email" name="form" style="padding: 10px;">
                 <div class="u-form-group u-form-partition-factor-2 u-form-phone u-form-group-1">
                   <label for="phone-1786" class="u-custom-font u-font-raleway u-label u-label-1">Телефон</label>
-                  <input type="tel" pattern="\+?\d{0,3}[\s\(\-]?([0-9]{2,3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})" placeholder="Enter your phone (e.g. +14155552675)" id="phone-1786" name="phone" class="u-border-1 u-border-grey-80 u-input u-input-rectangle u-radius u-input-1" required="">
+                  <input type="tel" pattern="\+?\d{0,3}[\s\(\-]?([0-9]{2,3})[\s\)\-]?([\s\-]?)([0-9]{3})[\s\-]?([0-9]{2})[\s\-]?([0-9]{2})" placeholder="Enter your phone (e.g. +14155552675)" id="phone-1786" name="phone_number" class="u-border-1 u-border-grey-80 u-input u-input-rectangle u-radius u-input-1" required="">
                 </div>
                 <div class="u-form-group u-form-name u-form-partition-factor-2">
                   <label for="name-5db7" class="u-custom-font u-font-raleway u-label u-label-2">Имя</label>
@@ -57,11 +58,11 @@
                 </div>
                 <div class="u-form-date u-form-group u-form-group-3">
                   <label for="date-ad35" class="u-custom-font u-font-raleway u-label u-label-3">Дата желаемой первой доставки</label>
-                  <input type="text" readonly="readonly" placeholder="DD.MM.YYYY" id="date-ad35" name="Дптп желаемой первой доставки" class="u-border-1 u-border-grey-80 u-input u-input-rectangle u-radius u-input-3" required="" data-date-format="dd.mm.yyyy">
+                  <input type="text" readonly="readonly" placeholder="DD.MM.YYYY" id="date-ad35" name="date_arrive" class="u-border-1 u-border-grey-80 u-input u-input-rectangle u-radius u-input-3" required="" data-date-format="dd.mm.yyyy">
                 </div>
                 <div class="u-form-group u-form-group-4">
                   <label for="text-f02e" class="u-custom-font u-font-raleway u-label u-label-4">Адрес</label>
-                  <input type="text" placeholder="Enter your adress" id="text-f02e" name="adress" class="u-border-1 u-border-grey-80 u-input u-input-rectangle u-radius u-white u-input-4" required="required">
+                  <input type="text" placeholder="Enter your adress" id="text-f02e" name="address" class="u-border-1 u-border-grey-80 u-input u-input-rectangle u-radius u-white u-input-4" required="required">
                 </div>
                 <div class="u-form-group u-form-message">
                   <label for="message-5db7" class="u-custom-font u-font-raleway u-label u-label-5">Message</label>
@@ -71,8 +72,7 @@
                   <p class=" h4-raleway u-text-4">
                     Сумма к оплате {{ subscr.price }} р.
                 </p>
-                  <a href="#" class="u-black u-border-none u-btn u-btn-round u-btn-submit u-button-style u-hover-custom-color-6 u-radius-30 u-btn-6">Перейти к оплате</a>
-                  <input type="submit" value="submit" class="u-form-control-hidden">
+                  <button class="u-align-center u-black u-border-none u-btn u-btn-round u-button-style u-hover-custom-color-6 u-radius-30 u-btn-6">Перейти к оплате</button>
                 </div>
                 <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
                 <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
@@ -81,10 +81,10 @@
               </form>
             </div>
           </div>
+        </form>
         </div>
       </div>
     </section>
-  
   
 </body>
 {% endblock content %}
