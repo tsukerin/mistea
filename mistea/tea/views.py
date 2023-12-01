@@ -46,6 +46,10 @@ def about(request):
     }
     return render(request, 'about.html', context)
 
+def issued(request):
+    return render(request, 'issued.html')
+
+
     
 def subs(request):
     context = {

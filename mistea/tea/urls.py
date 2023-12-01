@@ -17,5 +17,6 @@ urlpatterns = [
     path('auth/', include('django.contrib.auth.urls')),
     path('subscription/<int:subscription_id>/', subscription_detail, name='subscription_detail'),
     path('subscr/<int:subscription_id>/', OrderSub.as_view(), name='subscr'),
+     path('issued/', issued, name='issued'),
 
 ]

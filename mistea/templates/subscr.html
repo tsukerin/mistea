@@ -73,6 +73,10 @@
                     Сумма к оплате {{ subscr.price }} р.
                 </p>
                   <button class="u-align-center u-black u-border-none u-btn u-btn-round u-button-style u-hover-custom-color-6 u-radius-30 u-btn-6">Перейти к оплате</button>
+                  {% comment %} временно для проверки issued {% endcomment %}
+                  <a href="{% url 'issued' %}" class="u-active-custom-color-2 u-border-none u-btn u-btn-round u-button-style u-grey-90 u-hover-custom-color-2 u-radius-37 u-text-active-white u-text-hover-white u-text-white u-btn-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-out="0">Подписаться</a>
+
+                </script>
                 </div>
                 <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
                 <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
