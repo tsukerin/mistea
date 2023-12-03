@@ -28,6 +28,7 @@ SECRET_KEY = 'django-insecure-9zauclxa!+3077b59t$#ova5ocdiwi*79f7%qautmnb!50p#di
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://2483-51-159-221-46.ngrok-free.app']
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = reverse_lazy('profile')
 
@@ -35,6 +36,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('profile')
 # Application definition
 
 INSTALLED_APPS = [
+    'checkout',
     'tea', 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -137,3 +139,8 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+from dotenv import load_dotenv
+
+load_dotenv()
+ID_SHOP = os.getenv('ID_SHOP')
+SECRET_KEY = os.getenv('SECRET_KEY')

@@ -1,5 +1,8 @@
+import uuid
 from django.shortcuts import redirect, render, get_object_or_404
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
+
+from mistea.settings import ID_SHOP, SECRET_KEY
 from .models import Subscription, TeaCategory, Tea, UserSubscription
 from django.shortcuts import render
 from .forms import LoginForm, ProfileForm, RegForm, UserSubscriptionForm
@@ -10,8 +13,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.base import View
 from django.contrib import messages
-
-
+from yookassa import Configuration, Payment
 
 def home(request):
     context = {
@@ -46,9 +48,6 @@ def about(request):
     }
     return render(request, 'about.html', context)
 
-def issued(request):
-    return render(request, 'issued.html')
-
 
     
 def subs(request):
@@ -71,14 +70,15 @@ class OrderSub(LoginRequiredMixin, View):
     template_name = 'subscr.html'
     redirect_field_name = 'next'
     form_model = UserSubscription
-    success_url = reverse_lazy("homepage")
+    success_url = reverse_lazy("payment")
+    Configuration.configure(ID_SHOP, SECRET_KEY)
+
     def get(self, request, subscription_id):
         try:
             subscription = Subscription.objects.get(id=subscription_id)
             form = self.form_class(initial={'sub_id': subscription})
         except:
             form = self.form_class()
-
         return render(request, self.template_name, {'subscr': subscription, 'form': form})
     
     def dispatch(self, request, *args, **kwargs):
@@ -90,8 +90,22 @@ class OrderSub(LoginRequiredMixin, View):
         form = self.form_class(request.POST)
         if form.is_valid():
             form.instance.sub_id = Subscription.objects.get(id=subscription_id)
+            obj = get_object_or_404(Subscription, pk=subscription_id)
             form.save()
-            return redirect(self.success_url)
+            payment = Payment.create({
+            "amount": {
+                "value": obj.price,
+                "currency": "RUB"
+            },
+            "confirmation": {
+                "type": "redirect",
+                "return_url": request.build_absolute_uri(reverse('checkout:success')),
+            },
+            "capture": True,
+            "description": f'Подписка: {obj.name}.'
+            }, uuid.uuid4())
+            confirmation_url = payment.confirmation.confirmation_url
+            return redirect(confirmation_url)
         else:
             print(form.errors)
         
