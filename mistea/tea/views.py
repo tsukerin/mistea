@@ -94,10 +94,10 @@ class OrderSub(LoginRequiredMixin, View):
 
         if form.is_valid():
             subscription = get_object_or_404(Subscription, pk=subscription_id)
-            personalized_identifier = str(uuid.uuid4())  # Генерация нового идентификатора
+            personalized_identifier = str(uuid.uuid4())
             form.instance.personalized_identifier = personalized_identifier
-            form.instance.sub_id = subscription  # Добавьте это, чтобы указать подписку
-            form.save()  # Сохранение в базу данных
+            form.instance.sub_id = subscription
+            form.save()
             payment = Payment.create({
                 "amount": {
                     "value": subscription.price,

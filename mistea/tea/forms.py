@@ -58,7 +58,14 @@ class UserSubscriptionForm(forms.ModelForm):
     date_arrive = forms.DateField(
         input_formats=['%d.%m.%Y'],
     )
-    tea_type = forms.ChoiceField(choices=[('loose', 'Заварной'), ('bagged', 'В пакетиках')], widget=forms.RadioSelect)
+    tea_type = forms.ChoiceField(
+        choices=[('1', 'Заварной'),
+                ('2', 'В пакетиках')
+                ],
+                widget=forms.RadioSelect,
+                required=True,
+                initial='1',
+                )
     schedule = forms.ChoiceField(
         choices=[
             ('1', 'Раз в месяц'),
@@ -71,24 +78,24 @@ class UserSubscriptionForm(forms.ModelForm):
     )
 
 
-    def clean(self):
-        cleaned_data = super().clean()
-        tea_type = cleaned_data.get('tea_type')
-        schedule = cleaned_data.get('schedule')
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     tea_type = cleaned_data.get('tea_type')
+    #     schedule = cleaned_data.get('schedule')
 
-        if tea_type == 'loose':
-            cleaned_data['type_tea'] = 1
-        elif tea_type == 'bagged':
-            cleaned_data['type_tea'] = 2
+    #     if tea_type == 'loose':
+    #         cleaned_data['tea_type'] = 1
+    #     elif tea_type == 'bagged':
+    #         cleaned_data['tea_type'] = 2
 
-        if schedule == 'monthly':
-            cleaned_data['schedule_interval'] = 1
-        elif schedule == 'every_two_months':
-            cleaned_data['schedule_interval'] = 2
-        elif schedule == 'every_three_months':
-            cleaned_data['schedule_interval'] = 3
+    #     if schedule == 'monthly':
+    #         cleaned_data['schedule_interval'] = 1
+    #     elif schedule == 'every_two_months':
+    #         cleaned_data['schedule_interval'] = 2
+    #     elif schedule == 'every_three_months':
+    #         cleaned_data['schedule_interval'] = 3
 
-        return cleaned_data
+    #     return cleaned_data
             
 
     class Meta:

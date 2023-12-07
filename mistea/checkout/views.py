@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
-
+from django.utils import timezone
 from user.models import UserProfile, UserSubscription
 import uuid
 import requests
@@ -121,17 +121,13 @@ def cancel_payment_api(request):
 @csrf_exempt
 def yookassa_success(request, personalized_identifier):
     user = request.user
-    
-    # Используйте get_object_or_404 для получения объекта UserSubscription по personalized_identifier
     user_subscription = get_object_or_404(UserSubscription, personalized_identifier=personalized_identifier)
-    
-    # Создайте или обновите объект UserProfile, связанный с пользователем и подпиской
     user_profile, created = UserProfile.objects.get_or_create(user=user)
     user_profile.user_subscription = user_subscription
+    user_profile.payment_date = timezone.now()
     user_profile.subscription = True
     user_profile.save()
 
-    # Передайте personalized_identifier в шаблон для отображения на странице успеха
-    return render(request, 'checkout/success.html', {'personalized_identifier': personalized_identifier})
+    return render(request, 'checkout/success.html', {'user_profile': user_profile, 'personalized_identifier': personalized_identifier})
 
 
