@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-9zauclxa!+3077b59t$#ova5ocdiwi*79f7%qautmnb!50p#di
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://2483-51-159-221-46.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://2799-2001-bc8-1201-613-46a8-42ff-fe2c-532c.ngrok-free.app']
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = reverse_lazy('profile')
 
@@ -36,6 +36,7 @@ LOGIN_REDIRECT_URL = reverse_lazy('profile')
 # Application definition
 
 INSTALLED_APPS = [
+    'user',
     'checkout',
     'tea', 
     'django.contrib.admin',

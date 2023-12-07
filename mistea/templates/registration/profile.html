@@ -2,10 +2,27 @@
 {% load static %}
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/profile.css' %}" media="screen">
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var switch = false;
+  
+      var subscribeButton = document.getElementById('subscribeButton');
+      var accountButton = document.getElementById('accountButton');
+  
+      subscribeButton.addEventListener('click', function() {
+          switch = true;
+      });
+  
+      accountButton.addEventListener('click', function() {
+          switch = false;
+      });
+  });
+  </script>
 {% endblock style %}
 {% block content %}
 <body>
-  {% if user.userprofile.subscription == True %}
+  
+  {% if request.user.userprofile.subscription %}
     <section class="u-clearfix u-custom-color-2 u-section-1" id="sec-bdf2" style="margin-top: 100px;">
       <img class="u-image u-image-round u-radius u-image-1" src="{% static 'images/bg_lk.PNG' %}" alt="" data-image-width="1600" data-image-height="940">
       <div class="u-container-style u-group u-radius u-shape-round u-white u-group-1">
@@ -13,8 +30,8 @@
           <h3 class="u-align-center u-custom-font u-text u-text-default u-text-1">Личный ​каб​инет</h3>
         </div>
       </div>
-      <a href="https://nicepage.com/wordpress-website-builder" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-white u-radius u-btn-1">подписка</a>
-      <a href="https://nicepage.com/wordpress-website-builder" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-white u-radius u-btn-2">учетные данные</a>
+      <a href="#" id="subscribeButton" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-custom-color-1 u-radius u-btn-1">подписка</a>
+      <a href="#" id="accountButton" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-white u-radius u-btn-2">учетные данные</a>  
       <div class="u-container-style u-custom-color-4 u-group u-radius u-shape-round u-group-2">
         <div class="u-container-layout u-container-layout-2">
           <h3 class="u-align-center u-custom-font u-text u-text-default u-text-2">Подписка подкючена</h3>
@@ -72,7 +89,7 @@
               <h6 class="u-custom-font u-text u-text-default u-text-14">Адрес доставки</h6>
               <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-13">
                 <div class="u-container-layout">
-                  <p class="u-align-center u-text u-text-15">{{ user.userprofile.address }}</p>
+                  <p class="u-align-center u-text u-text-15">{{ user_profile.user_subscription.address }}</p>
                 </div>
               </div>
               <p class="u-text u-text-custom-color-10 u-text-16">измен​ить</p>
@@ -106,7 +123,7 @@
           <h6 class="u-custom-font u-text u-text-default u-text-21">Для переноса даты доставки и другим вопроса​​м по подписке свяжитесь с оператором по номеру:</h6>
           <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-19">
             <div class="u-container-layout">
-              <p class="u-align-center u-text u-text-default u-text-22">{{ user.username.phone_number }}</p>
+              <p class="u-align-center u-text u-text-default u-text-22">{{ user.userprofile.phone_number }}</p>
             </div>
           </div>
         </div>
@@ -120,8 +137,8 @@
           <h3 class="u-align-center u-custom-font u-text u-text-default u-text-1">Личный ​каб​инет</h3>
         </div>
       </div>
-      <a href="https://nicepage.com/wordpress-website-builder" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-custom-color-1 u-radius u-btn-1">подписка</a>
-      <a href="https://nicepage.com/wordpress-website-builder" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-white u-radius u-btn-2">учетные данные</a>
+      <a href="#" id="subscribeButton" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-custom-color-1 u-radius u-btn-1" disabled>подписка</a>
+      <a href="#" id="accountButton" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-white u-radius u-btn-2">учетные данные</a>
       <div class="u-container-style u-custom-color-4 u-group u-radius u-shape-round u-group-2">
         <div class="u-container-layout u-container-layout-2">
           <h3 class="u-align-center u-custom-font u-text u-text-default u-text-2">У вас еще нет подписки</h3>
@@ -129,7 +146,7 @@
       </div>
       <div class="u-clearfix u-group-elements u-group-elements-1"><span class="u-align-center u-custom-color-5 u-file-icon u-icon u-icon-circle u-text-custom-color-6 u-icon-1"><img src="{% static "images/x.png" %}" alt=""></span>
       </div>
-      <div class="u-container-style u-custom-color-4 u-group u-radius u-shape-round u-group-3">
+      <div class="u-container-style u-custom-color-4 u-group u-radius u-shape-round u-group-3" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-out="0">
         <div class="u-container-layout u-container-layout-3">
           <h3 class="u-align-center u-custom-font u-text u-text-white u-text-3" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-out="0">Личные данные</h3>
         </div>
@@ -165,7 +182,7 @@
               <h6 class="u-custom-font u-text u-text-default u-text-10">Номер телефона</h6>
               <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-10">
                 <div class="u-container-layout u-container-layout-10">
-                  <p class="u-align-center u-text u-text-default u-text-11">{{ user.username.phone_number }}</p>
+                  <p class="u-align-center u-text u-text-default u-text-11">{{ user.usersubscription.phone_number }}</p>
                 </div>
               </div>
               <p class="u-text u-text-custom-color-10 u-text-default u-text-12">измен​ить</p>

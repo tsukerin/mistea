@@ -1,3 +1,30 @@
+.custom-tooltip-container {
+  position: relative;
+  display: inline-block;
+}
+
+.custom-tooltip {
+  visibility: hidden;
+  width: 120px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%; /* Подсказка будет расположена над элементом */
+  left: 50%;
+  margin-left: -60px; /* Сдвигаем влево на половину ширины подсказки */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.custom-tooltip-container:hover .custom-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+ 
  .u-section-1 {
   background-image: none;
   min-height: 652px;
@@ -1476,3 +1503,4 @@
     margin-right: calc(((100% - 340px) / 2));
   }
 }
+

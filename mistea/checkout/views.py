@@ -1,9 +1,10 @@
 # payment/views.py
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
-from .models import Order
+
+from user.models import UserProfile, UserSubscription
 import uuid
 import requests
 
@@ -117,5 +118,10 @@ def cancel_payment_api(request):
     cancel_payment(payment_id)
     return HttpResponse(status=200)
 
-def success(request):
-    return render(request, 'checkout/success.html')
+@csrf_exempt
+def yookassa_success(request, pk):
+    user = request.user
+    status = UserProfile.objects.create(user=user, pk=user.id)
+    status.subscription = True
+    status.save()
+    return render(request, 'checkout/success.html', {'pk': pk})
