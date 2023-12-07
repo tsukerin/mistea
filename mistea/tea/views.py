@@ -49,7 +49,9 @@ def about(request):
     }
     return render(request, 'about.html', context)
 
-
+def success(request, personalized_identifier):
+    # Ваш существующий код
+    return render(request, 'checkout/success.html', {'personalized_identifier': personalized_identifier})
     
 def subs(request):
     context = {
@@ -92,9 +94,10 @@ class OrderSub(LoginRequiredMixin, View):
 
         if form.is_valid():
             subscription = get_object_or_404(Subscription, pk=subscription_id)
-            form.instance.sub_id = subscription
-            form.save()
-
+            personalized_identifier = str(uuid.uuid4())  # Генерация нового идентификатора
+            form.instance.personalized_identifier = personalized_identifier
+            form.instance.sub_id = subscription  # Добавьте это, чтобы указать подписку
+            form.save()  # Сохранение в базу данных
             payment = Payment.create({
                 "amount": {
                     "value": subscription.price,
@@ -102,19 +105,18 @@ class OrderSub(LoginRequiredMixin, View):
                 },
                 "confirmation": {
                     "type": "redirect",
-                    "return_url": request.build_absolute_uri(reverse('checkout:success', kwargs={'pk': subscription_id})),
+                    "return_url": request.build_absolute_uri(reverse('checkout:success', kwargs={'personalized_identifier': personalized_identifier})),
                 },
                 "capture": True,
                 "description": f'Подписка: {subscription.name}.'
             }, uuid.uuid4())
             confirmation_url = payment.confirmation.confirmation_url
-            return redirect(confirmation_url)
+            return redirect(confirmation_url, personalized_identifier=personalized_identifier)
         else:
             print(form.errors)
 
         subscription = get_object_or_404(Subscription, pk=subscription_id)
         return render(request, self.template_name, {'subscr': subscription, 'form': form})
-
 #----------------------------------------------------------------------------------------------------------------------------
 #Аутентификация
 

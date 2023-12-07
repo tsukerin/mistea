@@ -10,6 +10,8 @@ from django.contrib.auth.models import User
 
 class UserSubscription(models.Model):
     sub_id = models.ForeignKey(Subscription, max_length=200, on_delete=models.CASCADE, related_name='num_sub')
+    personalized_identifier = models.CharField(max_length=255, unique=True, default=False)
+
     name = models.CharField(max_length=15, default=False)
     phone_number = models.CharField(
         max_length=15,
@@ -34,7 +36,10 @@ class UserSubscription(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    user_subscription = models.OneToOneField(UserSubscription, on_delete=models.CASCADE, null=True)
+    
+    # Связываем UserProfile с UserSubscription через personalized_identifier
+    user_subscription = models.OneToOneField(UserSubscription, on_delete=models.CASCADE, null=True, related_name='user_profile')
+
     subscription = models.BooleanField(default=False)
 
     def __str__(self):

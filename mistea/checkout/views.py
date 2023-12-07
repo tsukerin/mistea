@@ -119,9 +119,19 @@ def cancel_payment_api(request):
     return HttpResponse(status=200)
 
 @csrf_exempt
-def yookassa_success(request, pk):
+def yookassa_success(request, personalized_identifier):
     user = request.user
-    status = UserProfile.objects.create(user=user, pk=user.id)
-    status.subscription = True
-    status.save()
-    return render(request, 'checkout/success.html', {'pk': pk})
+    
+    # Используйте get_object_or_404 для получения объекта UserSubscription по personalized_identifier
+    user_subscription = get_object_or_404(UserSubscription, personalized_identifier=personalized_identifier)
+    
+    # Создайте или обновите объект UserProfile, связанный с пользователем и подпиской
+    user_profile, created = UserProfile.objects.get_or_create(user=user)
+    user_profile.user_subscription = user_subscription
+    user_profile.subscription = True
+    user_profile.save()
+
+    # Передайте personalized_identifier в шаблон для отображения на странице успеха
+    return render(request, 'checkout/success.html', {'personalized_identifier': personalized_identifier})
+
+
