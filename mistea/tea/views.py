@@ -123,7 +123,7 @@ class OrderSub(LoginRequiredMixin, View):
 class ProfileView(LoginRequiredMixin, View):
     login_url = "login"
     form_class = ProfileForm
-    template_name = 'registration/profile.html'
+    template_name = 'registration/lk.html'
     redirect_field_name = 'next'
 
     def get(self, request, *args, **kwargs):

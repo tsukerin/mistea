@@ -1,6 +1,17 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block style %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var switch = false;
+  
+      var statusButton = document.getElementById('statusButton');
+  
+      statusButton.addEventListener('click', function() {
+          switch = true;
+      });
+  });
+</script>
 <link rel="stylesheet" href="{% static 'css/homepage.css' %}" media="screen">
       {% endblock style %}
       {% block content %}

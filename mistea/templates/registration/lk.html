@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<script src="{% static 'js/utils.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/lk.css' %}" media="screen">
+{% endblock style %}
+{% block content %}
+{% if request.user.userprofile.subscription %}
+    <section class="u-clearfix u-image u-section-1" id="sec-91c6" data-image-width="1920" data-image-height="1080" style="margin-top: 100px;">
+      <img src="{% static 'images/bg_lk_.PNG'%}" class="background-image" alt="Фоновое изображение">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="data-layout-selected u-clearfix u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-container-style u-layout-cell u-shape-rectangle u-size-32 u-layout-cell-1">
+                <div class="u-border-3 u-border-black u-border-no-bottom u-border-no-left u-border-no-top u-container-layout u-valign-bottom u-container-layout-1">
+                  <h2 class="u-align-left u-custom-font u-font-raleway u-text u-text-default u-text-1">Личный кабинет<br>
+                  </h2>
+                  <div class="custom-expanded u-align-center u-form u-form-1">
+                    <form action="https://forms.nicepagesrv.com/v2/form/process" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
+                      <div class="u-form-group u-form-name">
+                        <label for="name-a5d6" class="u-label">Логин</label>
+                        <input type="text" placeholder="Логин" id="name-a5d6" name="username" class="u-input u-input-rectangle u-radius u-input-1" required="" value="{{ user.username }}" readonly>
+                      </div>
+                      <div class="u-form-email u-form-group">
+                        <label for="email-a5d6" class="u-label">Эл. почта</label>
+                        <input type="email" placeholder="Введите Ваш email адрес" id="email" name="email" class="u-input u-input-rectangle u-radius u-input-2" required="" value="{{ user.email }}" readonly>
+                      </div>
+                      <div class="u-form-group u-form-group-3">
+                        <label for="text-e879" class="u-label">Имя Фамилия</label>
+                        <input type="text" placeholder="Илья Попов" id="text" name="name" class="u-input u-input-rectangle u-radius u-input-3" required="required" value="{{ user.full_name }}" readonly>
+                      </div>
+                      <div class="u-form-group u-form-group-4">
+                        <label for="text-6e4a" class="u-label">Номер телефона</label>
+                        <input type="text" id="text-6e4a" name="phone_number" class="u-input u-input-rectangle u-radius u-input-4" placeholder="89283116006" required="required" value="{{ user.userprofile.phone_number }}" readonly>
+                      </div>
+                      <div class="u-align-center u-form-group u-form-submit">
+                        <a href="#" id="editButton" class="u-border-1 u-border-black u-btn u-btn-submit u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-1">редактировать учетные данные</a>
+                        <input type="submit" value="submit" class="u-form-control-hidden">
+                      </div>
+                      <div class="u-form-send-message u-form-send-success"> Спасибо! Ваше сообщение отправлено. </div>
+                      <div class="u-form-send-error u-form-send-message"> Отправка не удалась. Пожалуйста, исправьте ошибки и попробуйте еще раз. </div>
+                      <input type="hidden" value="" name="recaptchaResponse">
+                      <input type="hidden" name="formServices" value="0089ce5b-e9e4-631f-67ce-edd2c17f51f3">
+                    </form>
+                  </div>
+                  <a href="https://nicepage.com/c/shapes-website-templates" class="u-align-center u-border-1 u-border-black u-btn u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-2">Удалить профиль</a>
+                </div>
+              </div>
+              <div class="u-align-center u-container-style u-layout-cell u-shape-rectangle u-size-28 u-layout-cell-2">
+                <div class="u-container-layout u-valign-bottom u-container-layout-2">
+                  <h3 class="u-align-right u-custom-font u-font-raleway u-text u-text-2">Подписка "Цветочная Симфония"<br>подключена!&nbsp;
+                  </h3>
+                  <div class="u-expanded-width u-form u-form-2">
+                    <form action="https://forms.nicepagesrv.com/v2/form/process" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form-1" style="padding: 10px;">
+                      <div class="u-form-group u-form-name">
+                        <label for="name-01b9" class="u-label">Формат чая</label>
+                        <input type="text" placeholder="в пакетиках" id="name-01b9" name="tea_type" class="u-input u-input-rectangle u-radius u-input-5" required="">
+                      </div>
+                      <div class="u-form-email u-form-group">
+                        <label for="email-01b9" class="u-label">Интервал доставки</label>
+                        <input type="email" placeholder="раз в месяц" id="email-01b9" name="interval" class="u-input u-input-rectangle u-radius u-input-6" required="">
+                      </div>
+                      <div class="u-form-group u-form-group-8">
+                        <label for="text-3440" class="u-label">Адрес доставки</label>
+                        <input type="text" placeholder="Красногорск Дежнева д6 кв 157" id="text-3440" name="adress" class="u-input u-input-rectangle u-radius u-input-7" required="required">
+                      </div>
+                      <div class="u-form-group u-form-group-9">
+                        <label for="text-c989" class="u-label">Способ оплаты</label>
+                        <input type="text" id="text-c989" name="card" class="u-input u-input-rectangle u-radius u-input-8" placeholder="****9562" required="required">
+                      </div>
+                      <div class="u-align-center u-form-group u-form-submit">
+                        <a href="#" class="u-active-black u-border-1 u-border-black u-btn u-btn-submit u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-3">изменить</a>
+                        <input type="submit" value="submit" class="u-form-control-hidden">
+                      </div>
+                      <div class="u-form-send-message u-form-send-success"> Спасибо! Ваше сообщение отправлено. </div>
+                      <div class="u-form-send-error u-form-send-message"> Отправка не удалась. Пожалуйста, исправьте ошибки и попробуйте еще раз. </div>
+                      <input type="hidden" value="" name="recaptchaResponse">
+                      <input type="hidden" name="formServices" value="0089ce5b-e9e4-631f-67ce-edd2c17f51f3">
+                    </form>
+                  </div>
+                  <a href="https://nicepage.com/c/shapes-website-templates" class="u-active-black u-align-center u-border-1 u-border-black u-btn u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-4">отписаться</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% else %}
+    <section class="u-clearfix u-image u-section-2" id="sec-5d8e" data-image-width="1600" data-image-height="940">
+      <img src="{% static 'images/bg_lk_.PNG'%}" class="background-image" alt="Фоновое изображение">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="data-layout-selected u-clearfix u-layout-wrap u-layout-wrap-1">
+          <div class="u-layout">
+            <div class="u-layout-row">
+              <div class="u-container-style u-layout-cell u-shape-rectangle u-size-32 u-layout-cell-1">
+                <div class="u-border-3 u-border-black u-border-no-bottom u-border-no-left u-border-no-top u-container-layout u-valign-bottom u-container-layout-1">
+                  <h2 class="u-align-left u-custom-font u-font-raleway u-text u-text-default u-text-1">Личный кабинет<br>
+                  </h2>
+                  <div class="custom-expanded u-align-center u-form u-form-1">
+                    <form action="https://forms.nicepagesrv.com/v2/form/process" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
+                      <div class="u-form-group u-form-name">
+                        <label for="name-a5d6" class="u-label">Логин</label>
+                        <input type="text" placeholder="Логин" id="name-a5d6" name="login" class="u-input u-input-rectangle u-radius u-input-1" required="">
+                      </div>
+                      <div class="u-form-email u-form-group">
+                        <label for="email-a5d6" class="u-label">Эл. почта</label>
+                        <input type="email" placeholder="Введите Ваш email адрес" id="email-a5d6" name="email" class="u-input u-input-rectangle u-radius u-input-2" required="">
+                      </div>
+                      <div class="u-form-group u-form-group-3">
+                        <label for="text-e879" class="u-label">Имя Фамилия</label>
+                        <input type="text" placeholder="Илья Попов" id="text-e879" name="name" class="u-input u-input-rectangle u-radius u-input-3" required="required">
+                      </div>
+                      <div class="u-form-group u-form-group-4">
+                        <label for="text-6e4a" class="u-label">Номер телефона</label>
+                        <input type="text" id="text-6e4a" name="phone" class="u-input u-input-rectangle u-radius u-input-4" placeholder="89283116006" required="required">
+                      </div>
+                      <div class="u-align-center u-form-group u-form-submit">
+                        <a href="#" class="u-border-1 u-border-black u-btn u-btn-submit u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-1">редактировать учетные данные</a>
+                        <input type="submit" value="submit" class="u-form-control-hidden">
+                      </div>
+                      <div class="u-form-send-message u-form-send-success"> Спасибо! Ваше сообщение отправлено. </div>
+                      <div class="u-form-send-error u-form-send-message"> Отправка не удалась. Пожалуйста, исправьте ошибки и попробуйте еще раз. </div>
+                      <input type="hidden" value="" name="recaptchaResponse">
+                      <input type="hidden" name="formServices" value="0089ce5b-e9e4-631f-67ce-edd2c17f51f3">
+                    </form>
+                  </div>
+                  <a href="https://nicepage.com/c/shapes-website-templates" class="u-align-center u-border-1 u-border-black u-btn u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-2">Удалить профиль</a>
+                </div>
+              </div>
+              <div class="u-align-center u-container-style u-layout-cell u-shape-rectangle u-size-28 u-layout-cell-2">
+                <div class="u-container-layout u-valign-middle u-container-layout-2">
+                  <div class="u-clearfix u-container-align-center u-expanded-width u-group-elements u-valign-middle u-group-elements-1">
+                    <p class="u-align-center u-custom-font u-font-raleway u-text u-text-2">У вас еще нет подписки</p>
+                    <a href="https://nicepage.com/wordpress-themes" class="u-active-white u-align-center u-black u-border-1 u-border-active-black u-border-black u-border-hover-black u-btn u-button-style u-custom-font u-font-montserrat u-hover-white u-text-body-alt-color u-text-hover-black u-btn-3" target="_blank">Подписаться</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+{% endif %}
+{% endblock content %}
