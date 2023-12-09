@@ -1,19 +1,21 @@
 document.addEventListener('DOMContentLoaded', function() {
     var toggleSwitch = true;
     var editButton = document.getElementById('editButton');
-    var inputField = document.getElementById('text-6e4a');
-  
+    var editableFields = document.getElementsByClassName('editable-field');
+
     function updateButtonText() {
-      editButton.textContent = toggleSwitch ? 'Сохранить изменения' : 'Редактировать учетные данные';
+        editButton.textContent = toggleSwitch ? 'Сохранить изменения' : 'Редактировать учетные данные';
     }
-  
+
     function updateReadonly() {
-      inputField.readOnly = !toggleSwitch;
+        for (var i = 0; i < editableFields.length; i++) {
+            editableFields[i].readOnly = !toggleSwitch;
+        }
     }
-  
+
     editButton.addEventListener('click', function() {
-      toggleSwitch = !toggleSwitch;
-      updateButtonText();
-      setTimeout(updateReadonly, 0);
+        toggleSwitch = !toggleSwitch;
+        updateButtonText();
+        setTimeout(updateReadonly, 0);
     });
-  });
+});
