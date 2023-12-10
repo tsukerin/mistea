@@ -1,0 +1,230 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" media="screen">
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var switch = false;
+  
+      var subscribeButton = document.getElementById('subscribeButton');
+      var accountButton = document.getElementById('accountButton');
+  
+      subscribeButton.addEventListener('click', function() {
+          switch = true;
+      });
+  
+      accountButton.addEventListener('click', function() {
+          switch = false;
+      });
+  });
+  </script>
+{% endblock style %}
+{% block content %}
+<body>
+  
+  {% if request.user.userprofile.subscription %}
+    <section class="u-clearfix u-custom-color-2 u-section-1" id="sec-bdf2" style="margin-top: 100px;">
+      <img class="u-image u-image-round u-radius u-image-1" src="{% static 'images/bg_lk.PNG' %}" alt="" data-image-width="1600" data-image-height="940">
+      <div class="u-container-style u-group u-radius u-shape-round u-white u-group-1">
+        <div class="u-container-layout u-container-layout-1">
+          <h3 class="u-align-center u-custom-font u-text u-text-default u-text-1">Личный ​каб​инет</h3>
+        </div>
+      </div>
+      <a href="#" id="subscribeButton" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-custom-color-1 u-radius u-btn-1">подписка</a>
+      <a href="#" id="accountButton" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-white u-radius u-btn-2">учетные данные</a>  
+      <div class="u-container-style u-custom-color-4 u-group u-radius u-shape-round u-group-2">
+        <div class="u-container-layout u-container-layout-2">
+          <h3 class="u-align-center u-custom-font u-text u-text-default u-text-2">Подписка подкючена</h3>
+        </div>
+      </div>
+      <div class="u-clearfix u-group-elements u-group-elements-1"><span class="u-align-center u-custom-color-5 u-file-icon u-icon u-icon-circle u-spacing-22 u-text-custom-color-6 u-icon-1"><img src="{% static "images/ok.png" %}" alt=""></span>
+      </div>
+      <div class="u-container-style u-custom-color-7 u-group u-radius u-shape-round u-group-3">
+        <div class="u-container-layout u-container-layout-3">
+          <h3 class="u-align-center u-custom-font u-text u-text-white u-text-3">Спокойствие и​​ расслабление</h3>
+        </div>
+      </div>
+      <div class="u-container-style u-custom-color-4 u-group u-radius u-shape-round u-group-4">
+        <div class="u-container-layout u-container-layout-4">
+          <h3 class="u-align-center u-custom-font u-text u-text-white u-text-4" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-out="0">Детали подписки</h3>
+        </div>
+      </div>
+      <div class="u-container-style u-custom-color-1 u-group u-opacity u-opacity-70 u-radius u-shape-round u-group-5" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-direction="" data-animation-out="0">
+        <div class="u-container-layout u-container-layout-5">
+          <div class="u-container-style u-group u-group-6">
+            <div class="u-container-layout u-container-layout-6">
+              <h6 class="u-custom-font u-text u-text-default u-text-5">Интервал доставки</h6>
+              <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-7">
+                <div class="u-container-layout">
+                  <p class="u-align-center u-text u-text-default u-text-6">раз в ​месяц</p>
+                </div>
+              </div>
+              <p class="u-text u-text-custom-color-10 u-text-default u-text-7">измен​ить</p>
+            </div>
+          </div>
+          <div class="u-container-style u-group u-group-8">
+            <div class="u-container-layout u-container-layout-8">
+              <h6 class="u-custom-font u-text u-text-default u-text-8">Формат упаковки</h6>
+              <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-9">
+                <div class="u-container-layout">
+                  <p class="u-align-center u-text u-text-default u-text-9">чай в пакетиках</p>
+                </div>
+              </div>
+              <p class="u-text u-text-custom-color-10 u-text-default u-text-10">измен​ить</p>
+            </div>
+          </div>
+          <div class="u-container-style u-group u-group-10">
+            <div class="u-container-layout u-container-layout-10">
+              <h6 class="u-custom-font u-text u-text-default u-text-11">Способ оплаты</h6>
+              <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-11">
+                <div class="u-container-layout">
+                  <p class="u-align-center u-text u-text-default u-text-12">****9065</p>
+                </div>
+              </div>
+              <p class="u-text u-text-custom-color-10 u-text-default u-text-13">измен​ить</p>
+            </div>
+          </div>
+          <div class="u-container-style u-group u-group-12">
+            <div class="u-container-layout u-container-layout-12">
+              <h6 class="u-custom-font u-text u-text-default u-text-14">Адрес доставки</h6>
+              <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-13">
+                <div class="u-container-layout">
+                  <p class="u-align-center u-text u-text-15">{{ user_profile.user_subscription.address }}</p>
+                </div>
+              </div>
+              <p class="u-text u-text-custom-color-10 u-text-16">измен​ить</p>
+            </div>
+          </div>
+          <a href="https://nicepage.com/wordpress-website-builder" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-4 u-hover-custom-color-5 u-radius u-text-hover-white u-btn-3">удалить подписку</a>
+        </div>
+      </div>
+      <div class="u-container-style u-group u-group-14">
+        <div class="u-container-layout u-container-layout-14">
+          <h6 class="u-custom-font u-text u-text-default u-text-17">Дата следующего списания</h6>
+          <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-15">
+            <div class="u-container-layout">
+              <p class="u-align-center u-text u-text-default u-text-18">{{ user_profile.payment_date|date:"d.m.Y" }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="u-container-style u-group u-group-16">
+        <div class="u-container-layout u-container-layout-16">
+          <h6 class="u-custom-font u-text u-text-default u-text-19">Дата следующей доставки</h6>
+          <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-17">
+            <div class="u-container-layout">
+              <p class="u-align-center u-text u-text-default u-text-20">30.11.2023</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="u-container-style u-group u-group-18">
+        <div class="u-container-layout u-container-layout-18">
+          <h6 class="u-custom-font u-text u-text-default u-text-21">Для переноса даты доставки и другим вопроса​​м по подписке свяжитесь с оператором по номеру:</h6>
+          <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-19">
+            <div class="u-container-layout">
+              <p class="u-align-center u-text u-text-default u-text-22">{{ user.userprofile.phone_number }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% else %}
+    <section class="u-clearfix u-custom-color-2 u-section-2" id="sec-4f31" style="margin-top: 100px;">
+      <img class="u-image u-image-round u-radius u-image-1" src="{% static 'images/bg_lk.PNG' %}" alt="" data-image-width="1600" data-image-height="940">
+      <div class="u-container-style u-group u-radius u-shape-round u-white u-group-1">
+        <div class="u-container-layout u-container-layout-1">
+          <h3 class="u-align-center u-custom-font u-text u-text-default u-text-1">Личный ​каб​инет</h3>
+        </div>
+      </div>
+      <a href="#" id="subscribeButton" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-custom-color-1 u-radius u-btn-1" disabled>подписка</a>
+      <a href="#" id="accountButton" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-white u-radius u-btn-2">учетные данные</a>
+      <div class="u-container-style u-custom-color-4 u-group u-radius u-shape-round u-group-2">
+        <div class="u-container-layout u-container-layout-2">
+          <h3 class="u-align-center u-custom-font u-text u-text-default u-text-2">У вас еще нет подписки</h3>
+        </div>
+      </div>
+      <div class="u-clearfix u-group-elements u-group-elements-1"><span class="u-align-center u-custom-color-5 u-file-icon u-icon u-icon-circle u-text-custom-color-6 u-icon-1"><img src="{% static "images/x.png" %}" alt=""></span>
+      </div>
+      <div class="u-container-style u-custom-color-4 u-group u-radius u-shape-round u-group-3" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-out="0">
+        <div class="u-container-layout u-container-layout-3">
+          <h3 class="u-align-center u-custom-font u-text u-text-white u-text-3" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-out="0">Личные данные</h3>
+        </div>
+      </div>
+
+      <div class="u-container-style u-custom-color-1 u-group u-opacity u-opacity-70 u-radius u-shape-round u-group-4" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-direction="" data-animation-out="0">
+        <div class="u-container-layout u-container-layout-4">
+          <div class="u-container-style u-group u-group-5">
+            <div class="u-container-layout u-container-layout-5">
+              <h6 class="u-custom-font u-text u-text-default u-text-4">Имя</h6>
+              <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-6">
+                <div class="u-container-layout u-container-layout-6">
+                  <p class="u-align-center u-text u-text-default u-text-5">{{ user.username }}</p>
+                </div>
+              </div>
+              <p class="u-text u-text-custom-color-10 u-text-default u-text-6">измен​ить</p>
+            </div>
+          </div>
+          <div class="u-container-style u-group u-group-7">
+            <div class="u-container-layout u-container-layout-7">
+              <h6 class="u-custom-font u-text u-text-default u-text-7">Электронная почта</h6>
+              <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-8">
+                <div class="u-container-layout u-container-layout-8">
+                  <p class="u-align-center u-text u-text-default u-text-8">{{ user.email }}</p>
+                </div>
+              </div>
+              <p class="u-text u-text-custom-color-10 u-text-default u-text-9">измен​ить</p>
+            </div>
+          </div>
+          <a href="https://nicepage.com/wordpress-website-builder" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-4 u-hover-custom-color-5 u-radius u-text-hover-white u-btn-3">сменить пароль</a>
+          <div class="u-container-style u-group u-group-9">
+            <div class="u-container-layout u-container-layout-9">
+              <h6 class="u-custom-font u-text u-text-default u-text-10">Номер телефона</h6>
+              <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-10">
+                <div class="u-container-layout u-container-layout-10">
+                  <p class="u-align-center u-text u-text-default u-text-11">{{ user.usersubscription.phone_number }}</p>
+                </div>
+              </div>
+              <p class="u-text u-text-custom-color-10 u-text-default u-text-12">измен​ить</p>
+            </div>
+          </div>
+          <div class="u-container-style u-group u-group-11">
+            <div class="u-container-layout u-container-layout-11">
+              <h6 class="u-custom-font u-text u-text-default u-text-13">Смена пароля</h6>
+              <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-12">
+                <div class="u-container-layout u-container-layout-12">
+                  <p class="u-align-center u-text u-text-default u-text-14">Введите Ваш<span class="u-text-custom-color-6">
+                      <span class="u-text-custom-color-4"></span>
+                    </span> текущий пароль
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-container-style u-group u-group-13">
+            <div class="u-container-layout u-container-layout-13">
+              <h6 class="u-custom-font u-text u-text-default u-text-15">Ваш новый пароль</h6>
+              <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-14">
+                <div class="u-container-layout u-container-layout-14">
+                  <p class="u-align-center u-text u-text-default u-text-16">Введите новый пароль</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="u-container-style u-group u-group-15">
+            <div class="u-container-layout u-container-layout-15">
+              <h6 class="u-custom-font u-text u-text-default u-text-17">Подтверждение</h6>
+              <div class="u-container-style u-custom-color-8 u-group u-radius u-shape-round u-group-16">
+                <div class="u-container-layout u-container-layout-16">
+                  <p class="u-align-center u-text u-text-default u-text-18">Введите новый пароль еще раз</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="https://nicepage.com/css-templates" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-6 u-custom-font u-hover-custom-color-5 u-radius u-text-hover-white u-btn-4">Подписаться</a>
+    </section>
+    {% endif %}
+  </body>
+{% endblock content %}

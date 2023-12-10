@@ -1,12 +1,10 @@
+from datetime import datetime
 from django.db import models
 from django.urls import reverse 
 from django.contrib.auth.models import User
-
-# пользователь
-class UserProfile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    date_of_birth = models.DateField(blank=True, null=True)
-    address = models.TextField(blank=True)
+from django.core.validators import RegexValidator
+from django.contrib.auth.models import AbstractUser
+from django.utils.translation import gettext_lazy as _
 
 #Категории чая
 class TeaCategory(models.Model):
@@ -27,8 +25,9 @@ class TeaCategory(models.Model):
 class Subscription(models.Model):
     name = models.CharField(max_length=200, db_index=True)
     description = models.TextField(blank=True)
-    # Связь с чаями, входящими в подписку
     teas = models.ManyToManyField('Tea', related_name='subscriptions', blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    image = models.ImageField(upload_to='subscription_images/', default="images/flowers.jpeg")
     
 
     class Meta:
@@ -38,7 +37,7 @@ class Subscription(models.Model):
 
     def __str__(self):
         return self.name
-
+    
 class Tea(models.Model):
     category = models.ForeignKey(TeaCategory, related_name='teas', on_delete=models.CASCADE)
     name = models.CharField(max_length=200, db_index=True)
@@ -61,43 +60,3 @@ class Tea(models.Model):
 
     def __str__(self):
         return self.name
-
-#отзывы
-class Review(models.Model):
-    tea = models.ForeignKey('Tea', on_delete=models.CASCADE)
-    subscription = models.ForeignKey('Subscription', on_delete=models.CASCADE, blank=True, null=True)
-    user = models.ForeignKey('UserProfile', on_delete=models.CASCADE)
-    text = models.TextField()
-    rating = models.PositiveIntegerField()
-    date = models.DateTimeField(auto_now_add=True)
-
-#Заказ
-class Order(models.Model):
-    user = models.ForeignKey('UserProfile', on_delete=models.CASCADE)
-    subscription = models.ForeignKey('Subscription', on_delete=models.CASCADE)
-    tea = models.ForeignKey('Tea', on_delete=models.CASCADE)
-    delivery_interval = models.CharField(max_length=255, choices=[("monthly", "Ежемесячно"), ("quarterly", "Каждые 3 месяца")])
-    tea_format = models.CharField(max_length=255, choices=[("tea_bags", "Пакетики"), ("loose_leaf", "Листовой чай")])
-    delivery_address = models.TextField()
-    status = models.CharField(max_length=255, choices=[("processing", "Обработка"), ("shipped", "Отправлено"), ("delivered", "Доставлено")])
-    order_date = models.DateTimeField(auto_now_add=True)
-    total_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    payment_method = models.CharField(max_length=255, choices=[("credit_card", "Кредитная карта"), ("paypal", "PayPal"), ("other", "Другой")])
-    payment_status = models.CharField(max_length=255, choices=[("pending", "Ожидает оплаты"), ("paid", "Оплачено")])
-
-#платеж
-class Payment(models.Model):
-    user = models.ForeignKey('UserProfile', on_delete=models.CASCADE)
-    subscription = models.ForeignKey('Subscription', on_delete=models.CASCADE)
-    amount = models.DecimalField(max_digits=10, decimal_places=2)
-    payment_date = models.DateTimeField(auto_now_add=True)
-    payment_method = models.CharField(max_length=255, choices=[("credit_card", "Кредитная карта"), ("paypal", "PayPal"), ("other", "Другой")])
-    payment_status = models.CharField(max_length=255, choices=[("pending", "Ожидает оплаты"), ("paid", "Оплачено")])
-    recurring = models.BooleanField(default=False)
-    recurring_interval = models.CharField(max_length=255, choices=[("monthly", "Ежемесячно"), ("quarterly", "Каждые 3 месяца")], blank=True, null=True)
-
-class User(models.Model):
-    name = models.CharField(max_length=20)
-    email = models.EmailField()
-    password = models.CharField(max_length=50)
-    phone_number = models.Field

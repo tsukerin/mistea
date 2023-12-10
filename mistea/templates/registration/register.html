@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/registration.css' %}" media="screen">
+{% endblock style %}
+{% block content %}
+    <section class="u-clearfix u-image u-section-1" id="sec-3a43" data-image-width="1920" data-image-height="1080">
+      <img src="{% static 'images/bg_reg.PNG'%}" class="background-image" alt="Фоновое изображение">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h3 class="u-align-center u-text u-text-default u-text-1">Регистрация</h3>
+        <div class="custom-expanded u-align-center u-form u-form-checks-spacing-0 u-form-1">
+          <form method="post" class="u-clearfix u-form-spacing-10 u-inner-form" source="email" name="form" style="padding: 10px;">
+            {% csrf_token %}
+            <div class="u-form-group u-form-group-1">
+              <label for="text-1eef" class="u-custom-font u-heading-font u-label u-label-1">Логин</label>
+              <input type="text" placeholder="Придумайте Ваш логин" id="text-1eef" name="username" class="u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-1" required="required">
+            </div>
+            <div class="u-form-email u-form-group">
+              <label for="email-5846" class="u-custom-font u-heading-font u-label u-label-2">Эл. почта</label>
+              <input type="email" placeholder="Введите Ваш email адрес" id="email-5846" name="email" class="u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-2" required="required">
+            </div>
+            <div class="u-form-group u-form-name">
+              <label for="name-5846" class="u-custom-font u-heading-font u-label u-label-3">Пароль</label>
+              <input type="password" placeholder="Пароль" id="name-5846" name="password1" class="u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-3" required="required">
+            </div>
+            <div class="u-form-group u-form-name">
+              <label for="name-5846" class="u-custom-font u-heading-font u-label u-label-3">Повторите пароль</label>
+              <input type="password" placeholder="Повторите Ваш пароль" id="name-5846" name="password2" class="u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-3" required="required">
+            </div>
+            <div class="u-align-center u-form-group u-form-submit">
+              <button class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-custom-color-1 u-radius-25 u-btn-1">Зарегистрироваться</button>
+            </div>
+            {% if form.errors %}
+            {{ form.errors }}
+            {% endif %}
+            <div class="u-form-send-message u-form-send-success"> Спасибо! Ваше сообщение отправлено. </div>
+            <div class="u-form-send-error u-form-send-message"> Отправка не удалась. Пожалуйста, исправьте ошибки и попробуйте еще раз. </div>
+            <input type="hidden" value="" name="recaptchaResponse">
+            <input type="hidden" name="formServices" value="678af8ff-c1a4-2745-6160-7f26e9e733c6">
+          </form>
+        </div>
+        <a href="{% url 'login' %}" class="u-align-center u-border-none u-btn u-button-style u-custom-font u-heading-font u-none u-text-hover-custom-color-5 u-btn-2">Уже зарегистрированы?</a>
+      </div>
+    </section>
+{% endblock content %}

@@ -1,33 +1,44 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block header %}
+{% block style %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      var switch = false;
+  
+      var statusButton = document.getElementById('statusButton');
+  
+      statusButton.addEventListener('click', function() {
+          switch = true;
+      });
+  });
+</script>
 <link rel="stylesheet" href="{% static 'css/homepage.css' %}" media="screen">
-      {% endblock header %}
+      {% endblock style %}
       {% block content %}
     <section class="u-align-right u-clearfix u-image u-section-1" id="carousel_8256" data-image-width="1920" data-image-height="940">
       <img src="{% static 'images/bg_green.PNG'%}" class="background-image" alt="Фоновое изображение">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-align-left u-container-style u-group u-opacity u-opacity-80 u-shape-rectangle u-group-1" data-animation-name="customAnimationIn" data-animation-duration="1500">
           <div class="u-container-layout u-container-layout-1">
-            <h1 class="u-text u-text-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500"> Mistea - это чай по подписке <br>
+            <h1 class="u-text u-text-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-out="0"> Mistea - это чай по подписке <br>
             </h1>
-            <p class="u-text u-text-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500"> который не оставит вас равнодушным</p>
-            <a href="{% url 'auth' %} " class="u-active-custom-color-2 u-border-none u-btn u-btn-round u-button-style u-grey-90 u-hover-custom-color-2 u-radius-37 u-text-active-white u-text-hover-white u-text-white u-btn-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">Подписаться</a>
+            <p class="u-text u-text-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-out="0"> который не оставит вас равнодушным</p>
+            <a href="{% url 'homepage' %}#subs" class="u-active-custom-color-2 u-border-none u-btn u-btn-round u-button-style u-grey-90 u-hover-custom-color-2 u-radius-37 u-text-active-white u-text-hover-white u-text-white u-btn-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-out="0">Подписаться</a>
           </div>
         </div>
       </div>
     </section>
     <section class="u-align-center u-clearfix u-section-2" id="carousel_c3ae">
       <div class="u-clearfix u-sheet u-sheet-1">
-        <h2 class="u-text u-text-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500"> Ваше знакомство с Mistea начинается здесь</h2>
+        <h2 class="u-text u-text-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-out="0"> Ваше знакомство с Mistea начинается здесь</h2>
         <div class="data-layout-selected u-clearfix u-layout-wrap u-layout-wrap-1">
           <div class="u-layout">
             <div class="u-layout-row">
               <div class="u-align-center u-container-style u-layout-cell u-size-30 u-layout-cell-1">
                 <div class="u-container-layout u-container-layout-1">
-                  <img class="u-expanded-width u-image u-image-contain u-image-default u-image-1" src="{% static 'images/tea_sem1.png'%}" alt="" data-image-width="719" data-image-height="383" data-animation-name="customAnimationIn" data-animation-duration="1500">
-                  <p class="u-text u-text-2" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-delay="750">Каждый месяц вы будете получать свежие и уникальные чаи, отобранные с любовью специально для вас.</p>
-                  <div class="custom-expanded u-align-center u-container-style u-group u-opacity u-opacity-95 u-palette-2-base u-radius-20 u-shape-round u-group-1" data-animation-name="customAnimationIn" data-animation-duration="1750" data-animation-delay="500">
+                  <img class="u-expanded-width u-image u-image-contain u-image-default u-image-1" src="{% static 'images/tea_sem1.png'%}" alt="" data-image-width="719" data-image-height="383" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-out="0">
+                  <p class="u-text u-text-default u-text-5" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-delay="750" data-animation-out="0">Каждый месяц вы будете получать свежие и уникальные чаи, отобранные с любовью специально для вас.</p>
+                  <div class="custom-expanded u-align-center u-container-style u-group u-opacity u-opacity-95 u-palette-2-base u-radius-20 u-shape-round u-group-1" data-animation-name="customAnimationIn" data-animation-duration="1750" data-animation-delay="500" data-animation-out="0">
                     <div class="u-container-layout u-container-layout-2">
                       <h5 class="u-text u-text-3"> Присоединяйтесь к нам и дайте себе возможность каждый день отправляться в увлекательное чайное путешествие, не покидая свой дом.&nbsp;</h5>
                     </div>
@@ -36,13 +47,13 @@
               </div>
               <div class="u-align-center u-container-style u-layout-cell u-size-30 u-layout-cell-2">
                 <div class="u-container-layout u-valign-top u-container-layout-3">
-                  <div class="u-align-center u-container-style u-expanded-width u-group u-palette-2-base u-radius-20 u-shape-round u-group-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">
+                  <div class="u-align-center u-container-style u-expanded-width u-group u-palette-2-base u-radius-20 u-shape-round u-group-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-out="0">
                     <div class="u-container-layout u-container-layout-4">
                       <h5 class="u-align-center u-text u-text-4">Мы верим, что чай - это не просто напиток, это настоящее путешествие в мир удивительных вкусов и ароматов.</h5>
                     </div>
                   </div>
-                  <p class="u-text u-text-default u-text-5" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750"> Мы создали подписку для таких же любителей чая. Наша подписка - это способ сделать чаепитие частью вашей повседневной жизни, без лишних хлопот.</p>
-                  <img class="u-expanded-width u-image u-image-contain u-image-default u-image-2" src="{% static 'images/tea_sem2.png'%}" alt="" data-image-width="719" data-image-height="383" data-animation-name="customAnimationIn" data-animation-duration="1500">
+                  <p class="u-text u-text-default u-text-5" data-animation-name="customAnimationIn" data-animation-duration="1000" data-animation-delay="750" data-animation-out="0"> Мы создали подписку для таких же любителей чая. Наша подписка - это способ сделать чаепитие частью вашей повседневной жизни, без лишних хлопот.</p>
+                  <img class="u-expanded-width u-image u-image-contain u-image-default u-image-2" src="{% static 'images/tea_sem2.png'%}" alt="" data-image-width="719" data-image-height="383" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-out="0">
                 </div>
               </div>
             </div>
@@ -51,35 +62,35 @@
       </div>
     </section>
     <section class="u-align-center u-clearfix u-section-3" id="carousel_6aff">
-      <img class="u-align-left u-expanded-width u-image u-image-default u-image-1" data-image-width="6720" data-image-height="4480" src="static/images/why.jpg">
+      <img class="u-align-left u-expanded-width u-image u-image-default u-image-1" data-image-width="6720" data-image-height="4480" src="{% static "images/why.jpg" %}">
       <div class="u-list u-list-1">
         <div class="u-repeater u-repeater-1">
-          <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-1" data-animation-name="customAnimationIn" data-animation-duration="1500">
+          <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-out="0">
             <div class="u-container-layout u-similar-container u-container-layout-1">
-              <h2 class="u-custom-font u-font-oswald u-text u-text-default u-text-palette-2-base u-text-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">01</h2>
-              <h5 class="u-text u-text-5" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750">Экономия времени</h5>
-              <p class="u-text u-text-3" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750">Мы доставим чай прямо к вашей двери, освобождая вас от забот о покупках.</p>
+              <h2 class="u-custom-font u-font-oswald u-text u-text-default u-text-palette-2-base u-text-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-out="0">01</h2>
+              <h5 class="u-text u-text-5" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750" data-animation-out="0">Экономия времени</h5>
+              <p class="u-text u-text-3" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750" data-animation-out="0">Мы доставим чай прямо к вашей двери, освобождая вас от забот о покупках.</p>
             </div>
           </div>
-          <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-2" data-animation-name="customAnimationIn" data-animation-duration="1500">
+          <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-2" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-out="0">
             <div class="u-container-layout u-similar-container u-container-layout-2">
-              <h2 class="u-custom-font u-font-oswald u-text u-text-default u-text-palette-2-base u-text-4" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">02</h2>
-              <h5 class="u-text u-text-5" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750"> Экономия денег</h5>
-              <p class="u-text u-text-6" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750"> Подписка на чай позволяет получать чай по сниженной цене, по сравнению с регулярными покупками в магазинах</p>
+              <h2 class="u-custom-font u-font-oswald u-text u-text-default u-text-palette-2-base u-text-4" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-out="0">02</h2>
+              <h5 class="u-text u-text-5" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750" data-animation-out="0"> Экономия денег</h5>
+              <p class="u-text u-text-6" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750" data-animation-out="0"> Подписка на чай позволяет получать чай по сниженной цене, по сравнению с регулярными покупками в магазинах</p>
             </div>
           </div>
-          <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-3" data-animation-name="customAnimationIn" data-animation-duration="1500">
+          <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-3" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-out="0">
             <div class="u-container-layout u-similar-container u-container-layout-3">
-              <h2 class="u-custom-font u-font-oswald u-text u-text-default u-text-palette-2-base u-text-7" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">03</h2>
-              <h5 class="u-text u-text-8" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750">Качество и свежесть</h5>
-              <p class="u-text u-text-9" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750"> Мы гарантируем, что все чаи, полученные вами в рамках подписки, всегда будут свежие и высочайшего качества.</p>
+              <h2 class="u-custom-font u-font-oswald u-text u-text-default u-text-palette-2-base u-text-7" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-out="0">03</h2>
+              <h5 class="u-text u-text-8" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750" data-animation-out="0">Качество и свежесть</h5>
+              <p class="u-text u-text-9" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750" data-animation-out="0"> Мы гарантируем, что все чаи, полученные вами в рамках подписки, всегда будут свежие и высочайшего качества.</p>
             </div>
           </div>
-          <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-4" data-animation-name="customAnimationIn" data-animation-duration="1500">
+          <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-4" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-out="0">
             <div class="u-container-layout u-similar-container u-container-layout-4">
-              <h2 class="u-custom-font u-font-oswald u-text u-text-default u-text-palette-2-base u-text-10" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500">04</h2>
-              <h5 class="u-text u-text-11" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750">Подарки</h5>
-              <p class="u-text u-text-12" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750">i​Периодически мы добавляем ваши заказы подарки, чтобы сделать вашу подписку на чай ещё более увлекательной.</p>
+              <h2 class="u-custom-font u-font-oswald u-text u-text-default u-text-palette-2-base u-text-10" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-out="0">04</h2>
+              <h5 class="u-text u-text-11" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750" data-animation-out="0">Подарки</h5>
+              <p class="u-text u-text-12" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="750" data-animation-out="0">i​Периодически мы добавляем ваши заказы подарки, чтобы сделать вашу подписку на чай ещё более увлекательной.</p>
             </div>
           </div>
         </div>
@@ -147,6 +158,7 @@
         </div>
       </div>
     </section>
+    <a id="subs"></a>
     <section class="u-align-center u-clearfix u-palette-2-base u-section-5" id="sec-d6d7">
       <div class="u-clearfix u-sheet u-sheet-1">
         <h2 class="u-text u-text-1"> Выберите подписку</h2>
@@ -160,9 +172,9 @@
                 </p>
                 <br>
                 <br>
-                <a href="https://nicepage.com/k/clothing-store-website-templates" class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-1">Подписаться</a>
+                <a href="{% url 'subscr' subscription_id=2 %} " class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-1">Подписаться</a>
                 <h4 class="u-text u-text-default u-text-palette-2-base u-text-4">800р/мес</h4>
-                <a href="https://nicepage.com/c/tabs-website-templates" class="u-align-center u-border-1 u-border-active-palette-2-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-none u-text-hover-palette-4-dark-1 u-text-palette-2-dark-2 u-btn-2">подробнее о подписке</a>
+                <a href="{% url 'subscription_detail' subscription_id=2 %}" class="u-align-center u-border-1 u-border-active-palette-2-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-none u-text-hover-palette-4-dark-1 u-text-palette-2-dark-2 u-btn-2">подробнее о подписке</a>
               </div>
             </div>
             <div class="u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-video-cover u-white u-list-item-2">
@@ -170,9 +182,9 @@
                 <img alt="" class="u-expanded-width u-image u-image-round u-radius-10 u-image-2" src="{% static 'images/sub2.jpg'%}" data-image-width="910" data-image-height="640">
                 <h4 class="u-text u-text-palette-2-base u-text-5"> Цветочная симфония</h4>
                 <p class="u-text u-text-default u-text-6">Обогатит вашу чайную коллекцию пятью восхитительными сортами чая, начиная с изысканного белого пиона и погружая вас в ароматическое волшебство цветов с чаем из цветков липы, лавандой, ромашкой и чередой, создавая неповторимую симфонию.</p>
-                <a href="https://nicepage.com/website-design" class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-3">подписаться</a>
+                <a href="{% url 'subscr' subscription_id=5 %}" class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-3">подписаться</a>
                 <h4 class="u-text u-text-default u-text-palette-2-base u-text-7">1000р/мес</h4>
-                <a href="https://nicepage.com/c/tabs-website-templates" class="u-align-center u-border-1 u-border-active-palette-2-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-none u-text-hover-palette-4-dark-1 u-text-palette-2-dark-2 u-btn-4">подробнее о подписке</a>
+                <a href="{% url 'subscription_detail' subscription_id=5 %}" class="u-align-center u-border-1 u-border-active-palette-2-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-none u-text-hover-palette-4-dark-1 u-text-palette-2-dark-2 u-btn-4">подробнее о подписке</a>
               </div>
             </div>
             <div class="u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-3">
@@ -180,9 +192,9 @@
                 <img alt="" class="u-expanded-width u-image u-image-round u-radius-10 u-image-3" src="{% static 'images/sub3.jpg'%}" data-image-width="6025" data-image-height="3389">
                 <h4 class="u-text u-text-palette-2-base u-text-8">Восточная гармония</h4>
                 <p class="u-text u-text-default u-text-9"> Пять великолепных сортов чая: ассамский чай для бодрости, колодец дракона с нотками цветов, силигури с нежным вкусом, тянь гуань инь с изысканным ароматом и цейлонский чай с яркими фруктовыми акцентами. Насладитесь множеством чайных вкусов и ароматов.</p>
-                <a href="https://nicepage.studio" class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-5">подписаться</a>
+                <a href="{% url 'subscr' subscription_id=1 %}" class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-5">подписаться</a>
                 <h4 class="u-text u-text-default u-text-palette-2-base u-text-10">1000р/мес</h4>
-                <a href="https://nicepage.com/c/tabs-website-templates" class="u-align-center u-border-1 u-border-active-palette-2-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-none u-text-hover-palette-4-dark-1 u-text-palette-2-dark-2 u-btn-6">подробнее о подписке</a>
+                <a href="{% url 'subscription_detail' subscription_id=1 %}" class="u-align-center u-border-1 u-border-active-palette-2-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-none u-text-hover-palette-4-dark-1 u-text-palette-2-dark-2 u-btn-6">подробнее о подписке</a>
               </div>
             </div>
             <div class="u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-4">
@@ -190,9 +202,9 @@
                 <img alt="" class="u-expanded-width u-image u-image-round u-radius-10 u-image-4" src="{% static 'images/sub4.jpg'%}" data-image-width="7360" data-image-height="4912">
                 <h4 class="u-text u-text-palette-2-base u-text-11"> Магия вкусов</h4>
                 <p class="u-text u-text-default u-text-12">погрузитесьт в мир чарующих ароматов и неповторимых вкусов. Насладитесь прохладой мяты в зеленом чае, таинственными чаями Тянь Гуань Инь и Шу Мей, а также завораживающими нотками череды и ароматом лаванды, создающими уникальные вкусовые ощущения.</p>
-                <a href="https://nicepage.com/k/ranking-website-templates" class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-7">подписаться</a>
+                <a href="{% url 'subscr' subscription_id=6 %}" class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-7">подписаться</a>
                 <h4 class="u-text u-text-default u-text-palette-2-base u-text-13">1000р/мес</h4>
-                <a href="https://nicepage.com/c/tabs-website-templates" class="u-align-center u-border-1 u-border-active-palette-2-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-none u-text-hover-palette-4-dark-1 u-text-palette-2-dark-2 u-btn-8">подробнее о подписке</a>
+                <a href="{% url 'subscription_detail' subscription_id=6 %}" class="u-align-center u-border-1 u-border-active-palette-2-base u-border-no-left u-border-no-right u-border-no-top u-btn u-button-style u-none u-text-hover-palette-4-dark-1 u-text-palette-2-dark-2 u-btn-8">подробнее о подписке</a>
               </div>
             </div>
           </div>
@@ -205,23 +217,26 @@
       <div class="u-list u-list-1">
         <div class="u-repeater u-repeater-1">
           <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white u-list-item-1">
-            <div class="u-container-layout u-similar-container u-container-layout-1"><span class="u-file-icon u-icon u-text-palette-5-dark-2 u-icon-1"><img src="{% static 'images/ilya.jpg'%}" alt=""></span>
+            <div class="u-container-layout u-similar-container u-container-layout-1"><span class="u-file-icon u-icon u-text-palette-5-dark-2 u-icon-1"><img src="{% static 'images/ap.png'%}" alt=""></span>
               <p class="u-text u-text-default u-text-grey-50 u-text-2">Я просто вахуе с этой подписки! Мы с женой пьем чай как слоны каждый день. ЭТА ПОДПИСКА РЕШАЕТ ВСЕ ПРОБЛЕМЫ! ВСЕГО ТО ЗА 1000р в месяц! ЛЮДИ!</p>
-              <div alt="" class="u-image u-image-circle u-image-1" data-image-width="501" data-image-height="501"></div>
+              <img src="{% static 'images/ilya.jpg'%}" alt="Круглое изображение" class="round-image">
               <h5 class="u-text u-text-default u-text-grey-50 u-text-3"> Илья Цукерман</h5>
             </div>
           </div>
           <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white">
-            <div class="u-container-layout u-similar-container u-container-layout-2"><span class="u-file-icon u-icon u-text-palette-5-dark-2 u-icon-2"><img src="{% static 'images/pasha.jpg'%}" alt=""></span>
+            <div class="u-container-layout u-similar-container u-container-layout-2"><span class="u-file-icon u-icon u-text-palette-5-dark-2 u-icon-2"><img src="{% static 'images/ap.png'%}" alt=""></span>
               <p class="u-text u-text-default u-text-grey-50 u-text-4">Должен сказать, сревис MISTEA очень помог мне с решением, что относить на поминки моей бабушки. каждый месяц голову ломаю, а тут, на тебе! Решение!</p>
-              <div alt="" class="u-image u-image-circle u-image-2" data-image-width="206" data-image-height="206"></div>
+              <img src="{% static 'images/pasha.jpg'%}" alt="Круглое изображение" class="round-image">
               <h5 class="u-text u-text-default u-text-grey-50 u-text-5">Павел Стандровский</h5>
             </div>
           </div>
           <div class="u-align-left u-container-style u-list-item u-radius-20 u-repeater-item u-shape-round u-white">
-            <div class="u-container-layout u-similar-container u-container-layout-3"><span class="u-file-icon u-icon u-text-palette-5-dark-2 u-icon-3"><img src="{% static 'images/ilya2.jpg'%}" alt=""></span>
+            <div class="u-container-layout u-similar-container u-container-layout-3"><span class="u-file-icon u-icon u-text-palette-5-dark-2 u-icon-3"><img src="{% static 'images/ap.png'%}" alt=""></span>
               <p class="u-text u-text-default u-text-grey-50 u-text-6">Очень крутой крутой чай! Чай-чай мочай пей и пивом запивай! Хе-хе-хеей!!!!</p>
-              <div alt="" class="u-image u-image-circle u-image-3" data-image-width="626" data-image-height="417"></div>
+              <br>
+              <br>
+              <br>
+              <img src="{% static 'images/ilya2.jpg'%}" alt="Круглое изображение" class="round-image">
               <h5 class="u-text u-text-default u-text-grey-50 u-text-7">Олечка</h5>
             </div>
           </div>

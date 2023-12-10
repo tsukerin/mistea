@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block header %}
+{% block style %}
 <link rel="stylesheet" href="{% static 'css/about.css' %}" media="screen">
-      {% endblock header %}
+      {% endblock style %}
       {% block content %}
       <section class="u-clearfix u-container-align-center-sm u-container-align-center-xs u-custom-color-10 u-section-1" id="sec-3dcb" style="margin-top: 40px;">
         <div class="u-clearfix u-sheet u-sheet-1">
@@ -31,7 +31,7 @@
         <h2 class="u-align-center u-text u-text-default u-text-1">Присоедияйтесь к нам</h2>
         <p class="u-text u-text-2">И окунитесь в мир Mistea. Откройте для себя новые вкусы, научитесь готовить чай как искусство, и наслаждайтесь каждым глотком с нами. Благодаря Mistea чаепитие становится не просто обыденной привычкой, а настоящим удовольствием для всех ваших чувств.</p>
         <img class="u-image u-image-round u-radius-25 u-image-1" src="{% static 'images/tea_about.jpg'%}" alt="" data-image-width="5184" data-image-height="3456">
-        <a href="{% url 'auth' %} " class="u-align-center-sm u-align-center-xs u-black u-border-none u-btn u-btn-round u-button-style u-radius-50 u-btn-1">подписаться</a>
+        <a href="{% url 'login' %}" class="u-align-center-sm u-align-center-xs u-black u-border-none u-btn u-btn-round u-button-style u-radius-50 u-btn-1">подписаться</a>
       </div>
     </section>
 {% endblock content %}

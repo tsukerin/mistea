@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 
+from django.urls import reverse_lazy
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -26,18 +28,23 @@ SECRET_KEY = 'django-insecure-9zauclxa!+3077b59t$#ova5ocdiwi*79f7%qautmnb!50p#di
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://b261-51-159-222-44.ngrok-free.app']
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = reverse_lazy('profile')
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'user',
+    'checkout',
+    'tea', 
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',  
-    'tea', 
 
 ]
 
@@ -133,3 +140,19 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+from dotenv import load_dotenv
+
+load_dotenv()
+
+#env
+ID_SHOP = os.getenv('ID_SHOP')
+SECRET_KEY = os.getenv('SECRET_KEY')
+EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
+EMAIL = os.getenv('EMAIL')
+#Почта
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = EMAIL
+EMAIL_HOST_PASSWORD = EMAIL_PASSWORD

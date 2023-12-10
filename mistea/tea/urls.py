@@ -1,16 +1,21 @@
 from django.urls import path
 from .views import *
-from django.views.generic import TemplateView
+from django.conf.urls import include
 
 urlpatterns = [
-    # path('home/', home, name='home'),
-    # path('', index, name='main'),
+    path('home/', homepage, name='home'),
     path('', homepage, name='homepage'),
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
     # path('about/', TemplateView.as_view(template_name='tea/about.html'), name='about'),
     path('subs/', subs, name='subs'),
-    path('home/', subs, name='home'),
+    path('subscribe/', subscribe, name='subscribe'),
     path('tea-detail/<int:pk>/', tea_detail, name='tea-detail'),
-    path('auth/', auth, name='auth'),
+    path('profile/', ProfileView.as_view(), name='profile'), 
+    path('registration/', RegisterView.as_view(), name='register'),
+    path('login/', LoginView.as_view(), name="login"),
+    path('auth/', include('django.contrib.auth.urls')),
+    path('subscription/<int:subscription_id>/', subscription_detail, name='subscription_detail'),
+    path('subscr/<int:subscription_id>/', OrderSub.as_view(), name='subscr'),
+    path('success/<str:personalized_identifier>/', success, name='success'),
 ]
