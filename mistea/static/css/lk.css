@@ -381,3 +381,84 @@
     width: 340px;
   }
 }
+
+#deliveryAddress {
+  border-radius: 30px; /* Добавляем закругление углов */
+}
+#deliveryForm {
+  border-radius: 30px; /* Добавляем закругление углов формы */
+}
+
+#deliveryAddress {
+  border-radius: 30px; /* Добавляем закругление углов текстовой области */
+}
+
+/* Добавляем закругление углов для других элементов в форме, если необходимо */
+#deliveryInterval,
+#saveChangesBtn {
+  border-radius: 30px; /* Пример: закругление углов для выпадающего списка и кнопки */
+}
+
+  /* Цвет кружочков радио кнопок (светло-розовый) */
+  input[type="radio"] {
+    -webkit-appearance: none; /* Убираем стандартный внешний вид */
+    -moz-appearance: none;
+    appearance: none;
+    width: 16px; /* Размер кружочков */
+    height: 16px;
+    border-radius: 50%; /* Задаем форму кружочков */
+    outline: none;
+    border: 2px solid #e1cfbc; /* Цвет границы */
+    margin-right: 5px; /* Расстояние между кружочками и текстом */
+    position: relative;
+  }
+
+  /* Цвет кружочков радио кнопок при выборе (светло-розовый) */
+  input[type="radio"]:checked {
+    background-color: #e1cfbc;
+  }
+
+  /* Стили для текста меток радио кнопок */
+  input[type="radio"] + label {
+    cursor: pointer;
+  }
+  select option:hover {
+    background-color: #e1cfbc;
+  }
+/* Стили для всплывающего окна */
+.popup {
+display: none;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background-color: #fff;
+border: 1px solid #000;
+border-radius: 30px;
+padding: 20px;
+z-index: 1000;
+}
+
+.popup-content {
+position: relative;
+}
+
+.close {
+position: absolute;
+top: 0px;
+right: 0px;
+font-size: 20px;
+cursor: pointer;
+}
+
+/* Затемнение заднего фона */
+.overlay {
+display: none;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.5);
+z-index: 900;
+}

@@ -112,5 +112,5 @@ class UserSubscriptionForm(forms.ModelForm):
                     self.fields['sub_id'].initial = subscription
                 except Subscription.DoesNotExist:
                     pass
-
-
+class DeleteSubscriptionForm(forms.Form):
+    pass

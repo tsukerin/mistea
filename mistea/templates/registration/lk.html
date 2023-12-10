@@ -2,6 +2,7 @@
 {% load static %}
 {% block style %}
 <script src="{% static 'js/utils.js' %}"></script>
+<script src="{% static 'js/popup.js' %}"></script>
 <link rel="stylesheet" href="{% static 'css/lk.css' %}" media="screen">
 <style>
   
@@ -236,7 +237,7 @@ document.getElementById("saveChangesBtn").addEventListener("click", function() {
                 <div class="u-container-layout u-valign-middle u-container-layout-2">
                   <div class="u-clearfix u-container-align-center u-expanded-width u-group-elements u-valign-middle u-group-elements-1">
                     <p class="u-align-center u-custom-font u-font-raleway u-text u-text-2">У вас еще нет подписки</p>
-                    <a href="{% url 'homepage' %}#subs" class="u-active-white u-align-center u-black u-border-1 u-border-active-black u-border-black u-border-hover-black u-btn u-button-style u-custom-font u-font-montserrat u-hover-white u-text-body-alt-color u-text-hover-black u-btn-3" target="_blank">Подписаться</a>
+                    <a href="https://nicepage.com/wordpress-themes" class="u-active-white u-align-center u-black u-border-1 u-border-active-black u-border-black u-border-hover-black u-btn u-button-style u-custom-font u-font-montserrat u-hover-white u-text-body-alt-color u-text-hover-black u-btn-3" target="_blank">Подписаться</a>
                   </div>
                 </div>
               </div>
@@ -297,12 +298,17 @@ document.getElementById("saveChangesBtn").addEventListener("click", function() {
     <div class="popup-content">
       <span class="close" id="closeUnsubscribePopup"></span>
       <p>Вы уверены, что хотите отписаться?</p>
-      <div class="u-align-center u-form-group u-form-submit">
-        <a href="#" class="u-active-black u-border-1 u-border-black u-btn u-btn-submit u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-4" id="confirmUnsubscribeBtn">Да</a>
-        <a href="#" class="u-active-black u-border-1 u-border-black u-btn u-btn-submit u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-5" id="cancelUnsubscribeBtn">Нет</a>
-      </div>
+      
+      <form method="post" action="{% url 'delete_subscription' %}" id="unsubscribeForm">
+        {% csrf_token %}
+        <div class="u-align-center u-form-group u-form-submit">
+          <a href="#" class="u-active-black u-border-1 u-border-black u-btn u-btn-submit u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-4" id="confirmUnsubscribeBtn">Да</a>
+          <a href="#" class="u-active-black u-border-1 u-border-black u-btn u-btn-submit u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-5" id="cancelUnsubscribeBtn">Нет</a>
+        </div>
+      </form> 
     </div>
   </div>
+  
   <div class="popup" id="deletePopup">
     <div class="popup-content">
         <span class="close" id="closeDeletePopup"></span>
@@ -331,18 +337,8 @@ document.getElementById("saveChangesBtn").addEventListener("click", function() {
     editPopup.style.display = "none";
     overlay.style.display = "none";
   });
-
-
-  // Добавьте обработчик события для кнопки "Сохранить изменения", если нужно
-  // const saveChangesBtn = document.getElementById("saveChangesBtn");
-  // saveChangesBtn.addEventListener("click", function() {
-  //   // Добавьте код для сохранения изменений
-  //   editPopup.style.display = "none";
-  //   overlay.style.display = "none";
-  // });
 });
 document.getElementById("saveChangesBtn").addEventListener("click", function() {
-  // Добавьте код для сохранения изменений
   saveChanges();
 });
 
@@ -352,10 +348,6 @@ function closeEditPopup() {
 }
 
 function saveChanges() {
-  // Добавьте код для сохранения изменений
-  // Например, отправка AJAX-запроса на сервер
-
-  // После успешного сохранения изменений закройте всплывающее окно
   closeEditPopup();
 }
   const unsubscribeButton = document.getElementById("unsubscribeButton");
@@ -380,7 +372,6 @@ function saveChanges() {
   });
 
   confirmUnsubscribeBtn.addEventListener("click", function() {
-    // Добавьте код для обработки подтверждения отписки
     unsubscribePopup.style.display = "none";
     overlay.style.display = "none";
   });
@@ -407,10 +398,29 @@ function saveChanges() {
     });
 
     confirmDeleteBtn.addEventListener("click", function() {
-        // Добавьте код для обработки подтверждения удаления
         deletePopup.style.display = "none";
         overlay.style.display = "none";
     });
+});
+
+document.getElementById('confirmUnsubscribeBtn').addEventListener('click', function(event) {
+  event.preventDefault();
+
+  // Создаем форму и добавляем в нее токен CSRF
+  var form = document.createElement('form');
+  form.method = 'post';
+  form.action = '{% url "delete_subscription" %}';
+  var csrf_token = document.createElement('input');
+  csrf_token.type = 'hidden';
+  csrf_token.name = 'csrfmiddlewaretoken';
+  csrf_token.value = '{{ csrf_token }}';
+  form.appendChild(csrf_token);
+  
+  document.body.appendChild(form);
+  form.submit();
+});
+
+document.getElementById('cancelUnsubscribeBtn').addEventListener('click', function(event) {
 });
 </script>
 {% endblock content %}

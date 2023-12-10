@@ -6,7 +6,7 @@ from mistea.settings import ID_SHOP, SECRET_KEY
 from .models import Subscription, TeaCategory, Tea
 from user.models import UserProfile, UserSubscription, User
 from django.shortcuts import render
-from .forms import LoginForm, ProfileForm, RegForm, UserSubscriptionForm
+from .forms import DeleteSubscriptionForm, LoginForm, ProfileForm, RegForm, UserSubscriptionForm
 from django.contrib.auth import authenticate, login, logout
 from django import template
 from django.contrib.auth.decorators import login_required
@@ -118,7 +118,7 @@ class OrderSub(LoginRequiredMixin, View):
         subscription = get_object_or_404(Subscription, pk=subscription_id)
         return render(request, self.template_name, {'subscr': subscription, 'form': form})
 #----------------------------------------------------------------------------------------------------------------------------
-#Аутентификация
+#Аутентификация и профиль
 
 class ProfileView(LoginRequiredMixin, View):
     login_url = "login"
@@ -165,9 +165,20 @@ class LoginView(CreateView):
         form.save()
         return super().form_valid(form)
 
-def delete_subscription(request):
-    if request.method == 'POST':
-        user_profile = request.user.userprofile
-        user_profile.subscription = 0
-        user_profile.save()
-    return redirect('profile')
+class DeleteSubscriptionView(View):
+    template_name = 'registration/lk.html'
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+    def post(self, request, *args, **kwargs):
+        form = DeleteSubscriptionForm(request.POST)
+
+        if form.is_valid():
+            user_profile = request.user.userprofile
+            user_profile.subscription = 0
+            user_profile.save()
+
+            return redirect('profile')
+
+        return render(request, self.template_name, {'form': form})

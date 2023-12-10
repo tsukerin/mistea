@@ -18,5 +18,5 @@ urlpatterns = [
     path('subscription/<int:subscription_id>/', subscription_detail, name='subscription_detail'),
     path('subscr/<int:subscription_id>/', OrderSub.as_view(), name='subscr'),
     path('success/<str:personalized_identifier>/', success, name='success'),
-    path('profile/delete_subscription/', delete_subscription, name='delete_subscription')
+    path('profile/delete_subscription/', DeleteSubscriptionView.as_view(), name='delete_subscription')
 ]
