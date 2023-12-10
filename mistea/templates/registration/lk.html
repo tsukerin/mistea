@@ -152,13 +152,13 @@ document.getElementById("saveChangesBtn").addEventListener("click", function() {
               </div>
               <div class="u-align-center u-container-style u-layout-cell u-shape-rectangle u-size-28 u-layout-cell-2">
                 <div class="u-container-layout u-valign-bottom u-container-layout-2">
-                  <h3 class="u-align-right u-custom-font u-font-raleway u-text u-text-2">Подписка "{{ user_subscription }}"<br>подключена!&nbsp;
+                  <h3 class="u-align-right u-custom-font u-font-raleway u-text u-text-2">Подписка "{{ user_profile.user_subscription.sub_id }}"<br>подключена!&nbsp;
                   </h3>
                   <div class="u-expanded-width u-form u-form-2">
                     <form action="https://forms.nicepagesrv.com/v2/form/process" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form-1" style="padding: 10px;">
                       <div class="u-form-group u-form-name">
                         <label for="name-01b9" class="u-label">Формат чая</label>
-                        <input type="text" placeholder="в пакетиках" id="name-01b9" name="tea_type" class="u-input u-input-rectangle u-radius u-input-5" required="">
+                        <input type="text" placeholder="в пакетиках" id="name-01b9" name="tea_type" class="u-input u-input-rectangle u-radius u-input-5" required="" value="{% if user_profile.user_subscription.tea_type == 1 %}Заварной{% elif user_profile.user_subscription.tea_type == 2 %}В пакетиках{% endif %}" readonly>
                       </div>
                       <div class="u-form-email u-form-group">
                         <label for="email-01b9" class="u-label">Интервал доставки</label>
@@ -236,7 +236,7 @@ document.getElementById("saveChangesBtn").addEventListener("click", function() {
                 <div class="u-container-layout u-valign-middle u-container-layout-2">
                   <div class="u-clearfix u-container-align-center u-expanded-width u-group-elements u-valign-middle u-group-elements-1">
                     <p class="u-align-center u-custom-font u-font-raleway u-text u-text-2">У вас еще нет подписки</p>
-                    <a href="https://nicepage.com/wordpress-themes" class="u-active-white u-align-center u-black u-border-1 u-border-active-black u-border-black u-border-hover-black u-btn u-button-style u-custom-font u-font-montserrat u-hover-white u-text-body-alt-color u-text-hover-black u-btn-3" target="_blank">Подписаться</a>
+                    <a href="{% url 'homepage' %}#subs" class="u-active-white u-align-center u-black u-border-1 u-border-active-black u-border-black u-border-hover-black u-btn u-button-style u-custom-font u-font-montserrat u-hover-white u-text-body-alt-color u-text-hover-black u-btn-3" target="_blank">Подписаться</a>
                   </div>
                 </div>
               </div>
@@ -341,6 +341,23 @@ document.getElementById("saveChangesBtn").addEventListener("click", function() {
   //   overlay.style.display = "none";
   // });
 });
+document.getElementById("saveChangesBtn").addEventListener("click", function() {
+  // Добавьте код для сохранения изменений
+  saveChanges();
+});
+
+function closeEditPopup() {
+  document.getElementById("editPopup").style.display = "none";
+  document.getElementById("overlay").style.display = "none";
+}
+
+function saveChanges() {
+  // Добавьте код для сохранения изменений
+  // Например, отправка AJAX-запроса на сервер
+
+  // После успешного сохранения изменений закройте всплывающее окно
+  closeEditPopup();
+}
   const unsubscribeButton = document.getElementById("unsubscribeButton");
   const unsubscribePopup = document.getElementById("unsubscribePopup");
   const closeUnsubscribePopup = document.getElementById("closeUnsubscribePopup");

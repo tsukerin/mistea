@@ -137,11 +137,7 @@ class ProfileView(LoginRequiredMixin, View):
         return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        schedule = request.POST.get('schedule')
-        address = request.POST.get('address')
         user_profile = request.user.userprofile
-        usersubscription = UserSubscription(schedule=schedule, address=address)
-        usersubscription.save()
         form = self.form_class(request.POST, instance=user_profile)
         if form.is_valid():
             form.save()
@@ -169,4 +165,9 @@ class LoginView(CreateView):
         form.save()
         return super().form_valid(form)
 
-
+def delete_subscription(request):
+    if request.method == 'POST':
+        user_profile = request.user.userprofile
+        user_profile.subscription = 0
+        user_profile.save()
+    return redirect('profile')

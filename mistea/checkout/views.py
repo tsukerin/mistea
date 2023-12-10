@@ -7,6 +7,9 @@ from django.utils import timezone
 from user.models import UserProfile, UserSubscription
 import uuid
 import requests
+from django.core.mail import send_mail
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
 
 authorization = "Mjg2OTM3OnRlc3RfcE5wZTNCcDczS3YzRFRyQkF0a29YdFpVTmZIUFBGdWFtV1RacDlvNDRWQQ=="
 initial_payment_msg = "Списываем оплату за заказ"
@@ -119,6 +122,7 @@ def cancel_payment_api(request):
     return HttpResponse(status=200)
 
 @csrf_exempt
+@login_required
 def yookassa_success(request, personalized_identifier):
     user = request.user
     user_subscription = get_object_or_404(UserSubscription, personalized_identifier=personalized_identifier)
@@ -127,6 +131,14 @@ def yookassa_success(request, personalized_identifier):
     user_profile.payment_date = timezone.now()
     user_profile.subscription = True
     user_profile.save()
+
+
+    subject = 'Подписка успешно оформлена'
+    message = 'Благодарим вас за оформление подписки!'
+    from_email = settings.DEFAULT_FROM_EMAIL
+    recipient_list = [user.email]
+
+    send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 
     return render(request, 'checkout/success.html', {'user_profile': user_profile, 'personalized_identifier': personalized_identifier})
 
