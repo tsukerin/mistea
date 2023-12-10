@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-9zauclxa!+3077b59t$#ova5ocdiwi*79f7%qautmnb!50p#di
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://2799-2001-bc8-1201-613-46a8-42ff-fe2c-532c.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://b261-51-159-222-44.ngrok-free.app']
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = reverse_lazy('profile')
 
@@ -143,5 +143,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 from dotenv import load_dotenv
 
 load_dotenv()
+
+#env
 ID_SHOP = os.getenv('ID_SHOP')
 SECRET_KEY = os.getenv('SECRET_KEY')
+EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
+EMAIL = os.getenv('EMAIL')
+#Почта
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = EMAIL
+EMAIL_HOST_PASSWORD = EMAIL_PASSWORD
