@@ -42,12 +42,37 @@ class LoginForm(AuthenticationForm):
                 code='inactive',
             )
 class ProfileForm(forms.ModelForm):
-    date_of_birth = forms.DateField(required=True)
+    fullname = forms.CharField(required=True)
+    address = forms.CharField(required=True, widget=forms.Textarea)
+    phone_number = forms.CharField(
+        max_length=15,
+        validators=[RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Введите корректный номер телефона.")],
+        required=True,
+    )
+    tea_type = forms.ChoiceField(
+        choices=[('1', 'Заварной'),
+                ('2', 'В пакетиках')
+                ],
+                widget=forms.RadioSelect,
+                required=True,
+                initial='1',
+                )
+    schedule = forms.ChoiceField(
+        choices=[
+            ('1', 'Раз в месяц'),
+            ('2', 'Раз в 2 месяца'),
+            ('3', 'Раз в 3 месяца')
+        ],
+        widget=forms.RadioSelect,
+        required=True,
+        initial='1',
+    )
     class Meta:
-        model = UserProfile
-        fields = ('user_subscription',)
+        model = UserSubscription
+        fields = ('fullname', 'address', 'phone_number', 'schedule', 'tea_type')
 
 class UserSubscriptionForm(forms.ModelForm):
+    fullname = forms.CharField(required=True)
     address = forms.CharField(required=True, widget=forms.Textarea)
     phone_number = forms.CharField(
         max_length=15,
@@ -100,7 +125,7 @@ class UserSubscriptionForm(forms.ModelForm):
 
     class Meta:
         model = UserSubscription
-        fields = ('address', 'phone_number', 'message', 'date_arrive', 'schedule', 'tea_type')
+        fields = ('fullname','address', 'phone_number', 'message', 'date_arrive', 'schedule', 'tea_type')
 
         def __init__(self, *args, **kwargs):
             subscription_id = kwargs.pop('subscription_id', None)

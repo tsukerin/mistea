@@ -1,14 +1,26 @@
 document.addEventListener('DOMContentLoaded', function() {
     var toggleSwitch = true;
     var editButton = document.getElementById('editButton');
-    var inputField = document.getElementById('text-6e4a');
+    var editableFields = document.getElementsByClassName('editable-field');
+    var form = document.querySelector('form');
   
     function updateButtonText() {
       editButton.textContent = toggleSwitch ? 'Сохранить изменения' : 'Редактировать учетные данные';
     }
   
     function updateReadonly() {
-      inputField.readOnly = !toggleSwitch;
+      for (var i = 0; i < editableFields.length; i++) {
+        editableFields[i].readOnly = !toggleSwitch;
+      }
+    }
+  
+    function handleSubmit(event) {
+      event.preventDefault();
+      
+      if (toggleSwitch) {
+        form.method = 'post';
+        console.log('Sending POST request...');
+      }
     }
   
     editButton.addEventListener('click', function() {
@@ -16,4 +28,6 @@ document.addEventListener('DOMContentLoaded', function() {
       updateButtonText();
       setTimeout(updateReadonly, 0);
     });
+  
+    form.addEventListener('submit', handleSubmit);
   });

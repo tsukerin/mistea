@@ -55,7 +55,7 @@
                 </div>
                 <div class="u-form-group u-form-partition-factor-2">
                   <label for="name-5db7" class="u-custom-font u-font-raleway u-label u-label-2">Имя</label>
-                  <input type="text" placeholder="Enter your Name" id="name-5db7" name="name" class="u-border-1 u-border-grey-80 u-input u-input-rectangle u-radius u-input-2" required="">
+                  <input type="text" placeholder="Enter your Name" id="name-5db7" name="fullname" class="u-border-1 u-border-grey-80 u-input u-input-rectangle u-radius u-input-2" required="">
                 </div>
                 <div class="u-form-date u-form-group u-form-group-3">
                   <label for="date-ad35" class="u-custom-font u-font-raleway u-label u-label-3">Дата желаемой первой доставки</label>
@@ -74,15 +74,8 @@
                     Сумма к оплате {{ subscr.price }} р.
                 </p>
                   <button class="u-align-center u-black u-border-none u-btn u-btn-round u-button-style u-hover-custom-color-6 u-radius-30 u-btn-6">Перейти к оплате</button>
-                  {% comment %} временно для проверки issued {% endcomment %}
-                  <a href="{% url 'checkout:initial_payment' %}" class="u-active-custom-color-2 u-border-none u-btn u-btn-round u-button-style u-grey-90 u-hover-custom-color-2 u-radius-37 u-text-active-white u-text-hover-white u-text-white u-btn-1" data-animation-name="customAnimationIn" data-animation-duration="1500" data-animation-delay="500" data-animation-out="0">Подписаться</a>
-
                 </script>
                 </div>
-                <div class="u-form-send-message u-form-send-success"> Thank you! Your message has been sent. </div>
-                <div class="u-form-send-error u-form-send-message"> Unable to send your message. Please fix errors then try again. </div>
-                <input type="hidden" value="" name="recaptchaResponse">
-                <input type="hidden" name="formServices" value="0089ce5b-e9e4-631f-67ce-edd2c17f51f3">
               </form>
             </div>
           </div>
