@@ -1,4 +1,37 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 {% load static %}
-{% block content %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}" media="screen">
+      {% endblock style %}
+      {% block content %}
+      <section class="u-clearfix u-container-align-center-sm u-container-align-center-xs u-custom-color-10 u-section-1" id="sec-3dcb" style="margin-top: 40px;">
+        <div class="u-clearfix u-sheet u-sheet-1">
+          <h2 class="u-text u-text-default u-text-1"> Мы делаем&nbsp;<font color="#bfa98b">чудесные вещи</font>&nbsp;вместе</h2>
+        <p class="u-align-left u-text u-text-2"> Добро пожаловать в мир Mistea! Наша история началась с любви к чаю и желанием подарить каждому уникальный опыт чаепития. Основанный на традиционных методах приготовления и вдохновленный разнообразием вкусов, Mistea - это место, где искусство чая сочетается с удивительными ароматами и качественными ингредиентами.<span style="font-size: 1.25rem;">
+            <span style="font-size: 1.5rem;"></span>
+          </span>
+        </p>
+        <h2 class="u-text u-text-default u-text-3"> Наше <font color="#bfa98b">видение</font>
+        </h2>
+        <p class="u-align-left u-text u-text-4"> В Mistea мы верим, что чай - это не просто напиток, а настоящее искусство, которое может подарить нам радость, спокойствие и вдохновение. Мы стремимся преобразовать обыденные моменты в уникальные и незабываемые, предлагая вам лучшие сорта чая со всего мира.</p>
+        <h2 class="u-text u-text-default u-text-5">
+          <font color="#bfa98b">Качество и происхождение</font>
+        </h2>
+        <p class="u-align-left u-text u-text-6"> Мы гордимся тем, что предлагаем чай самого высокого качества. Наши чаи отбираются с особым вниманием к происхождению и методам производства. Мы сотрудничаем только с надежными поставщиками, которые делят наше стремление к качеству.</p>
+        <h2 class="u-text u-text-default u-text-7"> Наши <font color="#bfa98b">подписки</font>
+        </h2>
+        <p class="u-align-left u-text u-text-8"> Чтобы каждый мог наслаждаться многообразием чая Mistea, мы предлагаем удобные подписки. Выбирая подписку, вы получаете доступ к эксклюзивным сортам чая, которые регулярно доставляются прямо к вам домой. Это удобство, которое позволяет вам не думать о закупках и наслаждаться чаем по-настоящему.</p>
+        <h2 class="u-text u-text-default u-text-9"> Наша&nbsp;<font color="#bfa98b">миссия</font>
+        </h2>
+        <p class="u-align-left u-text u-text-10"> Нашей главной целью является распространение культуры чаепития и приглашение вас в увлекательное путешествие в мир чая. Мы хотим поделиться нашей страстью к чаю, разнообразием его вкусов и ароматов, а также уникальными историями, которые они несут в себе.</p>
+      </div>
+    </section>
+    <section class="u-clearfix u-container-align-center-sm u-container-align-center-xs u-palette-2-base u-section-2" id="sec-af4b">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <h2 class="u-align-center u-text u-text-default u-text-1">Присоедияйтесь к нам</h2>
+        <p class="u-text u-text-2">И окунитесь в мир Mistea. Откройте для себя новые вкусы, научитесь готовить чай как искусство, и наслаждайтесь каждым глотком с нами. Благодаря Mistea чаепитие становится не просто обыденной привычкой, а настоящим удовольствием для всех ваших чувств.</p>
+        <img class="u-image u-image-round u-radius-25 u-image-1" src="{% static 'images/tea_about.jpg'%}" alt="" data-image-width="5184" data-image-height="3456">
+        <a href="{% url 'login' %}" class="u-align-center-sm u-align-center-xs u-black u-border-none u-btn u-btn-round u-button-style u-radius-50 u-btn-1">подписаться</a>
+      </div>
+    </section>
 {% endblock content %}

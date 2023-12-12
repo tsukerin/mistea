@@ -40,6 +40,8 @@ class UserProfile(models.Model):
     payment_date = models.DateTimeField(null=True, blank=True)
     user_subscription = models.OneToOneField(UserSubscription, on_delete=models.CASCADE, null=True, related_name='user_profile')
     subscription = models.BooleanField(default=False)
+    subscription_end_date = models.DateTimeField(null=True, blank=True)
+    days_remaining = models.IntegerField(default=0)
 
     def add_one_month(self):
         # Прибавляем к текущей дате один месяц

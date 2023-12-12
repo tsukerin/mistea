@@ -3,7 +3,7 @@ from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
-from django.utils import timezone
+from datetime import datetime, timedelta
 from tea.models import Subscription
 from user.models import UserProfile, UserSubscription
 import uuid
@@ -12,6 +12,7 @@ from django.template.loader import render_to_string
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
+from mistea.tasks import check_subscription_status
 
 authorization = "Mjg2OTM3OnRlc3RfcE5wZTNCcDczS3YzRFRyQkF0a29YdFpVTmZIUFBGdWFtV1RacDlvNDRWQQ=="
 initial_payment_msg = "Списываем оплату за заказ"
@@ -130,19 +131,24 @@ def yookassa_success(request, personalized_identifier):
     user_subscription = user.userprofile.user_subscription
     user_profile, created = UserProfile.objects.get_or_create(user=user)
     user_profile.user_subscription = user_subscription
-    user_profile.payment_date = timezone.now()
+    user_profile.payment_date = datetime.now()
     user_profile.subscription = True
     user_profile.save()
     subscription = get_object_or_404(Subscription, pk=user_profile.id)
     subject = 'Подписка успешно оформлена'
-    
-    # Отрендерим HTML-шаблон как строку
+    current_datetime = datetime.now()
+    end_date = current_datetime + timedelta(days=30)
+    if not created:
+        user_profile.subscription_end_date = datetime.now() + timedelta(days=30)
+        user_profile.days_remaining = 30
+        user_profile.save()
+
+    check_subscription_status.apply_async(args=[user.id], eta=end_date)
     html_message = render_to_string('checkout/email_send.html', {'subscription': subscription, 'user_profile': user_profile, 'user_subscription': user_subscription, 'personalized_identifier': personalized_identifier})
     
     from_email = settings.DEFAULT_FROM_EMAIL
     recipient_list = [user.email]
 
-    # Используем send_mail с параметром html_message для отправки HTML-контента
     send_mail(subject, '', from_email, recipient_list, html_message=html_message, fail_silently=False)
 
     return render(request, 'checkout/success.html', {'user': user, 'user_profile': user_profile, 'personalized_identifier': personalized_identifier})

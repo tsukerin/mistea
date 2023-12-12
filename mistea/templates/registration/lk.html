@@ -41,7 +41,6 @@
                         <input type="text" id="text-6e4a" name="phone_number" class="u-input u-input-rectangle u-radius u-input-4 editable-field" placeholder="+7 (999) 00 00" value="{{ user_profile.user_subscription.phone_number }}" readonly>
                       </div>
                       <div class="u-align-center u-form-group u-form-submit">
-                        <!-- Кнопка для открытия всплывающего окна редактирования учетных данных -->
                         <a class="u-active-black u-border-1 u-border-black u-btn u-btn-submit u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-2" id="editProfileBtn">Редактировать учетные данные</a>
                         <input type="submit" value="submit" class="u-form-control-hidden">
                       </div>
@@ -54,6 +53,7 @@
                 <div class="u-container-layout u-valign-bottom u-container-layout-2">
                   <h3 class="u-align-right u-custom-font u-font-raleway u-text u-text-2">Подписка "{{ user_profile.user_subscription.sub_id }}"<br>подключена!&nbsp;
                   </h3>
+                  <h3 class="u-align-right u-custom-font u-font-raleway u-text u-text-2" style="color: #9f9888">действительна еще {{ user_profile.days_remaining }} дней</h3>
                   <div class="u-expanded-width u-form u-form-2">
                     <form action="https://forms.nicepagesrv.com/v2/form/process" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form-1" style="padding: 10px;">
                       <div class="u-form-group u-form-name">
@@ -98,29 +98,31 @@
                   <h2 class="u-align-left u-custom-font u-font-raleway u-text u-text-default u-text-1">Личный кабинет<br>
                   </h2>
                   <div class="custom-expanded u-align-center u-form u-form-1">
-                    <form action="https://forms.nicepagesrv.com/v2/form/process" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
+                    <form method="post" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
+                      {% csrf_token %%}
                       <div class="u-form-group u-form-name">
                         <label for="name-a5d6" class="u-label">Логин</label>
-                        <input type="text" placeholder="Логин" id="name-a5d6" name="login" class="u-input u-input-rectangle u-radius u-input-1" required="">
+                        <input type="text" placeholder="Логин" id="name-a5d6" name="username" class="u-input u-input-rectangle u-radius u-input-1" value="{{ user.username }}" readonly>
                       </div>
                       <div class="u-form-email u-form-group">
                         <label for="email-a5d6" class="u-label">Эл. почта</label>
-                        <input type="email" placeholder="Введите Ваш email адрес" id="email-a5d6" name="email" class="u-input u-input-rectangle u-radius u-input-2" required="">
+                        <input type="email" placeholder="Введите Ваш email адрес" id="email" name="email" class="u-input u-input-rectangle u-radius u-input-2 editable-field" value="{{ user.email }}" readonly>
                       </div>
                       <div class="u-form-group u-form-group-3">
                         <label for="text-e879" class="u-label">Имя Фамилия</label>
-                        <input type="text" placeholder="Илья Попов" id="text-e879" name="name" class="u-input u-input-rectangle u-radius u-input-3" required="required">
+                        <input type="text" placeholder="Илья Попов" id="text" name="fullname" class="u-input u-input-rectangle u-radius u-input-3 editable-field" value="{{ user_profile.user_subscription.fullname }}" readonly>
                       </div>
                       <div class="u-form-group u-form-group-4">
                         <label for="text-6e4a" class="u-label">Номер телефона</label>
-                        <input type="text" id="text-6e4a" name="phone" class="u-input u-input-rectangle u-radius u-input-4" placeholder="89283116006" required="required">
+                        <input type="text" id="text-6e4a" name="phone_number" class="u-input u-input-rectangle u-radius u-input-4 editable-field" placeholder="+7 (999) 00 00" value="{{ user_profile.user_subscription.phone_number }}" readonly>
                       </div>
-                      <div class="u-align-center u-form-group">
-                        <a class="u-border-1 u-border-black u-btn u-btn-submit u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-1">редактировать учетные данные</a>
+                      <div class="u-align-center u-form-group u-form-submit">
+                        <a class="u-active-black u-border-1 u-border-black u-btn u-btn-submit u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-2" id="editProfileBtn">Редактировать учетные данные</a>
+                        <input type="submit" value="submit" class="u-form-control-hidden">
                       </div>
                     </form>
                   </div>
-                  <a href="https://nicepage.com/c/shapes-website-templates" class="u-align-center u-border-1 u-border-black u-btn u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-2">Удалить профиль</a>
+                  <a class="u-active-black u-align-center u-border-1 u-border-black u-btn u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-2"id="deleteButton">Удалить профиль</a>
                 </div>
               </div>
               <div class="u-align-center u-container-style u-layout-cell u-shape-rectangle u-size-28 u-layout-cell-2">
@@ -241,138 +243,157 @@
 <script src="{% static 'js/popup.js' %}"></script>
 <script src="{% static 'js/utils.js' %}"></script>
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
 <script>
-  $(document).ready(function() {
-    $('#saveChangesBtn').on('click', function() {
-       var formData = {
-          'tea_type': $('input[name=tea_type]:checked').val(),
-          'schedule': $('input[name=schedule]:checked').val(),
-          'address': $('#deliveryAddress').val(),
-          'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),  // Включение CSRF-токена
-       };
- 
-       $.ajax({
-          type: 'POST',
-          url: '/user/save-changes/',
-          data: formData,
-          success: function(response) {
-             console.log(response);
-             // Дополнительные действия при успешном сохранении
-             window.location.reload();
-          },
-          error: function(error) {
-             console.log('AJAX Error:', error);
-          }
-       });
-    });
- });
- 
- $(document).ready(function() {
-  // Кнопка открытия всплывающего окна редактирования учетных данных
-  $('#editProfileBtn').on('click', function() {
-      $('#editProfilePopup').css('display', 'block');
-      $('#overlay').css('display', 'block');
+$(document).ready(function() {
+  $('#saveChangesBtn').on('click', function() {
+     var formData = {
+        'tea_type': $('input[name=tea_type]:checked').val(),
+        'schedule': $('input[name=schedule]:checked').val(),
+        'address': $('#deliveryAddress').val(),
+        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),  // Включение CSRF-токена
+     };
+
+     $.ajax({
+        type: 'POST',
+        url: '/user/save-changes/',
+        data: formData,
+        success: function(response) {
+           console.log(response);
+           // Дополнительные действия при успешном сохранении
+           window.location.reload();
+        },
+        error: function(error) {
+           console.log('AJAX Error:', error);
+        }
+     });
   });
-
-  // Кнопка закрытия всплывающего окна редактирования учетных данных
-  $('#closeProfilePopup').on('click', function() {
-      $('#editProfilePopup').css('display', 'none');
-      $('#overlay').css('display', 'none');
-  });
-
-  // Кнопка сохранения изменений учетных данных
-  $('#saveProfileChangesBtn').on('click', function() {
-      saveProfileChanges();
-  });
-
-  function closeProfileEditPopup() {
-      $('#editProfilePopup').css('display', 'none');
-      $('#overlay').css('display', 'none');
-  }
-
-  function saveProfileChanges() {
-    var email = $('#editEmail').val();
-    var fullname = $('#editFullname').val();
-    var phoneNumber = $('#editPhoneNumber').val();
-
-    var emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
-
-    var messageContainer = $('#messageContainer');
-
-    messageContainer.empty(); // Очистим содержимое контейнера перед каждой проверкой
-
-    if (!emailRegex.test(email)) {
-        messageContainer.text('Please enter a valid email address.');
-        return;
-    }
-
-    if (fullname.length > 50) {
-        messageContainer.text('Имя и Фамилия должны быть длинной не более 50 символов');
-        return;
-    }
-    var phoneRegex = /^\+\d{11}$/;
-    if (!phoneRegex.test(phoneNumber)) {
-        messageContainer.text('Пожалуйста, введите номер в формате +7XXXXXXX.');
-        return;
-    }
-    // Если все проверки успешны, вы можете продолжить с отправкой формы или выполнением других действий
-    var formData = {
-        'email': email,
-        'fullname': fullname,
-        'phone_number': phoneNumber,
-        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
-    };
-
-    // If all validations pass, you can proceed with form submission or other actions
-    var formData = {
-        'email': email,
-        'fullname': fullname,
-        'phone_number': phoneNumber,
-        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
-    };
-
-
-      $.ajax({
-          type: 'POST',
-          url: '/user/save-profile-changes/', // Обновите URL на свой
-          data: formData,
-          success: function(response) {
-              console.log(response);
-              window.location.reload();
-          },
-          error: function(error) {
-              console.log('AJAX Error:', error);
-          }
-      });
-  }
+});
+$(document).ready(function() {
+// Кнопка открытия всплывающего окна редактирования учетных данных
+$('#editProfileBtn').on('click', function() {
+    $('#editProfilePopup').css('display', 'block');
+    $('#overlay').css('display', 'block');
 });
 
-const token = "fc698b096dae5e3a1ae4f0b77d914b21c209c935";
-const url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
+// Кнопка закрытия всплывающего окна редактирования учетных данных
+$('#closeProfilePopup').on('click', function() {
+    $('#editProfilePopup').css('display', 'none');
+    $('#overlay').css('display', 'none');
+});
 
-  document.getElementById('address-input').addEventListener('input', function() {
-    const inputValue = this.value;
+// Кнопка сохранения изменений учетных данных
+$('#saveProfileChangesBtn').on('click', function() {
+    saveProfileChanges();
+});
 
-    const options = {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Authorization": "Token " + token
-      },
-      body: JSON.stringify({query: inputValue})
-    };
+function closeProfileEditPopup() {
+    $('#editProfilePopup').css('display', 'none');
+    $('#overlay').css('display', 'none');
+}
 
-    fetch(url, options)
-    .then(response => response.text())
-    .then(result => console.log(result))
-    .catch(error => console.log("error", error));
+function saveProfileChanges() {
+  var email = $('#editEmail').val();
+  var fullname = $('#editFullname').val();
+  var phoneNumber = $('#editPhoneNumber').val();
+
+  var emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+  var messageContainer = $('#messageContainer');
+
+  messageContainer.empty(); // Очистим содержимое контейнера перед каждой проверкой
+
+  if (!emailRegex.test(email)) {
+      messageContainer.text('Пожалуйста, введите корректный Email адрес');
+      return;
+  }
+
+  if (fullname.length > 50) {
+      messageContainer.text('Имя и Фамилия должны быть длинной не более 50 символов');
+      return;
+  }
+  var phoneRegex = /^\+\d{11}$/;
+  if (!phoneRegex.test(phoneNumber)) {
+      messageContainer.text('Пожалуйста, введите номер в формате +7XXXXXXX.');
+      return;
+  }
+  // Если все проверки успешны, вы можете продолжить с отправкой формы или выполнением других действий
+  var formData = {
+      'email': email,
+      'fullname': fullname,
+      'phone_number': phoneNumber,
+      'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+  };
+
+  // If all validations pass, you can proceed with form submission or other actions
+  var formData = {
+      'email': email,
+      'fullname': fullname,
+      'phone_number': phoneNumber,
+      'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+  };
+
+
+    $.ajax({
+        type: 'POST',
+        url: '/user/save-profile-changes/', // Обновите URL на свой
+        data: formData,
+        success: function(response) {
+            console.log(response);
+            window.location.reload();
+        },
+        error: function(error) {
+            console.log('AJAX Error:', error);
+        }
+    });
+}
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  const deleteButton = document.getElementById("deleteButton");
+  const deletePopup = document.getElementById("deletePopup");
+  const closeDeletePopup = document.getElementById("closeDeletePopup");
+  const confirmDeleteBtn = document.getElementById("confirmDeleteBtn");
+  const cancelDeleteBtn = document.getElementById("cancelDeleteBtn");
+
+  deleteButton.addEventListener("click", function() {
+      deletePopup.style.display = "block";
+      overlay.style.display = "block";
   });
 
+  closeDeletePopup.addEventListener("click", function() {
+      deletePopup.style.display = "none";
+      overlay.style.display = "none";
+  });
 
- 
+  cancelDeleteBtn.addEventListener("click", function() {
+      deletePopup.style.display = "none";
+      overlay.style.display = "none";
+  });
+
+  confirmDeleteBtn.addEventListener("click", function() {
+      deletePopup.style.display = "none";
+      overlay.style.display = "none";
+  });
+});
+
+document.getElementById('confirmUnsubscribeBtn').addEventListener('click', function(event) {
+event.preventDefault();
+var deleteUrl = this.getAttribute('data-delete-url');
+var csrf = this.getAttribute('data-csrf')
+var form = document.createElement('form');
+form.method = 'post';
+form.action = deleteUrl;
+var csrf_token = document.createElement('input');
+csrf_token.type = 'hidden';
+csrf_token.name = 'csrfmiddlewaretoken';
+csrf_token.value = csrf;
+form.appendChild(csrf_token);
+
+document.body.appendChild(form);
+form.submit();
+});
+
+document.getElementById('cancelUnsubscribeBtn').addEventListener('click', function(event) {
+});
 </script>
-
 {% endblock content %}
