@@ -135,6 +135,7 @@
     <div class="popup-content">
       <span class="close" id="closePopup">&times;</span>
       <form action="#" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="editForm" style="padding: 10px;">
+        {% csrf_token %}
         <div class="u-container-layout u-container-layout-2">
           <p class="u-align-center u-custom-font u-font-raleway u-text u-text-default u-text-2">Выбе​рите формат чая</p>
           <div class="form_toggle">
@@ -206,4 +207,59 @@
 <div class="overlay" id="overlay"></div>
 <script src="{% static 'js/popup.js' %}"></script>
 <script src="{% static 'js/utils.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+  $(document).ready(function() {
+    $('#saveChangesBtn').on('click', function() {
+       var formData = {
+          'tea_type': $('input[name=tea_type]:checked').val(),
+          'schedule': $('input[name=schedule]:checked').val(),
+          'address': $('#deliveryAddress').val(),
+          'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),  // Включение CSRF-токена
+       };
+ 
+       $.ajax({
+          type: 'POST',
+          url: '/user/save-changes/',
+          data: formData,
+          success: function(response) {
+             console.log(response);
+             // Дополнительные действия при успешном сохранении
+             window.location.reload();
+          },
+          error: function(error) {
+             console.log('AJAX Error:', error);
+          }
+       });
+    });
+ });
+ 
+   $(document).ready(function() {
+    $('#saveChangesBtn').on('click', function() {
+       var formData = {
+          'tea_type': $('input[name=tea_type]:checked').val(),
+          'schedule': $('input[name=schedule]:checked').val(),
+          'address': $('#deliveryAddress').val(),
+       };
+ 
+       console.log('FormData:', formData);  // Добавьте вывод в консоль
+ 
+       $.ajax({
+          type: 'POST',
+          url: '/user/save-changes/',
+          data: formData,
+          success: function(response) {
+             console.log(response);
+             // Дополнительные действия при успешном сохранении
+          },
+          error: function(error) {
+             console.log('AJAX Error:', error);
+          }
+       });
+    });
+ });
+ 
+</script>
+
 {% endblock content %}
