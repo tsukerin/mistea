@@ -2,6 +2,8 @@
 
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
 
 def save_changes(request):
     if request.method == 'POST':
@@ -19,3 +21,25 @@ def save_changes(request):
         return JsonResponse({'message': 'Изменения сохранены успешно.'})
 
     return JsonResponse({'message': 'Неверный запрос.'})
+
+@login_required
+def save_profile_changes(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        fullname = request.POST.get('fullname')
+        phone_number = request.POST.get('phone_number')
+
+        # Обновление данных в базе данных
+        user = request.user
+        user.email = email
+        user.save()
+
+        user_profile = user.userprofile
+        user_profile.fullname = fullname
+        user_profile.phone_number = phone_number
+        user_profile.save()
+
+        return JsonResponse({'message': 'Изменения сохранены успешно.'})
+
+    return JsonResponse({'message': 'Неверный запрос.'})
+
