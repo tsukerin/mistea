@@ -12,15 +12,12 @@
     <meta name="description" content="">
     <link rel="stylesheet" href="{% static 'css/b_profile.css' %}" media="screen" {% if 'profile' not in request.path %}disabled{% endif %}>
     <link rel="stylesheet" href="{% static 'css/base.css' %}" media="screen" {% if 'profile' in request.path %}disabled{% endif %}>
-    <script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static '' %}" media="screen">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" media="screen">
     <title>Mistea</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <!-- <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Karma:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-    <script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
     <meta name="referrer" content="origin">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
 </head>
@@ -36,17 +33,18 @@
 <body data-path-to-root="./" data-include-products="true" class="u-body u-xl-mode" data-lang="ru">
   <top class="fixed-top">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href=" ">MISTEA</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <a class="navbar-brand" href="{% url 'homepage' %}">MISTEA</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item {% if active_page == 'home' %}active{% endif %}">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
                     <a class="nav-link" href="{% url 'homepage' %}">Главная</a>
                 </li>
-                <li class="nav-item {% if active_page == 'subs' %}active{% endif %}">
-                  <a class="nav-link" href="{% url 'homepage' %}#subs">Подписки</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'homepage' %}#subs">Подписки</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'contact' %}">Контакты</a>
@@ -55,25 +53,26 @@
                     <a class="nav-link" href="{% url 'about' %}">О нас</a>
                 </li>
             </ul>
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}"><b>{{ user.username }}</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}?next=/home/"><b>Выйти</b></a>
+                </li>
+            </ul>
+            {% else %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}"><b>Войти</b></a>
+                </li>
+            </ul>
+            {% endif %}
         </div>
-        {% if user.is_authenticated %}
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-              <a class="nav-link" href="{% url 'profile' %}"><b>{{ user.username }}</b></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}?next=/home/"><b>Выйти</b></a>
-        </li>
-      </ul>
-      {% else %}
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'login' %}"><b>Войти</b></a>
-            </li>
-        </ul>
-      {% endif %}
     </nav>
-  </top>
+</top>
+
 <!-- <div class="wrapper"> -->
     <!-- <div class="content"> -->
     {% block content %}{% endblock content %}
@@ -163,5 +162,9 @@
     <p class="custom-copyright">Mistea © 2023</p>
   </div>
 </body>
+<script class="u-script" type="text/javascript" src="{% static 'js/nicepage.js' %}" defer=""></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script class="u-script" type="text/javascript" src="{% static 'js/jquery.js' %}" defer=""></script>
 </html>
 
