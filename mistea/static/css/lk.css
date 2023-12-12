@@ -389,7 +389,7 @@
   border-radius: 30px; /* Добавляем закругление углов формы */
 }
 
-#deliveryAddress {
+#deliveryAddress, #editEmail, #editFullname, #editPhoneNumber {
   border-radius: 30px; /* Добавляем закругление углов текстовой области */
 }
 

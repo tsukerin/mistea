@@ -115,9 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'RU'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -150,13 +150,14 @@ EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
 EMAIL = os.getenv('EMAIL')
 #Почта
 # settings.py
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+# settings.py
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'mistea'
+EMAIL_HOST_USER = 'mistea.delivery@gmail.com'
 EMAIL_HOST_PASSWORD = 'vapscvzvkjvtxaze'
 # settings.py
 DEFAULT_FROM_EMAIL = 'mistea.delivery@gmail.com'
-EMAIL_FILE_PATH = '/tmp/email'

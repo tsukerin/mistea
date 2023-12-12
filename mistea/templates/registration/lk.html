@@ -2,6 +2,12 @@
 {% load static %}
 {% block style %}
 <link rel="stylesheet" href="{% static 'css/lk.css' %}" media="screen">
+<style>
+  #messageContainer {
+    color: red;
+    margin-top: 10px;
+}
+</style>
 {% endblock style %}
 {% block content %}
 {% if request.user.userprofile.subscription %}
@@ -169,7 +175,7 @@
       </div>        
         <div class="u-form-group" id="deliveryForm">
           <label for="deliveryAddress" class="u-label">Адрес доставки</label>
-          <input type="text" id="deliveryAddress" name="address" class="u-input u-input-rectangle" value='{{ user_profile.user_subscription.address }}' required="required">
+          <input type="text" id="deliveryAddress" name="address" class="address-input u-input u-input-rectangle" value='{{ user_profile.user_subscription.address }}' required="required">
 
         </div>
         
@@ -179,27 +185,26 @@
       </form>
     </div>
   </div>
-  <!-- Всплывающее окно редактирования учетных данных -->
 <div class="popup" id="editProfilePopup">
   <div class="popup-content">
       <span class="close" id="closeProfilePopup">&times;</span>
       <form method="post" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="editProfileForm" style="padding: 10px;">
           {% csrf_token %}
-          <!-- Добавьте поля для редактирования учетных данных здесь -->
           <div class="u-form-email u-form-group">
               <label for="editEmail" class="u-label">Эл. почта</label>
-              <input type="email" placeholder="Введите Ваш email адрес" id="editEmail" name="email" class="u-input u-input-rectangle u-radius u-input-2 editable-field" value="{{ user.email }}">
+              <input type="email" placeholder="Введите Ваш email адрес" id="editEmail" name="email" class="u-input u-input-rectangle"  style="border-radius: 30px;" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" value="{{ user.email }}">
           </div>
           <div class="u-form-group u-form-group-3">
               <label for="editFullname" class="u-label">Имя Фамилия</label>
-              <input type="text" placeholder="Илья Попов" id="editFullname" name="fullname" class="u-input u-input-rectangle u-radius u-input-3 editable-field" value="{{ user_profile.fullname }}">
+              <input type="fullname" placeholder="Илья Попов" id="editFullname" name="fullname" class="u-input u-input-rectangle" maxlength="50"  style="border-radius: 30px;" required value="{{ user_profile.user_subscription.fullname }}">
           </div>
           <div class="u-form-group u-form-group-4">
               <label for="editPhoneNumber" class="u-label">Номер телефона</label>
-              <input type="text" id="editPhoneNumber" name="phone_number" class="u-input u-input-rectangle u-radius u-input-4 editable-field" placeholder="+7 (999) 00 00" value="{{ user_profile.phone_number }}">
+              <input type="phone2numeric" id="editPhoneNumber" name="phone_number" class="u-input u-input-rectangle border-lk" placeholder="+7XXXXXXX" style="border-radius: 30px;" required pattern="\+\d{11}" value="{{ user_profile.user_subscription.phone_number }}">
           </div>
           <div class="u-align-center u-form-group u-form-submit">
               <a class="u-active-black u-border-1 u-border-black u-btn u-btn-submit u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-1" id="saveProfileChangesBtn">Сохранить изменения</a>
+              <div id="messageContainer"></div>
           </div>
       </form>
   </div>
@@ -287,12 +292,46 @@
   }
 
   function saveProfileChanges() {
-      var formData = {
-          'email': $('#editEmail').val(),
-          'fullname': $('#editFullname').val(),
-          'phone_number': $('#editPhoneNumber').val(),
-          'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
-      };
+    var email = $('#editEmail').val();
+    var fullname = $('#editFullname').val();
+    var phoneNumber = $('#editPhoneNumber').val();
+
+    var emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+
+    var messageContainer = $('#messageContainer');
+
+    messageContainer.empty(); // Очистим содержимое контейнера перед каждой проверкой
+
+    if (!emailRegex.test(email)) {
+        messageContainer.text('Please enter a valid email address.');
+        return;
+    }
+
+    if (fullname.length > 50) {
+        messageContainer.text('Имя и Фамилия должны быть длинной не более 50 символов');
+        return;
+    }
+    var phoneRegex = /^\+\d{11}$/;
+    if (!phoneRegex.test(phoneNumber)) {
+        messageContainer.text('Пожалуйста, введите номер в формате +7XXXXXXX.');
+        return;
+    }
+    // Если все проверки успешны, вы можете продолжить с отправкой формы или выполнением других действий
+    var formData = {
+        'email': email,
+        'fullname': fullname,
+        'phone_number': phoneNumber,
+        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+    };
+
+    // If all validations pass, you can proceed with form submission or other actions
+    var formData = {
+        'email': email,
+        'fullname': fullname,
+        'phone_number': phoneNumber,
+        'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+    };
+
 
       $.ajax({
           type: 'POST',
@@ -300,7 +339,6 @@
           data: formData,
           success: function(response) {
               console.log(response);
-              // Дополнительные действия при успешном сохранении
               window.location.reload();
           },
           error: function(error) {
@@ -310,6 +348,28 @@
   }
 });
 
+const token = "fc698b096dae5e3a1ae4f0b77d914b21c209c935";
+const url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/suggest/address";
+
+  document.getElementById('address-input').addEventListener('input', function() {
+    const inputValue = this.value;
+
+    const options = {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": "Token " + token
+      },
+      body: JSON.stringify({query: inputValue})
+    };
+
+    fetch(url, options)
+    .then(response => response.text())
+    .then(result => console.log(result))
+    .catch(error => console.log("error", error));
+  });
 
 
  

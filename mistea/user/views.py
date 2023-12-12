@@ -35,10 +35,12 @@ def save_profile_changes(request):
         user.save()
 
         user_profile = user.userprofile
-        user_profile.fullname = fullname
-        user_profile.phone_number = phone_number
+        user_subscription = user.userprofile.user_subscription
+        user_subscription.fullname = fullname
+        user_subscription.phone_number = phone_number
+        user_subscription.save()
         user_profile.save()
-
+        
         return JsonResponse({'message': 'Изменения сохранены успешно.'})
 
     return JsonResponse({'message': 'Неверный запрос.'})
