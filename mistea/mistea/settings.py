@@ -30,7 +30,7 @@ ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = ['https://0960-2001-bc8-1201-63e-46a8-42ff-fe09-4eb7.ngrok-free.app']
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = reverse_lazy('profile')
-
+APPEND_SLASH = True
 
 # Application definition
 

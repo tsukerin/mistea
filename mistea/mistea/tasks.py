@@ -40,3 +40,4 @@ def check_subscription_status(user_id):
         send_mail(subject, '', from_email, recipient_list, html_message=html_message, fail_silently=False)
     else:
         update_subscription_counter.apply_async(args=[user.id], eta=profile.subscription_end_date)
+

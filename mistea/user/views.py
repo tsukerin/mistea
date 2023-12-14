@@ -1,6 +1,4 @@
-# В файле views.py
-
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
@@ -11,7 +9,6 @@ def save_changes(request):
         schedule = request.POST.get('schedule')
         address = request.POST.get('address')
 
-        # Обновление данных в базе данных
         user_profile = request.user.userprofile
         user_profile.user_subscription.tea_type = tea_type
         user_profile.user_subscription.schedule = schedule
@@ -29,7 +26,6 @@ def save_profile_changes(request):
         fullname = request.POST.get('fullname')
         phone_number = request.POST.get('phone_number')
 
-        # Обновление данных в базе данных
         user = request.user
         user.email = email
         user.save()
@@ -45,3 +41,8 @@ def save_profile_changes(request):
 
     return JsonResponse({'message': 'Неверный запрос.'})
 
+@login_required
+def delete_profile(request):
+    user = request.user
+    user.delete()
+    return redirect('homepage')

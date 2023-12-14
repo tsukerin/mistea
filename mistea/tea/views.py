@@ -55,13 +55,17 @@ class OrderSub(LoginRequiredMixin, View):
         return render(request, self.template_name, {'order': subscription, 'form': form})
     
     def dispatch(self, request, *args, **kwargs):
-        user = request.user
-        user_profile, created = UserProfile.objects.get_or_create(user=user)
+        if not request.user.is_authenticated:
+            messages.warning(request, 'Чтобы приобрести подписку, пожалуйста, войдите в аккаунт.')
+            return super().dispatch(request, *args, **kwargs)
+    
+        user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+    
         if user_profile.subscription == 1:
-            return redirect()
-        if not request.user.is_authenticated:   
-            messages.warning(request, 'Чтобы преобрести подписку, пожалуйста, войдите в аккаунт.')
+            return redirect('checkout:already')
+    
         return super().dispatch(request, *args, **kwargs)
+
 
     def post(self, request, subscription_id):
         form = self.form_class(request.POST)

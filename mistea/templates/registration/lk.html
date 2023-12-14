@@ -87,8 +87,8 @@
       </div>
     </section>
 {% else %}
-    <section class="u-clearfix u-image u-section-2" id="sec-5d8e" data-image-width="1600" data-image-height="940">
-      <img src="{% static 'images/bg_lk_.PNG'%}" class="background-image" alt="Фоновое изображение">
+    <section class="u-clearfix u-image u-section-2" id="sec-5d8e" data-image-width="1920" data-image-height="1080" style="margin-top: 100px;">
+      <img src="{% static 'images/bg_lk_.PNG'%}" class="background-image" alt="Фоновое изображение" style="margin-top: 100px;">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="data-layout-selected u-clearfix u-layout-wrap u-layout-wrap-1">
           <div class="u-layout">
@@ -229,10 +229,12 @@
   
   <div class="popup" id="deletePopup">
     <div class="popup-content">
+      <form action="{% url 'delete_profile' %}" method="post">
+        {% csrf_token %}
         <span class="close" id="closeDeletePopup"></span>
         <p>Вы уверены, что хотите удалить профиль?</p>
         <div class="u-align-center u-form-group u-form-submit">
-            <a class="u-active-black u-border-1 u-border-black u-btn u-btn-submit u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-4" id="confirmDeleteBtn">Да</a>
+            <a type="submit" class="u-active-black u-border-1 u-border-black u-btn u-btn-submit u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-4" id="confirmDeleteBtn" onclick="submitFormAndRedirect()">Да</a>
             <a class="u-active-black u-border-1 u-border-black u-btn u-btn-submit u-button-style u-hover-black u-text-black u-text-hover-white u-white u-btn-5" id="cancelDeleteBtn">Нет</a>
         </div>
     </div>
@@ -269,19 +271,16 @@ $(document).ready(function() {
   });
 });
 $(document).ready(function() {
-// Кнопка открытия всплывающего окна редактирования учетных данных
 $('#editProfileBtn').on('click', function() {
     $('#editProfilePopup').css('display', 'block');
     $('#overlay').css('display', 'block');
 });
 
-// Кнопка закрытия всплывающего окна редактирования учетных данных
 $('#closeProfilePopup').on('click', function() {
     $('#editProfilePopup').css('display', 'none');
     $('#overlay').css('display', 'none');
 });
 
-// Кнопка сохранения изменений учетных данных
 $('#saveProfileChangesBtn').on('click', function() {
     saveProfileChanges();
 });
@@ -300,7 +299,7 @@ function saveProfileChanges() {
 
   var messageContainer = $('#messageContainer');
 
-  messageContainer.empty(); // Очистим содержимое контейнера перед каждой проверкой
+  messageContainer.empty();
 
   if (!emailRegex.test(email)) {
       messageContainer.text('Пожалуйста, введите корректный Email адрес');
@@ -316,7 +315,6 @@ function saveProfileChanges() {
       messageContainer.text('Пожалуйста, введите номер в формате +7XXXXXXX.');
       return;
   }
-  // Если все проверки успешны, вы можете продолжить с отправкой формы или выполнением других действий
   var formData = {
       'email': email,
       'fullname': fullname,
@@ -324,7 +322,6 @@ function saveProfileChanges() {
       'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
   };
 
-  // If all validations pass, you can proceed with form submission or other actions
   var formData = {
       'email': email,
       'fullname': fullname,
@@ -335,7 +332,7 @@ function saveProfileChanges() {
 
     $.ajax({
         type: 'POST',
-        url: '/user/save-profile-changes/', // Обновите URL на свой
+        url: '/user/save-profile-changes/',
         data: formData,
         success: function(response) {
             console.log(response);
@@ -395,5 +392,10 @@ form.submit();
 
 document.getElementById('cancelUnsubscribeBtn').addEventListener('click', function(event) {
 });
+
+function submitFormAndRedirect() {
+  document.forms[0].submit();
+  window.location.href = "{% url 'delete_profile' %}";
+}
 </script>
 {% endblock content %}

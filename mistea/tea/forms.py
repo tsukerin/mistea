@@ -14,7 +14,7 @@ class RegForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = UserCreationForm.Meta.fields + ("email", )
+        fields = UserCreationForm.Meta.fields + ('username', 'email', 'password1', 'password2')
 
 class LoginForm(AuthenticationForm):
     email = forms.EmailField(
@@ -79,7 +79,7 @@ class UserSubscriptionForm(forms.ModelForm):
         validators=[RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Введите корректный номер телефона.")],
         required=True,
     )
-    message = forms.CharField(required=True)
+    message = forms.CharField(required=False)
     date_arrive = forms.DateField(
         input_formats=['%d.%m.%Y'],
     )

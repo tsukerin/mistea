@@ -59,7 +59,7 @@
                     <a class="nav-link" href="{% url 'profile' %}"><b>{{ user.username }}</b></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}?next=/home/"><b>Выйти</b></a>
+                    <a class="nav-link" href="{% url 'logout' %}?next=/#"><b>Выйти</b></a>
                 </li>
             </ul>
             {% else %}
@@ -72,13 +72,7 @@
         </div>
     </nav>
 </top>
-
-<!-- <div class="wrapper"> -->
-    <!-- <div class="content"> -->
-    {% block content %}{% endblock content %}
-    <!-- </div> -->
-<!-- </div> -->
-<!-- футер -->
+{% block content %}{% endblock content %}
 <style>
     body {
       margin: 0;
@@ -137,6 +131,7 @@
       font-size: 14px;
     }
   </style>
+  <footer>
   <div class="custom-footer">
     <div class="custom-container">
       <div class="custom-column">
@@ -161,6 +156,7 @@
     </div>
     <p class="custom-copyright">Mistea © 2023</p>
   </div>
+</footer>
 </body>
 <script class="u-script" type="text/javascript" src="{% static 'js/main.js' %}" defer=""></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
