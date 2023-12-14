@@ -58,7 +58,7 @@ class OrderSub(LoginRequiredMixin, View):
         if not request.user.is_authenticated:
             messages.warning(request, 'Чтобы приобрести подписку, пожалуйста, войдите в аккаунт.')
             return super().dispatch(request, *args, **kwargs)
-    
+        
         user_profile, created = UserProfile.objects.get_or_create(user=request.user)
     
         if user_profile.subscription == 1:
