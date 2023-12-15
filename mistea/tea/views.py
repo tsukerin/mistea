@@ -15,7 +15,7 @@ from django.views.generic.base import View
 from django.contrib import messages
 from yookassa import Configuration, Payment
 
-def homepage(request):
+def homepage(request): 
     context = {
         'active_page': 'homepage',
     }
@@ -86,7 +86,8 @@ class OrderSub(LoginRequiredMixin, View):
                     "return_url": request.build_absolute_uri(reverse('checkout:success', kwargs={'personalized_identifier': personalized_identifier})),
                 },
                 "capture": True,
-                "description": f'Подписка: {subscription.name}.'
+                "description": f'Подписка: {subscription.name}.',
+                "save_payment_method": True
             }, uuid.uuid4())
             confirmation_url = payment.confirmation.confirmation_url
             return redirect(confirmation_url, personalized_identifier=personalized_identifier)

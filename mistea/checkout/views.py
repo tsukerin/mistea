@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime, timedelta
+from mistea.tasks import process_subscription
 from tea.models import Subscription
 from user.models import UserProfile, UserSubscription
 import uuid
@@ -12,7 +13,6 @@ from django.template.loader import render_to_string
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from mistea.tasks import check_subscription_status
 
 def send_message(request, context):
     user = request.user
@@ -34,10 +34,6 @@ def yookassa_success(request, personalized_identifier):
     user_profile.payment_date = datetime.now()
     user_profile.subscription = True
     user_profile.save()
-    if not created:
-        user_profile.subscription_end_date = datetime.now() + timedelta(days=30)
-        user_profile.days_remaining = 30
-        user_profile.save()
 
     subscription = user_subscription.sub_id
     context = {
@@ -48,9 +44,7 @@ def yookassa_success(request, personalized_identifier):
     }
     send_message(request, context)
 
-    current_datetime = datetime.now()
-    end_date = current_datetime + timedelta(days=30)
-    check_subscription_status.apply_async(args=[user.id], eta=end_date)
+    process_subscription(user.id)
 
     return render(request, 'checkout/success.html', {'user': user, 'user_profile': user_profile, 'personalized_identifier': personalized_identifier})
 

@@ -24,17 +24,8 @@
               <input type="password" placeholder="Введите Ваш пароль" id="id_password" name="password" class="u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-2" required="">
             </div>
               <button type="submit" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-custom-color-1 u-radius-25 u-btn-1" style="width: 100%; margin-top: 10px;">Войти</button>
-              {% if messages %}
-              {% for message in messages %}
-              <ul class="messages">
-              {{ message }}
-              {% endfor %}
-              </ul>
-              {% endif %}
               {% if form.errors %}
-              <p>
-                Почта или пароль неверны.
-              </p>
+              <div class="u-custom-font u-font-raleway u-label u-label-2">Логин или пароль неверны.</div>
               {% endif %}
           </form>
         </div>

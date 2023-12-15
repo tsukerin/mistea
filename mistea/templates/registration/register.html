@@ -4,8 +4,8 @@
 <link rel="stylesheet" href="{% static 'css/reg.css' %}" media="screen">
 {% endblock style %}
 {% block content %}
-  <img src="{% static 'images/bg_reg.PNG'%}" class="background-image" alt="Фоновое изображение">
     <section class="u-clearfix u-image u-section-1" id="sec-3a43" data-image-width="1920" data-image-height="940" style="padding: 80px;">
+      <img src="{% static 'images/bg_reg.PNG'%}" class="background-image" alt="Фоновое изображение">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="u-align-center u-container-style u-group u-radius-30 u-shape-round u-white u-group-1">
           <div class="u-container-layout u-container-layout-1">
@@ -16,6 +16,9 @@
                 <div class="u-form-group u-form-group-1">
                   <label for="text-1eef" class="u-custom-font u-heading-font u-label u-label-1">Логин</label>
                   <input type="text" placeholder="Введите Ваш логин" id="text-1eef" name="username" class="u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-1" required="required">
+                  {% if form.password1.errors %}
+                  <div class="u-custom-font u-font-raleway u-label u-label-2">{{ form.password1.errors }}</div>
+                  {% endif %}
                 </div>
                 <div class="u-form-email u-form-group">
                   <label for="email-5846" class="u-custom-font u-heading-font u-label u-label-2">Эл. почта</label>
@@ -28,10 +31,16 @@
                   <label for="name-5846" class="u-custom-font u-heading-font u-label u-label-3">Пароль</label>
                   <input type="password" placeholder="Введите Ваш пароль" id="name-5846" name="password1" class="u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-3" required="">
                 </div>
+                {% if form.password1.errors %}
+                <div class="u-custom-font u-font-raleway u-label u-label-2">{{ form.password1.errors }}</div>
+                {% endif %}
                 <div class="u-form-group u-form-group-4">
                   <label for="text-d97e" class="u-custom-font u-heading-font u-label u-label-4">Повторите пароль</label>
                   <input type="password" placeholder="Введите Ваш пароль еще раз" id="text-d97e" name="password2" class="u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-4" required="required">
                 </div>
+                {% if form.password2.errors %}
+                <div class="u-custom-font u-font-raleway u-label u-label-2">{{ form.password2.errors }}</div>
+                {% endif %}
                 <div class="u-align-center u-form-group u-form-submit">
                   <center><button class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-custom-color-1 u-radius-25 u-btn-1">Зарегистрироваться</button></center>
                 </div>
