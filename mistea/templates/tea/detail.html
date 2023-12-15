@@ -25,7 +25,7 @@
               <div class="u-container-style u-layout-cell u-right-cell u-size-60 u-layout-cell-2">
                 <div class="u-container-layout u-container-layout-6">
                   <p class="u-text u-text-3">{{ subscription.description | safe }}</p>
-                  <a href="" class="u-align-center u-border-none u-btn u-btn-round u-button-style u-grey-90 u-hover-custom-color-1 u-radius-50 u-btn-1">Подписаться</a>
+                  <a href="{% url 'order' subscription_id=subscription.id %}" class="u-align-center u-border-none u-btn u-btn-round u-button-style u-grey-90 u-hover-custom-color-1 u-radius-50 u-btn-1">Подписаться</a>
                 </div>
               </div>
             </div>

@@ -55,7 +55,7 @@
                   </h3>
                   <h3 class="u-align-right u-custom-font u-font-raleway u-text u-text-2" style="color: #9f9888">действительна еще {{ user_profile.days_remaining }} дней</h3>
                   <div class="u-expanded-width u-form u-form-2">
-                    <form action="https://forms.nicepagesrv.com/v2/form/process" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form-1" style="padding: 10px;">
+                    <form class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form-1" style="padding: 10px;">
                       <div class="u-form-group u-form-name">
                         <label for="name-01b9" class="u-label">Формат чая</label>
                         <input type="text" placeholder="в пакетиках" id="name-01b9" name="tea_type" class="u-input u-input-rectangle u-radius u-input-5" required="" value="{% if user_profile.user_subscription.tea_type == 1 %}Заварной{% elif user_profile.user_subscription.tea_type == 2 %}В пакетиках{% endif %}" readonly>
