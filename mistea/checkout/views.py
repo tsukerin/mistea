@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime, timedelta
-from mistea.tasks import add_subscription
+from tasks.views import add_subscription
 from tea.models import Subscription
 from user.models import UserProfile, UserSubscription
 import uuid
@@ -43,8 +43,8 @@ def yookassa_success(request, personalized_identifier):
         'personalized_identifier': personalized_identifier
     }
     send_message(request, context)
-
-    add_subscription(user.id)
+    
+    add_subscription(user.id, user_subscription.schedule)
 
     return render(request, 'checkout/success.html', {'user': user, 'user_profile': user_profile, 'personalized_identifier': personalized_identifier})
 

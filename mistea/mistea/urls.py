@@ -8,4 +8,5 @@ urlpatterns = [
     path('', include('tea.urls')),
     path('payment/', include('checkout.urls')),
     path('user/', include('user.urls')),
+    path('update/', include('tasks.urls')),
 ]
