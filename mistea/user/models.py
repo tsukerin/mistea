@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 class UserSubscription(models.Model):
     sub_id = models.ForeignKey(Subscription, max_length=200, on_delete=models.CASCADE, related_name='num_sub')
     personalized_identifier = models.CharField(max_length=255, unique=True)
-    name = models.CharField(max_length=15, default="", blank=True)
+    fullname = models.CharField(max_length=15, default="", blank=True)
     phone_number = models.CharField(
         max_length=15,
         validators=[RegexValidator(regex=r'^\+?1?\d{9,15}$', message="Введите корректный номер телефона.")],
@@ -40,6 +40,8 @@ class UserProfile(models.Model):
     payment_date = models.DateTimeField(null=True, blank=True)
     user_subscription = models.OneToOneField(UserSubscription, on_delete=models.CASCADE, null=True, related_name='user_profile')
     subscription = models.BooleanField(default=False)
+    subscription_end_date = models.DateTimeField(null=True, blank=True)
+    days_remaining = models.IntegerField(default=0)
 
     def add_one_month(self):
         # Прибавляем к текущей дате один месяц
@@ -51,3 +53,4 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.subscription}"
+

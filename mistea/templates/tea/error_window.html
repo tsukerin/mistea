@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<link rel="stylesheet" href="{% static 'css/issued.css' %}" media="screen">
+<style>
+  .u-section-2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.u-group-1 {
+    width: 100%;
+    max-width: 591px; /* Ширина вашего бокса */
+    margin: 0 auto;
+}
+
+.u-container-align-center {
+    width: 100%;
+    text-align: center;
+}
+
+  .message-title {
+      font-family: 'raleway', sans-serif;
+      font-weight: bold;
+      font-size: 30px;
+      margin-bottom: 5px;
+  }
+
+  .email-text {
+      font-family: 'relawey', sans-serif;
+      font-size: 18px;
+      margin-bottom: 5px;
+  }
+
+  .u-container-layout-1 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100%;
+  }
+
+  .u-group-1 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+  }
+
+</style>
+{% endblock style %}
+{% block content %}
+    <section class="u-clearfix u-custom-color-9 u-section-1" id="sec-f750">
+      <div class="u-clearfix u-sheet u-sheet-1"></div>
+    </section>
+    <section class="u-clearfix u-image u-section-2" id="sec-2c38" data-image-width="1920" data-image-height="940">
+      <img src="{% static 'images/bg_lk.PNG'%}" class="background-image" alt="Фоновое изображение">
+      <div class="u-clearfix u-sheet u-sheet-1" style="margin-top: 100px;">
+        <div class="u-container-align-center u-container-style u-custom-color-10 u-group u-radius-50 u-shape-round u-group-1" data-animation-name="pulse" data-animation-duration="1000" data-animation-direction="">
+          <div class="u-container-layout u-container-layout-1">
+            <h3 class="message-title">У вас уже оформлена подписка!</h3>
+            <h6 class="email-text">Один пользователь может обладать только одной подпиской.</h6>           
+            <a href="{% url 'profile' %}" class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-1">личный кабинет</a>
+            <a href="{% url 'homepage' %}" class="u-active-black u-align-center u-border-none u-btn u-btn-round u-button-style u-hover-black u-palette-2-base u-radius-50 u-btn-2">на главную</a>
+          </div>
+        </div>
+      </div>
+    </section>
+</body>
+{% endblock content %}

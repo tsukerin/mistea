@@ -1,12 +1,11 @@
 import uuid
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse, reverse_lazy
-
 from mistea.settings import ID_SHOP, SECRET_KEY
 from .models import Subscription, TeaCategory, Tea
 from user.models import UserProfile, UserSubscription, User
 from django.shortcuts import render
-from .forms import LoginForm, ProfileForm, RegForm, UserSubscriptionForm
+from .forms import DeleteSubscriptionForm, LoginForm, ProfileForm, RegForm, UserSubscriptionForm
 from django.contrib.auth import authenticate, login, logout
 from django import template
 from django.contrib.auth.decorators import login_required
@@ -16,19 +15,7 @@ from django.views.generic.base import View
 from django.contrib import messages
 from yookassa import Configuration, Payment
 
-def home(request):
-    context = {
-        'active_page': 'home',
-    }
-    return render(request, 'tea/home.html', context)
-
-def index(request):
-    context = {
-        'active_page': 'index',
-    }
-    return render(request, 'tea/main.html', context)
-
-def homepage(request):
+def homepage(request): 
     context = {
         'active_page': 'homepage',
     }
@@ -38,40 +25,23 @@ def contact(request):
     context = {
         'active_page': 'contact',
     }
-    return render(request, 'contact.html', context)
-
-def subscribe(request):
-    return render(request, 'subscribe.html')
+    return render(request, 'tea/contact.html', context)
 
 def about(request):
     context = {
         'active_page': 'about',
     }
-    return render(request, 'about.html', context)
-
-def success(request, personalized_identifier):
-    # Ваш существующий код
-    return render(request, 'checkout/success.html', {'personalized_identifier': personalized_identifier})
-    
-def subs(request):
-    context = {
-        'active_page': 'subs',
-    }
-    return render(request, 'tea/subs.html', context)
-
-def tea_detail(request, id, slug):
-    tea = get_object_or_404(Tea, id=id, slug=slug, available=True)
-    return render(request, 'tea/detail.html', {'tea': tea})
+    return render(request, 'tea/about.html', context)
 
 def subscription_detail(request, subscription_id):
     subscription = Subscription.objects.get(id=subscription_id)
-    return render(request, 'detail.html', {'subscription': subscription})
+    return render(request, 'tea/detail.html', {'subscription': subscription})
 
 
 class OrderSub(LoginRequiredMixin, View):
     login_url = "login"
     form_class = UserSubscriptionForm
-    template_name = 'subscr.html'
+    template_name = 'tea/order.html'
     redirect_field_name = 'next'
     form_model = UserSubscription
     success_url = reverse_lazy("payment")
@@ -82,12 +52,20 @@ class OrderSub(LoginRequiredMixin, View):
             form = self.form_class(initial={'sub_id': subscription})
         except:
             form = self.form_class()
-        return render(request, self.template_name, {'subscr': subscription, 'form': form})
+        return render(request, self.template_name, {'order': subscription, 'form': form})
     
     def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_authenticated:   
-            messages.warning(request, 'Чтобы преобрести подписку, пожалуйста, войдите в аккаунт.')
+        if not request.user.is_authenticated:
+            messages.warning(request, 'Чтобы приобрести подписку, пожалуйста, войдите в аккаунт.')
+            return super().dispatch(request, *args, **kwargs)
+        
+        user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+    
+        if user_profile.subscription == 1:
+            return redirect('checkout:already')
+    
         return super().dispatch(request, *args, **kwargs)
+
 
     def post(self, request, subscription_id):
         form = self.form_class(request.POST)
@@ -108,7 +86,8 @@ class OrderSub(LoginRequiredMixin, View):
                     "return_url": request.build_absolute_uri(reverse('checkout:success', kwargs={'personalized_identifier': personalized_identifier})),
                 },
                 "capture": True,
-                "description": f'Подписка: {subscription.name}.'
+                "description": f'Подписка: {subscription.name}.',
+                "save_payment_method": True
             }, uuid.uuid4())
             confirmation_url = payment.confirmation.confirmation_url
             return redirect(confirmation_url, personalized_identifier=personalized_identifier)
@@ -116,9 +95,9 @@ class OrderSub(LoginRequiredMixin, View):
             print(form.errors)
 
         subscription = get_object_or_404(Subscription, pk=subscription_id)
-        return render(request, self.template_name, {'subscr': subscription, 'form': form})
+        return render(request, self.template_name, {'order': subscription, 'form': form})
 #----------------------------------------------------------------------------------------------------------------------------
-#Аутентификация
+#Аутентификация и профиль
 
 class ProfileView(LoginRequiredMixin, View):
     login_url = "login"
@@ -144,7 +123,6 @@ class ProfileView(LoginRequiredMixin, View):
             messages.success(request, 'Профиль успешно обновлен.')
             return redirect('profile')
         else:
-            messages.error(request, 'Произошла ошибка при обновлении профиля. Пожалуйста, проверьте данные.')
             return render(request, self.template_name, {'form': form, 'user_profile': user_profile})
     
 
@@ -165,4 +143,21 @@ class LoginView(CreateView):
         form.save()
         return super().form_valid(form)
 
+class DeleteSubscriptionView(View):
+    template_name = 'registration/lk.html'
 
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+    def post(self, request, *args, **kwargs):
+        form = DeleteSubscriptionForm(request.POST)
+
+        if form.is_valid():
+            user_profile = request.user.userprofile
+            user_profile.subscription = 0
+            user_profile.days_remaining = 0
+            user_profile.save()
+
+            return redirect('profile')
+
+        return render(request, self.template_name, {'form': form})

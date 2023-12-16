@@ -11,12 +11,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-
 from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -28,10 +26,10 @@ SECRET_KEY = 'django-insecure-9zauclxa!+3077b59t$#ova5ocdiwi*79f7%qautmnb!50p#di
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['https://b261-51-159-222-44.ngrok-free.app']
+CSRF_TRUSTED_ORIGINS = ['https://0960-2001-bc8-1201-63e-46a8-42ff-fe09-4eb7.ngrok-free.app']
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = reverse_lazy('profile')
-
+APPEND_SLASH = True
 
 # Application definition
 
@@ -44,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',  
+    'django.contrib.staticfiles', 
 
 ]
 
@@ -116,9 +114,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'RU'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Moscow'
 
 USE_I18N = True
 
@@ -154,5 +152,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = EMAIL
-EMAIL_HOST_PASSWORD = EMAIL_PASSWORD
+EMAIL_HOST_USER = 'mistea.delivery@gmail.com'
+EMAIL_HOST_PASSWORD = 'vapscvzvkjvtxaze'
+DEFAULT_FROM_EMAIL = 'mistea.delivery@gmail.com'

@@ -1,16 +1,15 @@
 {% load static %} 
-    <head> 
+    <head>
         <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="{% static 'css/email.css' %}" media="screen">
         <style>
             body { 
                 font-family: Arial, sans-serif; 
-                background-color: #f4f4f4; 
                 padding: 30px; }
                 .container {
                     max-width: 400px;
                     margin: 0 auto;
-                    background-color: #fff;
+                    background-color: #f5f5f5;
                     padding: 20px;
                     border-radius: 5px;
                     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
@@ -41,14 +40,15 @@
             }
         </style>
     </head> 
-<body> 
-    <div class="container"> 
-        <h1><div class="title">Поздравляем с уcпешной покупкой подписки на чай!</div></h1>
-        <p>ID вашего заказа: {{ user.usersubscription.personalized_identifier }}</p> 
+<body>
+    <div class="container">
+        
+        <h1><div class="title">Поздравляем с уcпешной покупкой подписки "{{ subscription.name }}"!</div></h1>
+        <p>ID вашего заказа: {{ user_subscription.personalized_identifier }}</p> 
         <p>Дата совершения покупки: {{ user_profile.payment_date }}</p>
-        <p>Ориентировочная дата доставки: {{ user.usersubscription.date_arrive }}</p>
-        <p>Стоимость подписки: {{ price }}</p>
+        <p>Ориентировочная дата доставки: {{ user_subscription.date_arrive }}</p>
+        <p>Стоимость подписки: {{ subscription.price }} рублей.</p>
         <div class="lenta"></div>
-        <p>В течении дня оператор свяжется с Вами для уточнения подробностей заказа</p>
+        <p>В течение часа оператор свяжется с Вами для уточнения подробностей заказа</p>
     </div> 
 </body> 
