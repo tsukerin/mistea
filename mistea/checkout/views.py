@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime, timedelta
+from mistea.tasks import add_subscription
 from tea.models import Subscription
 from user.models import UserProfile, UserSubscription
 import uuid
