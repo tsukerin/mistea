@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 from datetime import datetime, timedelta
-from tasks.views import add_subscription
+from tasks.views import add_subscription, send_message
 from tea.models import Subscription
 from user.models import UserProfile, UserSubscription
 import uuid
@@ -13,15 +13,6 @@ from django.template.loader import render_to_string
 from django.core.mail import send_mail
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-
-def send_message(request, context):
-    user = request.user
-    subject = 'Подписка успешно оформлена'
-    html_message = render_to_string('checkout/email_send.html', context)
-    from_email = settings.DEFAULT_FROM_EMAIL
-    recipient_list = [user.email]
-
-    send_mail(subject, '', from_email, recipient_list, html_message=html_message, fail_silently=False)
 
 @csrf_exempt
 @login_required
@@ -39,11 +30,10 @@ def yookassa_success(request, personalized_identifier):
     context = {
         'subscription': subscription,
         'user_profile': user_profile, 
-        'user_subscription': usersubscription, 
+        'user_subscription': user_subscription, 
         'personalized_identifier': personalized_identifier
     }
     send_message(request, context)
-    
     add_subscription(user.id, user_subscription.schedule)
 
     return render(request, 'checkout/success.html', {'user': user, 'user_profile': user_profile, 'personalized_identifier': personalized_identifier})

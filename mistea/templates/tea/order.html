@@ -65,13 +65,13 @@
                 </div>
                 <div class="u-form-date u-form-group u-form-group-3">
                   <label for="date-ad35" class="u-custom-font u-font-raleway u-label u-label-3">Дата желаемой первой доставки</label>
-                  <input type="text" readonly="readonly" placeholder="DD.MM.YYYY" id="date-ad35" name="date_arrive" class="u-border-1 u-border-grey-80 u-input u-input-rectangle u-radius u-input-3" required="" data-date-format="dd.mm.yyyy">
+                  <input type="date" placeholder="DD.MM.YYYY" name="date_arrive" class="u-border-1 u-border-grey-80 u-input u-input-rectangle u-radius u-input-3" required="">
                   {% for error in form.date_arrive.errors %}
                   <label class="u-custom-font u-font-raleway u-label u-label-2">{{ error }}</label>
                   {% endfor %}
                 </div>
                 <div class="u-form-group u-form-group-4">
-                  <label for="text-f02e" class="u-custom-font u-font-raleway u-label u-label-4">Адрес в формате (Город (область), улица, дом, подъезд, квартира)</label>
+                  <label for="text-f02e" class="u-custom-font u-font-raleway u-label u-label-4">Адрес в формате (Город, улица, дом, подъезд, квартира)</label>
                   <input type="text" placeholder="Введите адрес" id="text-f02e" name="address" class="u-border-1 u-border-grey-80 u-input u-input-rectangle u-radius u-white u-input-4" required="required">
                   {% for error in form.address.errors %}
                   <label class="u-custom-font u-font-raleway u-label u-label-2">{{ error }}</label>
@@ -79,7 +79,7 @@
                 </div>
                 <div class="u-form-group u-form-message">
                   <label for="message-5db7" class="u-custom-font u-font-raleway u-label u-label-5">Пожелания, сообщение курьеру (код домофона и прочее)</label>
-                  <textarea placeholder="Enter your message" rows="4" cols="50" id="message-5db7" name="message" class="u-border-1 u-border-grey-80 u-input u-input-rectangle u-radius u-input-5"></textarea>
+                  <textarea placeholder="Введите ваше сообщение (необязательно)" rows="4" cols="50" id="message-5db7" name="message" class="u-border-1 u-border-grey-80 u-input u-input-rectangle u-radius u-input-5"></textarea>
                 </div>           
                 <div class="u-align-center u-form-group u-form-submit">
                   <p class=" h4-raleway u-text-4">

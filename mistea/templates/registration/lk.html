@@ -7,11 +7,15 @@
     color: red;
     margin-top: 10px;
 }
+  @media (min-width: 1000px) {
+    .desktop-block {
+      padding: 70px;
+  }
 </style>
 {% endblock style %}
 {% block content %}
 {% if request.user.userprofile.subscription %}
-    <section class="u-clearfix u-image u-section-1" id="sec-91c6" data-image-width="1920" data-image-height="1080" style="margin-top: 100px;">
+    <section class="u-clearfix u-image u-section-1 desktop-block" id="sec-91c6" data-image-width="1920" data-image-height="1080">
       <img src="{% static 'images/bg_lk_.PNG'%}" class="background-image" data-image-width="1920" data-image-height="1080" alt="Фоновое изображение">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="data-layout-selected u-clearfix u-layout-wrap u-layout-wrap-1">
@@ -61,8 +65,8 @@
                         <input type="text" placeholder="в пакетиках" id="name-01b9" name="tea_type" class="u-input u-input-rectangle u-radius u-input-5" required="" value="{% if user_profile.user_subscription.tea_type == 1 %}Заварной{% elif user_profile.user_subscription.tea_type == 2 %}В пакетиках{% endif %}" readonly>
                       </div>
                       <div class="u-form-email u-form-group">
-                        <label for="email-01b9" class="u-label">Интервал доставки</label>
-                        <input type="email" placeholder="раз в месяц" id="email-01b9" name="interval" class="u-input u-input-rectangle u-radius u-input-6" value="{% if user_profile.user_subscription.schedule == 1 %}Раз в месяц{% elif user_profile.user_subscription.schedule == 2 %}2 раза в месяц{% elif user_profile.user_subscription.schedule == 3 %}3 раза в месяц{% endif %}" required="" readonly>
+                        <label for="text-01b9" class="u-label">Интервал доставки</label>
+                        <input type="text" placeholder="раз в месяц" id="email-01b9" name="interval" class="u-input u-input-rectangle u-radius u-input-6" value="{% if user_profile.user_subscription.schedule == 1 %}Раз в месяц{% elif user_profile.user_subscription.schedule == 2 %}2 раза в месяц{% elif user_profile.user_subscription.schedule == 3 %}3 раза в месяц{% endif %}" required="" readonly>
                       </div>
                       <div class="u-form-group u-form-group-8">
                         <label for="text-3440" class="u-label">Адрес доставки</label>
@@ -87,8 +91,22 @@
       </div>
     </section>
 {% else %}
-    <section class="u-clearfix u-image u-section-2" id="sec-5d8e" data-image-width="1920" data-image-height="1080" style="margin-top: 100px;">
-      <img src="{% static 'images/bg_lk_.PNG'%}" class="background-image" alt="Фоновое изображение" style="margin-top: 100px;">
+<style>
+    @media (min-width: 1000px) {
+      .desktop-block {
+        padding: 70px;
+      }
+      .margin-block {
+        margin-top: 100px;
+      }
+    @media (max-width: 1000px) {
+      .mobile-block {
+        padding: 100px;
+      }
+    }
+</style>
+    <section class="u-clearfix u-image u-section-2 desktop-block" id="sec-5d8e" data-image-width="1920" data-image-height="1080">
+      <img src="{% static 'images/bg_lk_.PNG'%}" class="background-image" alt="Фоновое изображение">
       <div class="u-clearfix u-sheet u-sheet-1">
         <div class="data-layout-selected u-clearfix u-layout-wrap u-layout-wrap-1">
           <div class="u-layout">
@@ -97,7 +115,7 @@
                 <div class="u-border-3 u-border-black u-border-no-bottom u-border-no-left u-border-no-top u-container-layout u-valign-bottom u-container-layout-1">
                   <h2 class="u-align-left u-custom-font u-font-raleway u-text u-text-default u-text-1">Личный кабинет<br>
                   </h2>
-                  <div class="custom-expanded u-align-center u-form u-form-1">
+                  <div class="custom-expanded u-align-center u-form u-form-1 ">
                     <form method="post" class="u-clearfix u-form-spacing-10 u-form-vertical u-inner-form" source="email" name="form" style="padding: 10px;">
                       {% csrf_token %%}
                       <div class="u-form-group u-form-name">
@@ -157,21 +175,6 @@
                 <label for="fid-3">В пакетиках</label>
             </div>
           
-        </div>
-          <p class="u-align-center u-custom-font u-font-raleway u-text u-text-default u-text-3">Выберите интервал доставки</p>
-          <div class="form_toggle">
-            <div class="form_toggle-item item-1">
-                <input id="freq-1" type="radio" name="schedule" value="1" {% if user_profile.user_subscription.schedule == 1 %} checked {% endif %}>
-                <label for="freq-1">Раз в месяц</label>
-            </div>
-            <div class="form_toggle-item item-2">
-                <input id="freq-2" type="radio" name="schedule" value="2" {% if user_profile.user_subscription.schedule == 2 %} checked {% endif %}>
-                <label for="freq-2">Раз в 2 месяца</label>
-            </div>
-            <div class="form_toggle-item item-3">
-                <input id="freq-3" type="radio" name="schedule" value="3" {% if user_profile.user_subscription.schedule == 3 %} checked {% endif %}>
-                <label for="freq-3">Раз в 3 месяца</label>
-          </div>
         </div>
         </div>
       </div>        

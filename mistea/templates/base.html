@@ -3,7 +3,6 @@
 <html style="font-size: 16px;" lang="ru">
 <head>
 {% block style %}{% endblock style %}
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
@@ -13,13 +12,20 @@
     <link rel="stylesheet" href="{% static 'css/b_profile.css' %}" media="screen" {% if 'profile' not in request.path %}disabled{% endif %}>
     <link rel="stylesheet" href="{% static 'css/base.css' %}" media="screen" {% if 'profile' in request.path %}disabled{% endif %}>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static '' %}" media="screen">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}" media="screen">
     <title>Mistea</title>
     <!-- <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Karma:wght@300;400;500;600;700&display=swap" rel="stylesheet"> -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
     <meta name="referrer" content="origin">
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,500,500i,600,600i,700,700i,800,800i">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'images/safari-pinned-tab.svg' %}" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
 </head>
 <style>
   .navbar-brand {
@@ -31,8 +37,8 @@
   }
 </style>
 <body data-path-to-root="./" data-include-products="true" class="u-body u-xl-mode" data-lang="ru">
-  <top class="fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <top class="fixed-top-md">
+    <nav class="navbar navbar-expand-md navbar-light bg-light">
         <a class="navbar-brand" href="{% url 'homepage' %}">MISTEA</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -129,34 +135,46 @@
       margin-top: 20px;
       text-align: center;
       font-size: 14px;
+
+    
+    .footer {
+       /* Коричневый цвет футера */
+      color: #fff; /* Цвет текста */
+      padding: 20px 0; /* Внутренние отступы */
+    }
     }
   </style>
-  <footer>
-  <div class="custom-footer">
-    <div class="custom-container">
-      <div class="custom-column">
-        <h3 class="custom-heading">Быстрые ссылки</h3>
-        <ul class="custom-list">
+  <footer class="footer" style="background-color: #463E35; color: #fff; padding: 30px;">
+    <div class="container">
+      <div class="row">
+        <!-- Первая колонка -->
+        <div class="col-md-4">
+          <h5>Быстрые ссылки</h5>
           <li class="custom-list-item"><a class="custom-link" href="{% url 'about' %}">О нас</a></li>
           <li class="custom-list-item"><a class="custom-link" href="{% url 'homepage' %}#subs">Подписки</a></li>
           <li class="custom-list-item"><a class="custom-link" href="{% url 'homepage' %}#faq">FaQ</a></li>
-        </ul>
-      </div>
-      <div class="custom-column">
-        <h3 class="custom-heading">Контакты</h3>
-        <ul class="custom-list">
+        </div>
+
+        <!-- Вторая колонка -->
+        <div class="col-md-4">
+          <h5>Контакты</h5>
+          <ul class="custom-list">
           <li class="custom-list-item"><a class="custom-link">​+7(925)-727-50-49</a></li>
-          <li class="custom-list-item"><a class="custom-link">​mistea.yandex.ru</a></li>
-        </ul>
+          <li class="custom-list-item"><a class="custom-link">​mistea.support@gmail.com</a></li>
+        </div>
+
+        <!-- Третья колонка -->
+        <div class="col-md-4">
+          <h5>Mistea</h5>
+          <p>Присоединяйтесь к Mistea прямо сейчас и станьте частью тайного чайного клуба, где чаепитие превращается в настоящее приключение!<br><br>
+            Для тестовой оплаты используйте карту 5555555555554477, даты карты любые, ccv код любой, смс код любой 
+          </p>
+        </div>
       </div>
-      <div class="custom-column">
-        <h3 class="custom-heading">Mistea</h3>
-        <p>Присоединяйтесь к Mistea прямо сейчас и станьте частью тайного чайного клуба, где чаепитие превращается в настоящее приключение!</p>
-      </div>
+      <hr>
+      <p class="text-center">© 2023 mistea.</p>
     </div>
-    <p class="custom-copyright">Mistea © 2023</p>
-  </div>
-</footer>
+  </footer>
 </body>
 <script class="u-script" type="text/javascript" src="{% static 'js/main.js' %}" defer=""></script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

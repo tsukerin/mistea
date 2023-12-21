@@ -6,7 +6,7 @@
 {% endblock style %}
 
 {% block content %}
-<section class="u-clearfix u-image u-section-2" id="sec-e707" data-image-width="1920" data-image-height="940" style="padding: 80px;">
+<section class="u-clearfix u-image u-section-2" id="sec-e707" data-image-width="1920" data-image-height="940" style="padding: 20px; overflow-x: hidden">
   <img src="{% static 'images/bg_reg.PNG'%}" class="background-image" alt="Фоновое изображение">
   <div class="u-clearfix u-sheet u-sheet-1">
     <div class="u-align-center u-container-style u-group u-radius-30 u-shape-round u-white u-group-1">
@@ -17,13 +17,18 @@
             {% csrf_token %}
             <div class="u-form-group u-form-group-1">
               <label for="text-1eef" class="u-custom-font u-heading-font u-label u-label-1">Логин</label>
-              <input type="text" placeholder="Введите Ваше логин" id="id_username" name="username" name="login" class="u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-1" required="required">
+              <input type="text" placeholder="Введите Ваш логин" id="id_username" name="username" name="login" class="u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-1" required="required">
             </div>
             <div class="u-form-group u-form-name">
               <label for="name-5846" class="u-custom-font u-heading-font u-label u-label-2">Пароль</label>
               <input type="password" placeholder="Введите Ваш пароль" id="id_password" name="password" class="u-custom-font u-heading-font u-input u-input-rectangle u-radius-25 u-input-2" required="">
             </div>
               <button type="submit" class="u-border-none u-btn u-btn-round u-button-style u-custom-color-3 u-hover-custom-color-1 u-radius-25 u-btn-1" style="width: 100%; margin-top: 10px;">Войти</button>
+              {% if messages %}
+              {% for message in messages %}
+              <div class="u-custom-font u-font-raleway u-label u-label-2">{{ message }}</div>
+              {% endfor %}
+              {% endif %}
               {% if form.errors %}
               <div class="u-custom-font u-font-raleway u-label u-label-2">Логин или пароль неверны.</div>
               {% endif %}
