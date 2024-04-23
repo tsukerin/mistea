@@ -56,8 +56,6 @@ python manage.py runserver
 
 Вы успешно установили проект на Django и готовы начать его использовать!
 
-![1e16bae5eb2db13e32fdc2d6806516103cd079e2r1-600-337_hq](https://github.com/setusq/Mistea_project/assets/107303964/e304b0e7-44c5-4746-a937-17e458f4c8a5)
-
 
 # Авторы
 
